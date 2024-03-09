@@ -30,7 +30,7 @@ public class Main{
         
         
         //FIRE SKILLS (1)
-        Skill infernoSkill = new Skill("Inferno", 1, false, false, 18, 15, true);
+        Skill infernoSkill = new Skill("Seville", 1, false, false, 18, 15, true);
         infernoSkill.newDescription("Strong fire damage to one foe");
 
         Skill solarSkill = new Skill("Solar Flare", 1, false, false, 26, 25, true);
@@ -48,7 +48,7 @@ public class Main{
         Skill tornadoSkill = new Skill("Tornado", 3, false, false, 18, 15, true);
         tornadoSkill.newDescription("Strong wind damage to one foe");
 
-        Skill tearSkill = new Skill("Tear to Shreds", 3, false, false, 26, 25, true);
+        Skill tearSkill = new Skill("Tempestuous", 3, false, false, 26, 25, true);
         tearSkill.newDescription("Severe wind damage to one foe");
 
         Skill airSkill = new Skill("Air Quality Reduction", 3, false, true, 0, 20, true); //Nyx Exclusive
@@ -113,7 +113,11 @@ public class Main{
         Skill weakenSkill = new Skill("Weaken", 11, false, false, 18, 0, true);
         weakenSkill.newDescription("Lower one foe's ATK for 3 turns");
 
+        Skill requirementsSkill = new Skill("Raise Requirements", 11, false, false, 0, 0, true); //Nyx Exclusive
+
         Skill sharpenSkill = new Skill("Sharpen", 11, true, false, 0, 0, true); //Nyx Exclusive
+
+        Skill mathclassSkill = new Skill("Math Class", 11, false, false, 0, 0, true); //Nyx Exclusive
 
         Skill traverseSkill = new Skill("Overloaded Method", 11, false, true, 0, 0, true); //Nyx Exclusive
 
@@ -121,8 +125,8 @@ public class Main{
         Skill defensiveSkill = new Skill("Defensive Positions", 12, true, true, 26, 0, true);
         defensiveSkill.newDescription("Raise the DEF of all allies for 3 turns");
 
-        Skill pinSkill = new Skill("Pin Down", 12, false, false, 20, 0, true);
-        pinSkill.newDescription("Lower the DEF of one for for 3 turns");
+        Skill resonanceSkill = new Skill("Resonance", 12, false, false, 20, 0, true);
+        resonanceSkill.newDescription("Hum at a foe's natural frequency... and lower their DEF for 3 turns");        
 
         Skill demorganSkill = new Skill("DeMorgan's Law", 12, false, true, 0, 0, true); //Nyx Exclusive
 
@@ -198,22 +202,22 @@ public class Main{
 
         Docsona warner = new Docsona("Warner", 84, 32, 68, 44, 23);
         warner.setAffinities(2, 3, 0, 0, 1, 3, 4);
-        warner.setSkills(tackleSkill, chargeSkill, intimidateSkill, defensiveSkill, none, none, none, none);
+        warner.setSkills(tackleSkill, chargeSkill, resonanceSkill, defensiveSkill, none, none, none, none);
         warner.setAttack(attack);
 
         Docsona sheldon = new Docsona("Sheldon", 44, 76, 55, 55, 43);
         sheldon.setAffinities(1, 2, 2, 0, 5, 0, 3);
-        sheldon.setSkills(bazingaSkill, intimidateSkill, warmupSkill, nothingSkill, bangSkill, none, none, none);
+        sheldon.setSkills(bazingaSkill, intimidateSkill, warmupSkill, bangSkill, none, none, none, none);
         sheldon.setAttack(attack);
 
         Docsona agosti = new Docsona("Agosti", 38, 88, 34, 67, 66);
         agosti.setAffinities(0, 1, 4, 4, 2, 0, 0);
-        agosti.setSkills(infernoSkill, chillerSkill, shockerSkill, tearSkill, none, none, none, none);
+        agosti.setSkills(infernoSkill, chillerSkill, tornadoSkill, shockerSkill, none, none, none, none);
         agosti.setAttack(attack);
 
         Docsona cassidy = new Docsona("Cassidy", 46, 66, 60, 58, 68);
         cassidy.setAffinities(0, 0, 0, 0, 0, 1, 2);
-        cassidy.setSkills(nothingSkill, beanSkill, asylumSkill, none, none, none, none, none);
+        cassidy.setSkills(tearSkill, beanSkill, asylumSkill, none, none, none, none, none);
         cassidy.setAttack(attack);
 
         //HINNI DOCSONA
@@ -231,23 +235,23 @@ public class Main{
         //ANTONIO DOCSONA
         Docsona cole = new Docsona("Cole", 88, 45, 77, 34, 54);
         cole.setAffinities(4, 2, 0, 1, 0, 0, 2);
-        cole.setSkills(headrushSkill, tackleSkill, madmenSkill, warmupSkill, weakenSkill, pinSkill, none, none);
+        cole.setSkills(headrushSkill, tackleSkill, madmenSkill, warmupSkill, weakenSkill, none, none, none);
         cole.setAttack(attack);
 
         //NYX DOCSONAS
         Docsona unit0 = new Docsona("Unit 0", 50, 50, 50, 50, 50);
         unit0.setAffinities(0, 0, 0, 0, 0, 0, 0);
-        unit0.setSkills(rumbleSkill, intimidateSkill, orderSkill, introSkill, none, none, none, none);
+        unit0.setSkills(rumbleSkill, requirementsSkill, orderSkill, introSkill, none, none, none, none);
         unit0.setAttack(attack);
 
         Docsona unit1 = new Docsona("Unit 1", 80, 20, 80, 40, 20);
         unit1.setAffinities(5, 0, 2, 3, 2, 0, 0);
-        unit1.setSkills(turtleStomp, weakenSkill, avatarSkill, none, none, none, none, none);
+        unit1.setSkills(turtleStomp, weakenSkill, none, none, none, none, none, none);
         unit1.setAttack(attack);
 
         Docsona unit2 = new Docsona("Unit 2", 80, 20, 80, 40, 20);
         unit2.setAffinities(5, 0, 2, 3, 2, 0, 0);
-        unit2.setSkills(turtleStomp, weakenSkill, avatarSkill, none, none, none, none, none);
+        unit2.setSkills(none, none, none, none, none, none, none, none);
         unit2.setAttack(attack);
 
         Docsona unit3 = new Docsona("Unit 3", 80, 20, 80, 40, 20);

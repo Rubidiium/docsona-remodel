@@ -50,7 +50,7 @@ public class AI{
                         a.hasTurn = false;
                         //Pick a random target
                         target = (int)(Math.random() * (4));
-                        if((int)(random) < 50){
+                        if((int)(random) <= 50){
                             Battle.useSSkill(a, actors[target], a.edocsona.skills[2], "0"); }
                         else if((int)(random) > 50 && (int)(random) <= 80){
                             Battle.useASkill(a, actors, a.edocsona.skills[0], "0"); }
@@ -67,8 +67,14 @@ public class AI{
                         //Prioritize target with buffs, else random
                         for(int i = 0; i < actors.length; i++){
                             if(actors[i].atk != 0 || actors[i].def != 0 || actors[i].acc != 0){
+                                //70% chance to select a target
                                 if(random >= 30){
-                                    target = i;} } }                   
+                                    target = i;} } }
+                        if((int)(random) <= 70){
+                            Battle.useSSkill(a, actors[target], a.edocsona.skills[1], "0"); }
+                        else if((int)(random) > 70 && (int)(random) <= 85){
+                            
+                        }
                         break;
                     //Prioritize ailments
                     case 2:
