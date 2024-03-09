@@ -63,6 +63,12 @@ public class AI{
                         break;
                     //Prioritize buffs/debuffs
                     case 1:
+                        a.hasTurn = false;
+                        //Prioritize target with buffs, else random
+                        for(int i = 0; i < actors.length; i++){
+                            if(actors[i].atk != 0 || actors[i].def != 0 || actors[i].acc != 0){
+                                if(random >= 30){
+                                    target = i;} } }                   
                         break;
                     //Prioritize ailments
                     case 2:
