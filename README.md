@@ -95,3 +95,13 @@ Unit 0
 2. Raise Requirements (Lower Foe ATK)
 3. Reorder (20 Physical Damage)
 4. Overview (Fear One Ally)
+
+Unit 1
+
+- t.attack (8 Physical Damage)
+
+1. t.stomp() (20 Physical Damage)
+2. t.smash() (20 Physical Damage to All Allies)
+3. t.slow() (Lower All Allies ACC)
+4. t.speed(2) (Raise Foe ACC)
+5. t.screech (Fear All Allies)

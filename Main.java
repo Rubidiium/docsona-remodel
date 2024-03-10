@@ -11,6 +11,7 @@ public class Main{
         //DEFAULT
         Skill none = new Skill("NONE", 0, false, false, 0, 0, false);
         Skill attack = new Skill("Attack", 0, false, false, 0, 8, false);
+        Skill tattack = new Skill("t.attack()", 0, false, false, 0, 8, false);
         
         //PHYSICAL SKILLS (0)
         Skill tackleSkill = new Skill("Tackle", 0, false, false, 85, 18, true);
@@ -28,7 +29,8 @@ public class Main{
 
         Skill rumbleSkill = new Skill("Syllabus", 0, false, true, 0, 20, true); //Nyx Exclusive
         
-        
+        Skill abstractSkill = new Skill("t.smash()", 0, false, true, 0, 20, true); //Nyx Exclusive
+
         //FIRE SKILLS (1)
         Skill infernoSkill = new Skill("Seville", 1, false, false, 18, 15, true);
         infernoSkill.newDescription("Strong fire damage to one foe");
@@ -128,7 +130,7 @@ public class Main{
         Skill resonanceSkill = new Skill("Resonance", 12, false, false, 20, 0, true);
         resonanceSkill.newDescription("Hum at a foe's natural frequency... and lower their DEF for 3 turns");        
 
-        Skill demorganSkill = new Skill("DeMorgan's Law", 12, false, true, 0, 0, true); //Nyx Exclusive
+        Skill scannerSkill = new Skill("Scanner", 12, false, true, 0, 0, true); //Nyx Exclusive
 
         //ACCURACY SKILLS (13)
         Skill hikingSkill = new Skill("Hiking", 13, true, true, 28, 0, true);
@@ -137,9 +139,9 @@ public class Main{
         Skill danceSkill = new Skill("Codio Dance", 13, false, false, 20, 0, true);
         danceSkill.newDescription("The one thing that makes it easier... lowers ACC of one foe for 3 turns");
 
-        Skill avatarSkill = new Skill("t.clear()", 13, false, true, 0, 0, true); //Nyx Exclusive
+        Skill avatarSkill = new Skill("t.slow()", 13, false, true, 0, 0, true); //Nyx Exclusive
 
-        Skill moveSkill = new Skill("t.move(999)", 13, true, false, 0, 0, true); //Nyx Exclusive
+        Skill moveSkill = new Skill("t.speech(2)", 13, true, false, 0, 0, true); //Nyx Exclusive
 
         //CONCENTRATE SKILLS (14)
         Skill focusSkill = new Skill("Focus", 14, true, false, 10, 0, true);
@@ -158,7 +160,7 @@ public class Main{
 
         Skill logicSkill = new Skill("Logic Error", 16, false, false, 0, 0, true); //Nyx Exclusive
         
-        Skill overwhelmSkill = new Skill("Overwhelm", 16, false, true, 0, 0, true); //Nyx Exclusive
+        Skill algorithmSkill = new Skill("t.screech()", 16, false, true, 0, 0, true); //Nyx Exclusive
 
         //POISON SKILLS (17)
         Skill corruptSkill = new Skill("Corrupt", 17, false, false, 0, 0, true); //Nyx Exclusive
@@ -246,8 +248,8 @@ public class Main{
 
         Docsona unit1 = new Docsona("Unit 1", 80, 20, 80, 40, 20);
         unit1.setAffinities(5, 0, 2, 3, 2, 0, 0);
-        unit1.setSkills(turtleStomp, weakenSkill, none, none, none, none, none, none);
-        unit1.setAttack(attack);
+        unit1.setSkills(turtleStomp, abstractSkill, avatarSkill, moveSkill, algorithmSkill, none, none, none);
+        unit1.setAttack(tattack);
 
         Docsona unit2 = new Docsona("Unit 2", 80, 20, 80, 40, 20);
         unit2.setAffinities(5, 0, 2, 3, 2, 0, 0);
@@ -1179,6 +1181,15 @@ public class Main{
                                 System.out.println("Graphics which render sight useless.");
                                 codioAvatar.changeDocsona(unit1);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
+                                Pass.p(s.nextLine()); 
+                                Clear.clear();
+                                System.out.println("Codio Avatar uses Turtle t = new Turtle()");
+                                Pass.p(s.nextLine());
+                                System.out.println("You watch as the apparition of a collosal tortoise with a pen in it's mouth appears behind him.");
+                                Pass.p(s.nextLine());
+                                System.out.println("The turtle I've drawn shall grant me his strength."); 
+                                Pass.p(s.nextLine());
+                                System.out.println("With it you shall witness the power of graphical automation.");
                                 Pass.p(s.nextLine()); }
                                 break;
                         case 2:
