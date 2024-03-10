@@ -246,20 +246,47 @@ public class Main{
         unit0.setSkills(rumbleSkill, requirementsSkill, orderSkill, introSkill, none, none, none, none);
         unit0.setAttack(attack);
 
+        //Themed around the turtle
         Docsona unit1 = new Docsona("Unit 1", 80, 20, 80, 40, 20);
         unit1.setAffinities(5, 0, 2, 3, 2, 0, 0);
         unit1.setSkills(turtleStomp, abstractSkill, avatarSkill, moveSkill, algorithmSkill, none, none, none);
         unit1.setAttack(tattack);
 
-        Docsona unit2 = new Docsona("Unit 2", 80, 20, 80, 40, 20);
-        unit2.setAffinities(5, 0, 2, 3, 2, 0, 0);
+        //Themed around data (fire damage)
+        Docsona unit2 = new Docsona("Unit 2", 20, 50, 40, 40, 20);
+        unit2.setAffinities(0, 4, 0, 2, 0, 2, 2);
         unit2.setSkills(none, none, none, none, none, none, none, none);
         unit2.setAttack(attack);
 
-        Docsona unit3 = new Docsona("Unit 3", 80, 20, 80, 40, 20);
-        unit3.setAffinities(5, 0, 2, 3, 2, 0, 0);
-        unit3.setSkills(turtleStomp, weakenSkill, avatarSkill, none, none, none, none, none);
+        //Themed around loops (ice damage)
+        Docsona unit3 = new Docsona("Unit 3", 40, 60, 50, 50, 30);
+        unit3.setAffinities(2, 0, 4, 0, 2, 2, 0);
+        unit3.setSkills(none, none, none, none, none, none, none, none);
         unit3.setAttack(attack);
+
+        //Themed around methods and connections (electric)
+        Docsona unit4 = new Docsona("Unit 4", 40, 70, 60, 40, 40);
+        unit4.setAffinities(0, 2, 2, 0, 4, 0, 3);
+        unit4.setSkills(none, none, none, none, none, none, none, none);
+        unit4.setAttack(attack);
+
+        //Themed around arrays (wild magic)
+        Docsona unit5 = new Docsona("Unit 5", 40, 80, 50, 40, 50);
+        unit5.setAffinities(0, 2, 2, 2, 2, 3, 3);
+        unit5.setSkills(none, none, none, none, none, none, none, none);
+        unit5.setAttack(attack);
+
+        //Themed around inheritance (physical, light, and dark)
+        Docsona unit6 = new Docsona("Unit 6", 70, 70, 40, 60, 60);
+        unit6.setAffinities(3, 0, 0, 2, 2, 4, 4);
+        unit6.setSkills(none, none, none, none, none, none, none, none);
+        unit6.setAttack(attack);
+
+        //Themed around sorting (Nyx's true arcana, all types go)
+        Docsona unit7 = new Docsona("Unit 7", 80, 80, 80, 80, 80);
+        unit7.setAffinities(2, 2, 2, 2, 2, 2, 2);
+        unit7.setSkills(none, none, none, none, none, none, none, none);
+        unit7.setAttack(attack);
 
         //Create Actor objects
         Actor vee = new Actor("Vee", 657, 488, summers);

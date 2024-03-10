@@ -101,7 +101,7 @@ Unit 1
 - t.attack (8 Physical Damage)
 
 1. t.stomp() (20 Physical Damage)
-2. t.smash() (20 Physical Damage to All Allies)
+2. t.smash() (20 Physical Damage ALL)
 3. t.slow() (Lower All Allies ACC)
 4. t.speed(2) (Raise Foe ACC)
 5. t.screech (Fear All Allies)
