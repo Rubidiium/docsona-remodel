@@ -1206,15 +1206,16 @@ public class Main{
                                 System.out.println("That which is rendered, that which defines me...");
                                 Pass.p(s.nextLine());
                                 System.out.println("Graphics which render sight useless.");
+                                Pass.p(s.nextLine());
                                 codioAvatar.changeDocsona(unit1);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
                                 Pass.p(s.nextLine()); 
                                 Clear.clear();
-                                System.out.println("Codio Avatar uses Turtle t = new Turtle()");
+                                System.out.println("Codio Avatar uses Turtle t = new Turtle();");
                                 Pass.p(s.nextLine());
-                                System.out.println("You watch as the apparition of a collosal tortoise with a pen in it's mouth appears behind him.");
+                                System.out.println("You watch as an apparition of a collosal tortoise with a pen in its mouth appears.");
                                 Pass.p(s.nextLine());
-                                System.out.println("The turtle I've drawn shall grant me his strength."); 
+                                System.out.println("This turtle shall grant me its strength."); 
                                 Pass.p(s.nextLine());
                                 System.out.println("With it you shall witness the power of graphical automation.");
                                 Pass.p(s.nextLine()); }

@@ -72,9 +72,9 @@ public class Battle{
                         System.out.println(damage + " damage to " + t.name);
                         t.cHP -= damage;
                         t.down = true;
-                        System.out.println("\n1 MORE\n"); 
                         System.out.println(t.name + "'s HP is " + t.cHP);
                         if(!Battle.is1more){
+                            System.out.println("\n1 MORE\n"); 
                             Battle.is1more = true;
                             a.hasTurn = true; } 
                         } else {
@@ -148,8 +148,12 @@ public class Battle{
                     System.out.println("DRAIN");
                     damage = s.castDamage(a, t);
                     t.cHP += damage;
-                    System.out.println(damage + " healed to " + t.name);
-                    System.out.println(t.name + "'s HP is " + t.cHP);
+                    if(t.cHP >= t.mHP){
+                        t.cHP = t.mHP;
+                        System.out.println(t.name + "'s HP is maxed out!");
+                    } else {
+                    System.out.println(damage + " healed to " + t.name); }
+                    System.out.println(t.name + "'s HP is " + t.cHP + "\n");
                     break;
                 //Enemy repels
                 case 5:
@@ -365,15 +369,15 @@ public class Battle{
                                         System.out.println(damage + " damage to " + t.name);
                                         t.cHP -= damage;
                                         t.down = true;
-                                        System.out.println("\n1 MORE\n"); 
-                                        System.out.println(t.name + "'s HP is " + t.cHP);
+                                        System.out.println(t.name + "'s HP is " + t.cHP + "\n");
                                         if(!Battle.is1more){
                                             Battle.is1more = true;
+                                            System.out.println("\n1 MORE\n"); 
                                             a.hasTurn = true; } 
                                         } else {
                                             System.out.println(damage + " damage to " + t.name);
                                             t.cHP -= damage;
-                                            System.out.println(t.name + "'s HP is " + t.cHP);
+                                            System.out.println(t.name + "'s HP is " + t.cHP + "\n");
                                         }
                                         t.unconscious();
                                 }
@@ -388,11 +392,11 @@ public class Battle{
                                     System.out.println("WEAK");
                                     t.cHP -= damage;
                                     t.down = true;
-                                    System.out.println(damage + " damage to " + t.name);
+                                    System.out.println(damage + " damage to " + t.name  + "\n");
                                 if(!Battle.is1more){
                                     Battle.is1more = true;
                                     System.out.println("1 MORE"); }
-                                    System.out.println(t.name + "'s HP is " + t.cHP); }
+                                    System.out.println(t.name + "'s HP is " + t.cHP  + "\n"); }
                                 t.unconscious();
                                 break;
                             //Enemy resists
@@ -402,7 +406,7 @@ public class Battle{
                                 System.out.println("RESIST");
                                 t.cHP -= damage;
                                 System.out.println(damage + " damage to " + t.name);
-                                System.out.println(t.name + "'s HP is " + t.cHP);
+                                System.out.println(t.name + "'s HP is " + t.cHP  + "\n");
                                 t.unconscious();
                                 break;
                             //Enemy blocks
@@ -416,8 +420,12 @@ public class Battle{
                                 System.out.println("DRAIN");
                                 damage = s.castDamage(a, t);
                                 t.cHP += damage;
-                                System.out.println(damage + " healed to " + t.name);
-                                System.out.println(t.name + "'s HP is " + t.cHP);
+                                if(t.cHP >= t.mHP){
+                                    t.cHP = t.mHP;
+                                    System.out.println(t.name + "'s HP is maxed out!");
+                                } else {
+                                System.out.println(damage + " healed to " + t.name); }
+                                System.out.println(t.name + "'s HP is " + t.cHP + "\n");
                                 break;
                             //Enemy repels
                             case 5:
@@ -426,7 +434,7 @@ public class Battle{
                                 damage = s.castDamage(a, t);
                                 a.cHP -= damage;
                                 System.out.println(damage + " to " + a.name);
-                                System.out.println(a.name + "'s HP is " + a.cHP);
+                                System.out.println(a.name + "'s HP is " + a.cHP + "\n");
                                 a.unconscious();
                                 break;
                             }
