@@ -107,3 +107,5 @@ Unit 1
 5. t.screech (Fear All Allies)
 
 Unit 2
+
+- Attack (8 Physical Damage)
