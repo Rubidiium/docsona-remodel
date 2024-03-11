@@ -31,6 +31,8 @@ public class Main{
         
         Skill abstractSkill = new Skill("t.smash()", 0, false, true, 0, 20, true); //Nyx Exclusive
 
+        Skill stringSkill = new Skill("String Algorithm", 0, false, true, 0, 25, true); //Nyx Exclusive
+
         //FIRE SKILLS (1)
         Skill infernoSkill = new Skill("Seville", 1, false, false, 18, 15, true);
         infernoSkill.newDescription("Strong fire damage to one foe");
@@ -38,13 +40,17 @@ public class Main{
         Skill solarSkill = new Skill("Solar Flare", 1, false, false, 26, 25, true);
         solarSkill.newDescription("Severe fire damage to one foe");
 
-        Skill crashingSkill = new Skill("Crash and Burn", 1, false, true, 0, 30, true); //Nyx Exclusive
+        Skill assignSkill = new Skill("Assignment", 1, false, false, 0, 30, true); //Nyx Exclusive
+
+        Skill crashingSkill = new Skill("Crash and Burn", 1, false, true, 0, 25, true); //Nyx Exclusive
 
         //ICE SKILLS (2)
         Skill chillerSkill = new Skill("Patagonia", 2, false, false, 18, 15, true);
         chillerSkill.newDescription("Strong ice damage to one foe");
 
-        Skill arcticSkill = new Skill("Arctic Frost", 2, false, false, 0, 20, true); //Nyx Exclusive
+        Skill forSkill = new Skill("for()", 2, false, false, 0, 20, true); //Nyx Exclusive
+
+        Skill whileSkill = new Skill("while()", 2, false, true, 0, 25, true); //Nyx Exclusive
 
         //WIND SKILLS (3)
         Skill tornadoSkill = new Skill("Tornado", 3, false, false, 18, 15, true);
@@ -119,10 +125,6 @@ public class Main{
 
         Skill sharpenSkill = new Skill("Sharpen", 11, true, false, 0, 0, true); //Nyx Exclusive
 
-        Skill mathclassSkill = new Skill("Math Class", 11, false, false, 0, 0, true); //Nyx Exclusive
-
-        Skill traverseSkill = new Skill("Overloaded Method", 11, false, true, 0, 0, true); //Nyx Exclusive
-
         //DEFENSE BUFFF SKILLS (12)
         Skill defensiveSkill = new Skill("Defensive Positions", 12, true, true, 26, 0, true);
         defensiveSkill.newDescription("Raise the DEF of all allies for 3 turns");
@@ -130,7 +132,7 @@ public class Main{
         Skill resonanceSkill = new Skill("Resonance", 12, false, false, 20, 0, true);
         resonanceSkill.newDescription("Hum at a foe's natural frequency... and lower their DEF for 3 turns");        
 
-        Skill scannerSkill = new Skill("Scanner", 12, false, true, 0, 0, true); //Nyx Exclusive
+        Skill unboxingSkill = new Skill("Unboxing", 12, false, true, 0, 0, true); //Nyx Exclusive
 
         //ACCURACY SKILLS (13)
         Skill hikingSkill = new Skill("Hiking", 13, true, true, 28, 0, true);
@@ -147,7 +149,7 @@ public class Main{
         Skill focusSkill = new Skill("Focus", 14, true, false, 10, 0, true);
         focusSkill.newDescription("Next magic attack deals double the damage");
 
-        Skill powerSkill = new Skill("Focus Sort", 14, true, false, 0, 0, true); //Nyx Exclusive
+        Skill powerSkill = new Skill("Nested Iteration", 14, true, false, 0, 0, true); //Nyx Exclusive
 
         //CHARGE SKILLS (15)
         Skill chargeSkill = new Skill("Charge", 15, true, false, 10, 0, true);
@@ -174,21 +176,36 @@ public class Main{
 
         //HEAL MAGIC AILMENTS (19)
         Skill beanSkill = new Skill("Green Beans", 19, true, false, 8, 0, true);
-        beanSkill.newDescription("They look like Chile... and heal burn/freeze/shock/dizzy for one ally");
+        beanSkill.newDescription("They look like Chile... and heal burn/freeze/dizzy/shock for one ally");
 
         //HEAL SKILL AILMENTS (20)
         Skill asylumSkill = new Skill("Asylum", 20, true, false, 8, 0, true);
         asylumSkill.newDescription("Offer asylum... and heal fear/poison/despair for one ally");
 
         //Create item objects
-        Item medicine = new Item("Medicine", 7, true, false, 0, 200, true, 10, false);
-        medicine.newDescription("Heal an ally for 200 HP");
+        Item skipItem = new Item("Skip Day", 7, true, false, 0, 200, true, 10, false);
+        skipItem.newDescription("Take a day off, and heal an ally for 200 HP");
+
+        Item greenSlip = new Item("Green Slip", 11, true, true, 0, 0, true, 5, false);
+        greenSlip.newDescription(("Enrages everyone, raises all allies' ATK"));
+
+        Item lockdownDrill = new Item("Lockdown Drill", 12, true, true, 0, 0, true, 5, false);
+        lockdownDrill.newDescription(("Puts everyone on guard, raises all allies' DEF"));
+
+        Item studyHall = new Item("Study Hall", 13, true, true, 0, 0, true, 5, false);
+        studyHall.newDescription(("Rest for a moment, raises all allies' ACC"));
 
         Item hotPotato = new Item("Hot Potato", 10, true, false, 0, 200, true, 3, false);
-        hotPotato.newDescription("Make you warm, raises an ally's ATK/DEF/ACC");
+        hotPotato.newDescription("Makes you warm, raises an ally's ATK/DEF/ACC");
 
         Item special = new Item("Flyer Special", 7, true, true, 0, 999, true, 3, true);
         special.newDescription("Forget the pain, restore all HP/SP to all allies");
+
+        Item gazpachoItem = new Item("Gazpacho", 19, true, false, 0, 0, true, 10, false);
+        gazpachoItem.newDescription(("It's soup... but cold, and heals burn/freeze/dizzy/shock for one ally"));
+
+        Item bigmoneyItem = new Item("Big C Money", 20, true, true, 0, 0, true, 10, false);
+        bigmoneyItem.newDescription("Regretfully not halal, heals fear/poison/despair for one ally");
 
         //Create Docsona objects
         // 1 = Weak, 2 = Resist, 3 = Null, 4 = Absorb, 5 = Repel
@@ -255,13 +272,13 @@ public class Main{
         //Themed around data (fire damage)
         Docsona unit2 = new Docsona("Unit 2", 20, 50, 40, 40, 20);
         unit2.setAffinities(0, 4, 0, 2, 0, 2, 2);
-        unit2.setSkills(none, none, none, none, none, none, none, none);
+        unit2.setSkills(assignSkill, crashingSkill, optimizationSkill, unboxingSkill, corruptSkill, none, none, none);
         unit2.setAttack(attack);
 
         //Themed around loops (ice damage)
         Docsona unit3 = new Docsona("Unit 3", 40, 60, 50, 50, 30);
         unit3.setAffinities(2, 0, 4, 0, 2, 2, 0);
-        unit3.setSkills(none, none, none, none, none, none, none, none);
+        unit3.setSkills(forSkill, whileSkill, powerSkill, stringSkill, none, none, none, none);
         unit3.setAttack(attack);
 
         //Themed around methods and connections (electric)
@@ -315,7 +332,7 @@ public class Main{
         //Create an array for allies and enemies
         Actor[] actors = {vee, hinni, ed, antonio, codioAvatar};
         //Create an array for all items
-        Item[] items = {medicine, hotPotato, special, medicine, medicine, medicine, medicine, medicine};
+        Item[] items = {skipItem, greenSlip, lockdownDrill, studyHall, hotPotato, special, gazpachoItem, bigmoneyItem};
         //Create an array for all player Docsonas
         Docsona[] docsonas = {summers, warner, sheldon, agosti, cassidy};
 

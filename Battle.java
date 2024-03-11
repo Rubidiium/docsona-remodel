@@ -308,6 +308,7 @@ public class Battle{
                     switch(t.ailment){
                         default:
                             System.out.println("Target inapplicable!");
+                            a.hasTurn = true;
                             a.cSP += s.cost;
                             break;
                         case 1:
@@ -317,9 +318,47 @@ public class Battle{
                             System.out.println(t.name + " was cured of their burns!");
                             break;
                         case 2:
+                            a.hasTurn = false;
                             t.ailment = 0;
                             t.ailmentT = 0;
                             System.out.println(t.name + " is no longer frozen!");
+                            break;
+                        case 3:
+                            a.hasTurn = false;
+                            t.ailment = 0;
+                            t.ailmentT = 0;
+                            System.out.println(t.name + " is no longer dizzy!");
+                            break;
+                        case 4:
+                            a.hasTurn = false;
+                            t.ailment = 0;
+                            t.ailmentT = 0;
+                            System.out.println(t.name + " is no longer shocked!");
+                            break; } }
+                if(s.type == 20){
+                    switch(t.ailment){
+                        default:
+                            System.out.println("Target inapplicable!");
+                            a.hasTurn = true;
+                            a.cSP += s.cost;
+                            break;
+                        case 5:
+                            a.hasTurn = false;
+                            t.ailment = 0;
+                            t.ailmentT = 0;
+                            System.out.println(t.name + " is no longer afraid!");
+                            break;
+                        case 6:
+                            a.hasTurn = false;
+                            t.ailment = 0;
+                            t.ailmentT = 0;
+                            System.out.println(t.name + " was cured of their poison!");
+                            break;
+                        case 7:
+                            a.hasTurn = false;
+                            t.ailment = 0;
+                            t.ailmentT = 0;
+                            System.out.println(t.name + " is no longer despairing!");
                             break;
                     }
                 }
@@ -370,17 +409,7 @@ public class Battle{
                                         t.cHP -= damage;
                                         t.down = true;
                                         System.out.println(t.name + "'s HP is " + t.cHP + "\n");
-                                        if(!Battle.is1more){
-                                            Battle.is1more = true;
-                                            System.out.println("\n1 MORE\n"); 
-                                            a.hasTurn = true; } 
-                                        } else {
-                                            System.out.println(damage + " damage to " + t.name);
-                                            t.cHP -= damage;
-                                            System.out.println(t.name + "'s HP is " + t.cHP + "\n");
-                                        }
-                                        t.unconscious();
-                                }
+                                        t.unconscious(); } }
                                 break;
                             //Enemy is weak
                             case 1:
@@ -477,6 +506,11 @@ public class Battle{
                     }
                 }
             }
+            //Restore 1 nore for one critical
+            if(Battle.wasCritical && !Battle.is1more){
+                a.hasTurn = true;
+                Battle.is1more = true;
+            }
         }
         //Handle friendly attacks
         if(s.friendly){
@@ -532,8 +566,73 @@ public class Battle{
                                     t.acc = 1;
                                     t.accT = 4;
                                     System.out.println(t.name + "'s ACC rose");
-                                    break; } } } } } } 
-        }
+                                    break; } } } 
+                    //Handle ailment heal skills
+                    if(s.type >= 19 && s.type <= 20){
+                        //Heal magic ailments
+                        if(s.type == 19){
+                            switch(t.ailment){
+                                default:
+                                    System.out.println("Target inapplicable!\n");
+                                    a.hasTurn = true;
+                                    a.cSP += s.cost;
+                                    break;
+                                case 1:
+                                    a.hasTurn = false;
+                                    t.ailment = 0;
+                                    t.ailmentT = 0;
+                                    System.out.println(t.name + " was cured of their burns!\n");
+                                    break;
+                                case 2:
+                                    a.hasTurn = false;
+                                    t.ailment = 0;
+                                    t.ailmentT = 0;
+                                    System.out.println(t.name + " is no longer frozen!\n");
+                                    break;
+                                case 3:
+                                    a.hasTurn = false;
+                                    t.ailment = 0;
+                                    t.ailmentT = 0;
+                                    System.out.println(t.name + " is no longer dizzy!\n");
+                                    break;
+                                case 4:
+                                    a.hasTurn = false;
+                                    t.ailment = 0;
+                                    t.ailmentT = 0;
+                                    System.out.println(t.name + " is no longer shocked!\n");
+                                    break; } }
+                        if(s.type == 20){
+                            switch(t.ailment){
+                                default:
+                                    System.out.println("Target inapplicable!\n");
+                                    a.hasTurn = true;
+                                    a.cSP += s.cost;
+                                    break;
+                                case 5:
+                                    a.hasTurn = false;
+                                    t.ailment = 0;
+                                    t.ailmentT = 0;
+                                    System.out.println(t.name + " is no longer afraid!\n");
+                                    break;
+                                case 6:
+                                    a.hasTurn = false;
+                                    t.ailment = 0;
+                                    t.ailmentT = 0;
+                                    System.out.println(t.name + " was cured of their poison!\n");
+                                    break;
+                                case 7:
+                                    a.hasTurn = false;
+                                    t.ailment = 0;
+                                    t.ailmentT = 0;
+                                    System.out.println(t.name + " is no longer despairing!\n");
+                                    break;
+                            }
+                        }
+                    }
+                } 
+            } 
+        } 
+    }
                         
     public static void useItem(Actor a, Actor t, Actor[] targets, Item i, String choice){
         //Clear the console

@@ -109,3 +109,20 @@ Unit 1
 Unit 2
 
 - Attack (8 Physical Damage)
+
+1. Assignment (30 Fire Damage)
+2. Crash and Burn (25 Fire Damage ALL)
+3. Optimization (Raise Foe ATK/DEF/ACC)
+4. Unboxing (Lower All Allies DEF)
+5. Corrupt (Poison One Ally)
+
+Unit 3
+
+- Attack (8 Physical Damage)
+
+1. for() (20 Ice Damage)
+2. while() (25 Ice Damage All)
+3. Nested Iteration (Concentrate One Foe)
+4. String Algorithm (25 Physical Damage ALL)
+
+Unit 4
