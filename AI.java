@@ -73,11 +73,17 @@ public class AI{
                         if((int)(random) <= 70){
                             Battle.useSSkill(a, actors[target], a.edocsona.skills[1], "0"); }
                         else if((int)(random) > 70 && (int)(random) <= 85){
-                            
-                        }
+                            Battle.useSSkill(a, actors[target], a.edocsona.skills[3], "0"); }
+                        else if((int)(random) > 85 && (int)(random) <= 93){
+                            Battle.useSSkill(a, actors[target], a.edocsona.skills[2], "0"); }
+                        else if((int)(random) > 93){
+                            Battle.useASkill(a, actors, a.edocsona.skills[0], "0"); }
                         break;
                     //Prioritize ailments
                     case 2:
+                        a.hasTurn = false;
+                        //Prioritize targets with no ailments
+                        
                         break;
                 }
                 break;
@@ -145,6 +151,34 @@ public class AI{
                                 break;
                             } else {
                                 weightCase = -1; } } } }
+                break;
+            //Calculate the weighting for phase 1
+            case 1:
+
+                break;
+            //Calculate the weighting for phase 2
+            case 2:
+
+                break;
+            //Calculate the weighting for phase 3
+            case 3:
+
+                break;
+            //Calculate the weighting for phase 4
+            case 4:
+
+                break;
+            //Calculate the weighting for phase 5
+            case 5:
+
+                break;
+            //Calculate the weighting for phase 6
+            case 6:
+
+                break;
+            //Calculate the weighting for phase 7
+            case 7:
+
                 break;
         }
     }

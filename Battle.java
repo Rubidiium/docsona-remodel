@@ -12,6 +12,7 @@ public class Battle{
     public static boolean battleActive;
     public static boolean battleWon;
     public static boolean ailmentPrint;
+    public static boolean sealAvailible;
     //Counter for when all actors have had a turn
     public static int cycleCounter;
     //Misc. counter when needed
