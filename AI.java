@@ -160,11 +160,11 @@ public class AI{
             phase = 3; }
         if(a.cHP < 10000 && a.cHP >= 9000){
             phase = 4; }
-        if(a.cHP < 9000 && a.cHP >= 8000){
+        if(a.cHP < 9000 && a.cHP >= 7500){
             phase = 5; }
-        if(a.cHP < 8000 && a.cHP >= 7000){
+        if(a.cHP < 7500 && a.cHP >= 5000){
             phase = 6; }
-        if(a.cHP < 7000 && a.cHP >= 6000){
+        if(a.cHP < 5000){
             phase = 7; }
     }
 

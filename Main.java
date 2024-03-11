@@ -383,7 +383,7 @@ public class Main{
         Actor.init();
         Battle.init();
         AI.init();
-        System.out.println("For best experience, play with fullscreen/tall terminal.\nCompiled! Press enter to begin, or 1 to skip.");
+        System.out.println("\nFor best experience, play with fullscreen/tall terminal.\nCompiled! Press enter to begin, or 1 to skip.");
         choice = s.nextLine();
 
 
@@ -1381,7 +1381,7 @@ public class Main{
                                 Pass.p(s.nextLine()); }
                                 break;
                         case 5:
-                            if(!AI.unit4started){
+                            if(!AI.unit5started){
                                 Clear.clear();
                                 System.out.println("Such efficiency... perhaps I underestimated your performance.");
                                 Pass.p(s.nextLine());
@@ -1403,7 +1403,7 @@ public class Main{
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
                                 Pass.p(s.nextLine()); }
                         case 6:
-                            if(!AI.unit4started){
+                            if(!AI.unit6started){
                                 Clear.clear();
                                 System.out.println("Have you not thought about what has kept you fighting?");
                                 Pass.p(s.nextLine());
@@ -1450,7 +1450,7 @@ public class Main{
                                 Pass.p(s.nextLine()); }
                                 break;
                         case 7:
-                            if(!AI.unit4started){
+                            if(!AI.unit7started){
                                 Clear.clear();
                                 System.out.println("The girl's mother was the first to go, the most resistant target.");
                                 Pass.p(s.nextLine());
@@ -1555,9 +1555,35 @@ public class Main{
         }
         //Post battle dialogue
         if(Battle.battleWon){
+            //Good Ending
             System.out.println("ENDING DIALOGUE");
         } else {
-            System.out.println("LOSING DIALOGUE");
+            //Bad Ending
+            Clear.clear();
+            System.out.println("Your vision begins to blurry.");
+            Pass.p(s.nextLine());
+            System.out.println("You can faintly hear your friends shouting out to you...");
+            Pass.p(s.nextLine());
+            System.out.println("Vee! No! Get up!");
+            Pass.p(s.nextLine());
+            System.out.println("You're too weak, you can't move anymore...");
+            Pass.p(s.nextLine());
+            System.out.println("The voice of Codio begins to echo in your mind...");
+            Pass.p(s.nextLine());
+            System.out.println("Relinquish what strength you have left, to deny is a disservice to efficiency.");
+            Pass.p(s.nextLine());
+            System.out.println("Join the collective, enter the system.");
+            Pass.p(s.nextLine());
+            System.out.println("Math is now deprecated...");
+            Pass.p(s.nextLine());
+            System.out.println("Though perhaps someday you'll find the courage to RECOMPILE and return.");
+            Pass.p(s.nextLine());
+            System.out.println("Your spirit is particularly difficult to contain.");
+            Pass.p(s.nextLine());
+            System.out.println("For the meantime, however, good night.");
+            Pass.p(s.nextLine());
+            System.out.println("POWER OFF");
+            Pass.p(s.nextLine());
         }
     }
 }

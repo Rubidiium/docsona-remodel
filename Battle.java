@@ -122,7 +122,6 @@ public class Battle{
                         t.down = true;
                         System.out.println(damage + " damage to " + t.name);
                     if(!Battle.is1more){
-                        Battle.is1more = true;
                         System.out.println("1 MORE"); }
                         System.out.println(t.name + "'s HP is " + t.cHP); }
                     t.unconscious();
