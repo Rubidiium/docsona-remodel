@@ -1210,6 +1210,7 @@ public class Main{
                                 codioAvatar.changeDocsona(unit1);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
                                 Pass.p(s.nextLine()); 
+
                                 Clear.clear();
                                 System.out.println("Codio Avatar uses Turtle t = new Turtle();");
                                 Pass.p(s.nextLine());
@@ -1223,42 +1224,128 @@ public class Main{
                         case 2:
                             if(!AI.unit2started){
                                 Clear.clear();
-                                System.out.println("The one named Vee is here seeking her mother.");
+                                System.out.println("The one named Vee is here seeking her mother, is she not?");
                                 Pass.p(s.nextLine());
-                                System.out.println("Her rejection to rely on code proves her foolishness.");
+                                System.out.println("Driven by desire for her location, she fights alongside her companions.");
                                 Pass.p(s.nextLine());
-                                System.out.println("Math is but a class, alone it cannot deliver an end.");
+                                System.out.println("How foolish, to let her demise be caused by a desire for data.");
                                 Pass.p(s.nextLine());
-                                System.out.println("*Your friends turn to you, you reaffirm your beliefs that math is essential.*");
+                                System.out.println("Yes, code is the means by which all be automated.");
                                 Pass.p(s.nextLine());
-                                System.out.println("Code is the means by which all will be automated.");
+                                System.out.println("Losing sight of your goal means losing your motivation, an object that must not be lost.");
                                 Pass.p(s.nextLine());
-                                System.out.println("Witness the weakness of math against the power of code.");
+                                System.out.println("Code, too, is one such object.");
                                 Pass.p(s.nextLine());
+                                System.out.println("Code succeeds math in a way that deprecates.");
+                                Pass.p(s.nextLine());
+                                System.out.println("A world with code is one that can exist without math.");
+                                Pass.p(s.nextLine());
+                                System.out.println("To argue otherwise is an inefficient use of resources.");
+                                Pass.p(s.nextLine());
+
+                                Clear.clear();
+                                System.out.println("You hear Hinni shout out.");
+                                Pass.p(s.nextLine());
+                                System.out.println("You're wrong! Coding can't even exist without math!");
+                                Pass.p(s.nextLine());
+
+                                Clear.clear();
+                                System.out.println("Come, then. Prove your value.");
+                                Pass.p(s.nextLine());
+
+                                Clear.clear();
                                 codioAvatar.changeDocsona(unit2);
-                                System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
-                                Pass.p(s.nextLine()); }
+                                System.out.println("Codio Avatar changed his Docsona! His skills and affinities have chaned!");
+                                Pass.p(s.nextLine());
+                                }
                                 break;
                         case 3:
                             if(!AI.unit3started){
                                 Clear.clear();
-                                System.out.println("To reiterate your logic is code itself.");
-                                Pass.p(s.nextLine());
-                                System.out.println("To reject code is to reject what drives you.");
-                                Pass.p(s.nextLine());
-                                System.out.println("Why do you seek such a foolish end?");
+                                System.out.println("Reiteration is the fundamental problem which code means to remedy.");
                                 Pass.p(s.nextLine());
                                 System.out.println("Code is the means by which all will be automated.");
                                 Pass.p(s.nextLine());
-                                System.out.println("To calculate this manually is a disservice to math itself.");
+                                System.out.println("Recognition of the same thought is wasteful by nature.");
                                 Pass.p(s.nextLine());
-                                System.out.println("*You hear Hinni scream out...*");
+                                System.out.println("Code shall facilitate the process of repetition.");
                                 Pass.p(s.nextLine());
-                                System.out.println("You're wrong! We don't need a calculator to take solve a simple problem like you!");
+                                System.out.println("Never again shall the same process be done, for the process shall do itself.");
                                 Pass.p(s.nextLine());
-                                System.out.println("Very well, show me your strength.");
-                                Pass.p(s.nextLine());
+
+                                Clear.clear();
                                 codioAvatar.changeDocsona(unit3);
+                                System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
+                                Pass.p(s.nextLine()); }
+                                break;
+                        case 4:
+                            if(!AI.unit4started){
+                                Clear.clear();
+                                System.out.println("Resolve is shown only through actions.");
+                                Pass.p(s.nextLine());
+                                System.out.println("Where math requires a mover, code moves itself.");
+                                Pass.p(s.nextLine());
+                                System.out.println("Code is the means by which all will be automated.");
+                                Pass.p(s.nextLine());
+                                System.out.println("Once everything is easily identified, everything shall move efficiently.");
+                                Pass.p(s.nextLine());
+
+                                Clear.clear();
+                                System.out.println("You hear Ed begin to speak up.");
+                                Pass.p(s.nextLine());
+                                System.out.println("How's code supposed to build itself with a coder, huh?");
+                                Pass.p(s.nextLine());
+                                System.out.println("How's a coder supposed to move anything if he doesn't know math, anyways?");
+                                Pass.p(s.nextLine());
+
+                                Clear.clear();
+                                System.out.println("Foolish, truly foolish.");
+                                Pass.p(s.nextLine());
+                                System.out.println("When one knows themselves, growth is inevitable.");
+                                Pass.p(s.nextLine());
+                                System.out.println("Code itself knows and follows this same principle.");
+                                Pass.p(s.nextLine());
+
+                                Clear.clear();
+                                System.out.println("Ed turns to you.");
+                                Pass.p(s.nextLine());
+                                System.out.println("Pft, this guy doesn't know what he's yapping about.");
+                                Pass.p(s.nextLine());
+                                System.out.println("He's clearly getting weaker.");
+                                Pass.p(s.nextLine());
+                                System.out.println("Come on, Vee. Let's take him down.");
+                                Pass.p(s.nextLine());
+
+                                Clear.clear();
+                                System.out.println("You fail to understand what you resist.");
+                                Pass.p(s.nextLine());
+                                System.out.println("You cannot grow if you do not acknowledge your own weakness.");
+                                Pass.p(s.nextLine());
+                                System.out.println("Come, and discover your faults.");
+                                Pass.p(s.nextLine());
+                                
+                                Clear.clear();
+                                codioAvatar.changeDocsona(unit4);
+                                System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
+                                Pass.p(s.nextLine()); }
+                                break;
+                        case 5:
+                            if(!AI.unit4started){
+                                Clear.clear();
+                                codioAvatar.changeDocsona(unit5);
+                                System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
+                                Pass.p(s.nextLine()); }
+                        case 6:
+                            if(!AI.unit4started){
+                                Clear.clear();
+                                codioAvatar.changeDocsona(unit6);
+                                System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
+                                Pass.p(s.nextLine()); }
+                                break;
+                        case 7:
+                            if(!AI.unit4started){
+                                Clear.clear();
+                                codioAvatar.changeDocsona(unit7);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
                                 Pass.p(s.nextLine()); }
                                 break;
