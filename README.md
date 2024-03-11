@@ -102,7 +102,7 @@ Unit 1
 
 1. t.stomp() (20 Physical Damage)
 2. t.smash() (20 Physical Damage ALL)
-3. t.slow() (Lower All Allies ACC)
+3. t.slow() (Lower One Ally's ACC)
 4. t.speed(2) (Raise Foe ACC)
 5. t.screech (Fear All Allies)
 
@@ -112,8 +112,8 @@ Unit 2
 
 1. Assignment (30 Fire Damage)
 2. Crash and Burn (25 Fire Damage ALL)
-3. Optimization (Raise Foe ATK/DEF/ACC)
-4. Unboxing (Lower All Allies DEF)
+3. Optimization (Raise Foe ATK)
+4. Unboxing (Lower One Ally's DEF)
 5. Corrupt (Poison One Ally)
 
 Unit 3
@@ -144,3 +144,27 @@ Unit 5
 4. Open Wire (30 Electric Damage ALL)
 5. Light Mode (30 Light Damage ALL)
 6. Terminate (30 Dark Damage ALL)
+
+Unit 6
+
+- Attack (8 Physical Damage)
+
+1. "has-a" sword (35 Physical Damage)
+2. Class Monarchy (35 Physical Damage ALL)
+3. Polymorphism (30 Light Damage ALL)
+4. "is-a" monster (30 Dark Damage ALL)
+5. extends Power (Charge One Foe)
+6. Confidence Override (Fear All Allies)
+
+Unit 7
+
+- Attack (8 Physical Damage)
+
+1. Total Automation (50 Almighty Damage ALL)
+2. Insertion (40 Electric Damage ALL)
+3. Null Recursion (40 Dark Damage ALL)
+4. Maximum Overclock (Raise Foe ATK/DEF/ACC)
+5. Decode (Lower All Allies DEF)
+6. Stack Overflow (Poison All Allies) 
+7. Mathematical Purge (Despair All Allies)
+8. Energy Conversion (Concentrate One Foe)

@@ -35,6 +35,10 @@ public class Main{
 
         Skill objectSkill = new Skill("Object-Oriented Attack", 0, false, true, 0, 25, true); //Nyx Exclusive
 
+        Skill swordSkill = new Skill("\"has-a\" sword", 0, false, false, 0, 35, true); //Nyx Exclusive
+
+        Skill heirarchSkill = new Skill("Class Monarchy", 0, false, true, 0, 35, true); //Nyx Exclusive
+
         //FIRE SKILLS (1)
         Skill infernoSkill = new Skill("Seville", 1, false, false, 18, 15, true);
         infernoSkill.newDescription("Strong fire damage to one foe");
@@ -78,6 +82,8 @@ public class Main{
 
         Skill wireSkill = new Skill("Open Wire", 4, false, true, 0, 30, true); //Nyx Exclusive
 
+        Skill insertionSkill = new Skill("Insertion", 4, false, true, 0, 40, true); //Nyx Exclusive
+
         //LIGHT SKILLS (5)
         Skill brightSkill = new Skill("Inquisition", 5, false, false, 18, 18, true);
         brightSkill.newDescription("Purify the heretics... and do severe light damage to one foe");
@@ -86,6 +92,8 @@ public class Main{
         weirdSkill.newDescription("Be less weird... and do incredible light damage to one foe");
 
         Skill lightSkill = new Skill("Light Mode", 5, false, true, 0, 30, true); //Nyx Exclusive
+
+        Skill polymorphSkill = new Skill("Polymorphism", 5, false, true, 0, 30, true); //Nyx Exclusive
 
         //DARK SKILLS (6)
         Skill nothingSkill = new Skill("Nullification", 6, false, false, 18, 15, true);
@@ -97,6 +105,8 @@ public class Main{
         Skill voidSkill = new Skill("Void Method", 6, false, false, 0, 25, true); //Nyx Exclusive
 
         Skill terminateSkill = new Skill("Terminate", 6, false, true, 0, 30, true); //Nyx Exclusive
+
+        Skill demonSkill = new Skill("\"is-a\" monster", 6, false, true, 0, 30, true); //Nyx Exclusive
 
         Skill recursionSkill = new Skill("Null Recursion", 6, false, true, 0, 40, true); //Nyx Exclusive
 
@@ -123,7 +133,7 @@ public class Main{
         Skill warmupSkill = new Skill("Warmup Routine", 10, true, false, 38, 0, true);
         warmupSkill.newDescription("Raise an ally's ATK/DEF/ACC for 3 turns");
 
-        Skill optimizationSkill = new Skill("Optimization", 10, true, false, 0, 0, true); //Nyx Exclusive
+        Skill overclockSkill = new Skill("Maximum Overclock", 10, true, false, 0, 0, true); //Nyx Exclusive
 
         Skill intimidateSkill = new Skill("Intimidate", 10, false, false, 36, 0, true);
         intimidateSkill.newDescription("Lower one foe's ATK/DEF/ACC");
@@ -137,16 +147,18 @@ public class Main{
 
         Skill requirementsSkill = new Skill("Raise Requirements", 11, false, false, 0, 0, true); //Nyx Exclusive
 
-        Skill sharpenSkill = new Skill("Sharpen", 11, true, false, 0, 0, true); //Nyx Exclusive
+        Skill optimizationSkill = new Skill("Optimization", 11, true, false, 0, 0, true); //Nyx Exclusive
 
-        //DEFENSE BUFFF SKILLS (12)
+        //DEFENSE BUFF SKILLS (12)
         Skill defensiveSkill = new Skill("Defensive Positions", 12, true, true, 26, 0, true);
         defensiveSkill.newDescription("Raise the DEF of all allies for 3 turns");
 
         Skill resonanceSkill = new Skill("Resonance", 12, false, false, 20, 0, true);
         resonanceSkill.newDescription("Hum at a foe's natural frequency... and lower their DEF for 3 turns");        
 
-        Skill unboxingSkill = new Skill("Unboxing", 12, false, true, 0, 0, true); //Nyx Exclusive
+        Skill unboxingSkill = new Skill("Unboxing", 12, false, false, 0, 0, true); //Nyx Exclusive
+
+        Skill decodeSkill = new Skill("Decode", 12, false, true, 0, 0, true); //Nyx Exclusive
 
         //ACCURACY SKILLS (13)
         Skill hikingSkill = new Skill("Hiking", 13, true, true, 28, 0, true);
@@ -155,7 +167,7 @@ public class Main{
         Skill danceSkill = new Skill("Codio Dance", 13, false, false, 20, 0, true);
         danceSkill.newDescription("The one thing that makes it easier... lowers ACC of one foe for 3 turns");
 
-        Skill avatarSkill = new Skill("t.slow()", 13, false, true, 0, 0, true); //Nyx Exclusive
+        Skill avatarSkill = new Skill("t.slow()", 13, false, false, 0, 0, true); //Nyx Exclusive
 
         Skill moveSkill = new Skill("t.speech(2)", 13, true, false, 0, 0, true); //Nyx Exclusive
 
@@ -165,11 +177,15 @@ public class Main{
 
         Skill powerSkill = new Skill("Nested Iteration", 14, true, false, 0, 0, true); //Nyx Exclusive
 
+        Skill conversionSkill = new Skill("Energy Conversion", 14, true, false, 0, 0, true); //Nyx Exclusive
+
         //CHARGE SKILLS (15)
         Skill chargeSkill = new Skill("Charge", 15, true, false, 10, 0, true);
         chargeSkill.newDescription("Next physical attack deals double the damage");
 
         Skill overloadSkill = new Skill("Overload", 15, true, false, 0, 0, true); //Nyx Exclusive
+
+        Skill extendsSkill = new Skill("extends Power", 15, true, false, 0, 0, true); //Nyx Exclusive
 
         //FEAR SKILLS (16)
         Skill introSkill = new Skill("Overview", 16, false, false, 0, 0, true); //Nyx Exclusive
@@ -178,15 +194,19 @@ public class Main{
         
         Skill algorithmSkill = new Skill("t.screech()", 16, false, true, 0, 0, true); //Nyx Exclusive
 
+        Skill hopeSkill = new Skill("Confidence Override", 16, false, true, 0, 0, true); //Nyx Exclusive
+
         //POISON SKILLS (17)
         Skill corruptSkill = new Skill("Corrupt", 17, false, false, 0, 0, true); //Nyx Exclusive
 
-        Skill flushSkill = new Skill("Flush", 17, false, true, 0, 0, true); //Nyx Exclusive
+        Skill flushSkill = new Skill("Stack Overflow", 17, false, true, 0, 0, true); //Nyx Exclusive
 
         //DESPAIR SKILLS (18)
         Skill expectedSkill = new Skill("Expected Error", 18, false, false, 0, 0, true); //Nyx Exclusive
 
         Skill fatalError = new Skill("Fatal Error", 18, false, true, 0, 0, true); //Nyx Exclusive
+
+        Skill purgeSkill = new Skill("Mathematical Purge", 18, false, true, 0, 0, true); //Nyx Exclusive
 
         //HEAL MAGIC AILMENTS (19)
         Skill beanSkill = new Skill("Green Beans", 19, true, false, 8, 0, true);
@@ -310,13 +330,13 @@ public class Main{
         //Themed around inheritance (physical, light, and dark)
         Docsona unit6 = new Docsona("Unit 6", 70, 70, 40, 60, 60);
         unit6.setAffinities(3, 0, 0, 2, 2, 4, 4);
-        unit6.setSkills(none, none, none, none, none, none, none, none);
+        unit6.setSkills(swordSkill, heirarchSkill, polymorphSkill, demonSkill, extendsSkill, hopeSkill, none, none);
         unit6.setAttack(attack);
 
         //Themed around sorting (Nyx's true arcana, all types go)
         Docsona unit7 = new Docsona("Unit 7", 80, 80, 80, 80, 80);
         unit7.setAffinities(2, 2, 2, 2, 2, 2, 2);
-        unit7.setSkills(none, none, none, none, none, none, none, none);
+        unit7.setSkills(automationSkill, insertionSkill, recursionSkill, overclockSkill, decodeSkill, flushSkill, purgeSkill, conversionSkill);
         unit7.setAttack(attack);
 
         //Create Actor objects
