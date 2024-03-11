@@ -514,7 +514,7 @@ public class Main{
                     Pass.p(s.nextLine());
                     break;
                 case 3:
-                    System.out.println("");
+                    System.out.println("The pain remains strong, but gradually begins to go away.");
                     Pass.p(s.nextLine());
             }
             while(vee.hasTurn){
