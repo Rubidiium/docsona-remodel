@@ -126,3 +126,21 @@ Unit 3
 4. String Algorithm (25 Physical Damage ALL)
 
 Unit 4
+
+- Attack (8 Physical Damage)
+
+1. Static Method (25 Electric Damage)
+2. Void Method (25 Dark Damage)
+3. Overload (Charge One Foe)
+4. Object-Oriented Attack (25 Physical Damage ALL)
+
+Unit 5
+
+- Attack (8 Physical Damage)
+
+1. Overheat (30 Fire Damage ALL)
+2. Deadlock (30 Ice Damage ALL)
+3. Air Quality Reduction (30 Wind Damage ALL)
+4. Open Wire (30 Electric Damage ALL)
+5. Light Mode (30 Light Damage ALL)
+6. Terminate (30 Dark Damage ALL)

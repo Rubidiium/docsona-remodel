@@ -33,6 +33,8 @@ public class Main{
 
         Skill stringSkill = new Skill("String Algorithm", 0, false, true, 0, 25, true); //Nyx Exclusive
 
+        Skill objectSkill = new Skill("Object-Oriented Attack", 0, false, true, 0, 25, true); //Nyx Exclusive
+
         //FIRE SKILLS (1)
         Skill infernoSkill = new Skill("Seville", 1, false, false, 18, 15, true);
         infernoSkill.newDescription("Strong fire damage to one foe");
@@ -44,6 +46,8 @@ public class Main{
 
         Skill crashingSkill = new Skill("Crash and Burn", 1, false, true, 0, 25, true); //Nyx Exclusive
 
+        Skill overheatSkill = new Skill("Overheat", 1, false, true, 0, 30, true); //Nyx Exclusive
+
         //ICE SKILLS (2)
         Skill chillerSkill = new Skill("Patagonia", 2, false, false, 18, 15, true);
         chillerSkill.newDescription("Strong ice damage to one foe");
@@ -52,6 +56,8 @@ public class Main{
 
         Skill whileSkill = new Skill("while()", 2, false, true, 0, 25, true); //Nyx Exclusive
 
+        Skill deadlockSkill = new Skill("Deadlock", 2, false, true, 0, 30, true); //Nyx Exclusive
+
         //WIND SKILLS (3)
         Skill tornadoSkill = new Skill("Tornado", 3, false, false, 18, 15, true);
         tornadoSkill.newDescription("Strong wind damage to one foe");
@@ -59,7 +65,7 @@ public class Main{
         Skill tearSkill = new Skill("Tempestuous", 3, false, false, 26, 25, true);
         tearSkill.newDescription("Severe wind damage to one foe");
 
-        Skill airSkill = new Skill("Air Quality Reduction", 3, false, true, 0, 20, true); //Nyx Exclusive
+        Skill airSkill = new Skill("Air Quality Reduction", 3, false, true, 0, 30, true); //Nyx Exclusive
 
         //ELEC SKILLS (4)
         Skill shockerSkill = new Skill("Shocker", 4, false, false, 18, 15, true);
@@ -68,7 +74,9 @@ public class Main{
         Skill bazingaSkill = new Skill("Bazingadyne", 4, false, false, 30, 30, true);
         bazingaSkill.newDescription("Incredible electric damage to one foe");
 
-        Skill staticSkill = new Skill("Static Variable", 4, false, false, 0, 20, true); //Nyx Exclusive
+        Skill staticSkill = new Skill("Static Variable", 4, false, false, 0, 25, true); //Nyx Exclusive
+
+        Skill wireSkill = new Skill("Open Wire", 4, false, true, 0, 30, true); //Nyx Exclusive
 
         //LIGHT SKILLS (5)
         Skill brightSkill = new Skill("Inquisition", 5, false, false, 18, 18, true);
@@ -77,12 +85,18 @@ public class Main{
         Skill weirdSkill = new Skill("Be Less Weird", 5, false, false, 30, 30, true);
         weirdSkill.newDescription("Be less weird... and do incredible light damage to one foe");
 
+        Skill lightSkill = new Skill("Light Mode", 5, false, true, 0, 30, true); //Nyx Exclusive
+
         //DARK SKILLS (6)
         Skill nothingSkill = new Skill("Nullification", 6, false, false, 18, 15, true);
         nothingSkill.newDescription("Strong dark damage to one foe");
 
         Skill darkSkill = new Skill("Dark Magic", 6, false, false, 18, 15, true);
         darkSkill.newDescription("Get someone into an ivy... and deal strong dark damage to one foe");
+
+        Skill voidSkill = new Skill("Void Method", 6, false, false, 0, 25, true); //Nyx Exclusive
+
+        Skill terminateSkill = new Skill("Terminate", 6, false, true, 0, 30, true); //Nyx Exclusive
 
         Skill recursionSkill = new Skill("Null Recursion", 6, false, true, 0, 40, true); //Nyx Exclusive
 
@@ -155,7 +169,7 @@ public class Main{
         Skill chargeSkill = new Skill("Charge", 15, true, false, 10, 0, true);
         chargeSkill.newDescription("Next physical attack deals double the damage");
 
-        Skill initializeSkill = new Skill("Initialize", 15, true, false, 0, 0, true); //Nyx Exclusive
+        Skill overloadSkill = new Skill("Overload", 15, true, false, 0, 0, true); //Nyx Exclusive
 
         //FEAR SKILLS (16)
         Skill introSkill = new Skill("Overview", 16, false, false, 0, 0, true); //Nyx Exclusive
@@ -284,13 +298,13 @@ public class Main{
         //Themed around methods and connections (electric)
         Docsona unit4 = new Docsona("Unit 4", 40, 70, 60, 40, 40);
         unit4.setAffinities(0, 2, 2, 0, 4, 0, 3);
-        unit4.setSkills(none, none, none, none, none, none, none, none);
+        unit4.setSkills(staticSkill, voidSkill, overloadSkill, objectSkill, none, none, none, none);
         unit4.setAttack(attack);
 
         //Themed around arrays (wild magic)
         Docsona unit5 = new Docsona("Unit 5", 40, 80, 50, 40, 50);
         unit5.setAffinities(0, 2, 2, 2, 2, 3, 3);
-        unit5.setSkills(none, none, none, none, none, none, none, none);
+        unit5.setSkills(overheatSkill, deadlockSkill, airSkill, wireSkill, lightSkill, terminateSkill, none, none);
         unit5.setAttack(attack);
 
         //Themed around inheritance (physical, light, and dark)
