@@ -105,3 +105,5 @@ Unit 1
 3. t.slow() (Lower All Allies ACC)
 4. t.speed(2) (Raise Foe ACC)
 5. t.screech (Fear All Allies)
+
+Unit 2
