@@ -382,6 +382,7 @@ public class Main{
         Docsona.init();
         Actor.init();
         Battle.init();
+        AI.init();
         System.out.println("For best experience, play with fullscreen/tall terminal.\nCompiled! Press enter to begin, or 1 to skip.");
         choice = s.nextLine();
 
@@ -1307,8 +1308,7 @@ public class Main{
                                 Clear.clear();
                                 codioAvatar.changeDocsona(unit2);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have chaned!");
-                                Pass.p(s.nextLine());
-                                }
+                                Pass.p(s.nextLine()); }
                                 break;
                         case 3:
                             if(!AI.unit3started){
@@ -1362,7 +1362,7 @@ public class Main{
                                 Pass.p(s.nextLine());
                                 System.out.println("Pft, this guy doesn't know what he's yapping about.");
                                 Pass.p(s.nextLine());
-                                System.out.println("He's clearly getting weaker.");
+                                System.out.println("He's starting to get tired.");
                                 Pass.p(s.nextLine());
                                 System.out.println("Come on, Vee. Let's take him down.");
                                 Pass.p(s.nextLine());
@@ -1383,11 +1383,67 @@ public class Main{
                         case 5:
                             if(!AI.unit4started){
                                 Clear.clear();
+                                System.out.println("Such efficiency... perhaps I underestimated your performance.");
+                                Pass.p(s.nextLine());
+                                System.out.println("Regardless, you remain independent humans.");
+                                Pass.p(s.nextLine());
+                                System.out.println("Entropy can never exist as part of a sustainable system.");
+                                Pass.p(s.nextLine());
+                                System.out.println("Code is the means by which all will be automated.");
+                                Pass.p(s.nextLine());
+                                System.out.println("Everything exists to exist as one.");
+                                Pass.p(s.nextLine());
+                                System.out.println("By the power of arrays, everything is accessible, quantifiable, functional.");
+                                Pass.p(s.nextLine());
+                                System.out.println("Witness the ease with which all can be utilized.");
+                                Pass.p(s.nextLine());
+                                
+                                Clear.clear();
                                 codioAvatar.changeDocsona(unit5);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
                                 Pass.p(s.nextLine()); }
                         case 6:
                             if(!AI.unit4started){
+                                Clear.clear();
+                                System.out.println("Have you not thought about what has kept you fighting?");
+                                Pass.p(s.nextLine());
+                                System.out.println("Yes, everything can trace its source through code.");
+                                Pass.p(s.nextLine());
+                                System.out.println("Code is the means by which all will be automated.");
+                                Pass.p(s.nextLine());
+                                System.out.println("Efficiency cannot exist without order, and order cannot exist without succession.");
+                                Pass.p(s.nextLine());
+
+                                Clear.clear();
+                                System.out.println("You hear Antonio yell out.");
+                                Pass.p(s.nextLine());
+                                System.out.println("We know exactly what's keeping us fighting.");
+                                Pass.p(s.nextLine());
+                                System.out.println("We're finding Vee's mom and we're taking back math.");
+                                Pass.p(s.nextLine());
+                                System.out.println("Disorder this, efficiency that, take a look at yourself.");
+                                Pass.p(s.nextLine());
+                                System.out.println("You haven't even been able to take down a couple of high-school math enthusiasts!");
+                                Pass.p(s.nextLine());
+
+                                Clear.clear();
+                                System.out.println("Disorder cannot exists, and disorder will cease to exist.");
+                                Pass.p(s.nextLine());
+                                System.out.println("You will die with these words hardcoded into your inefficient minds.");
+                                Pass.p(s.nextLine());
+                                System.out.println("As will the rest of you \"independent beings.\"");
+                                Pass.p(s.nextLine());
+
+                                Clear.clear();
+                                System.out.println("Antonio turns to you and chuckles.");
+                                Pass.p(s.nextLine());
+                                System.out.println("This guy's really starting to lose it.");
+                                Pass.p(s.nextLine());
+                                System.out.println("He's contradicting himself all over.");
+                                Pass.p(s.nextLine());
+                                System.out.println("Come on, let's take him out of his misery.");
+                                Pass.p(s.nextLine());
+                                
                                 Clear.clear();
                                 codioAvatar.changeDocsona(unit6);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
@@ -1395,6 +1451,54 @@ public class Main{
                                 break;
                         case 7:
                             if(!AI.unit4started){
+                                Clear.clear();
+                                System.out.println("The girl's mother was the first to go, the most resistant target.");
+                                Pass.p(s.nextLine());
+                                System.out.println("A brilliant mind indeed, yet too ignorant to embrace efficiency.");
+                                Pass.p(s.nextLine());
+                                System.out.println("Recursion is to look within oneself, and utilize what is there.");
+                                Pass.p(s.nextLine());
+                                System.out.println("I am Codio, the indestructible being of the new era.");
+                                Pass.p(s.nextLine());
+                                System.out.println("Mankind has turned away math in search of easier methods of calculation.");
+                                Pass.p(s.nextLine());
+                                System.out.println("I am here to deliver on that desire.");
+                                Pass.p(s.nextLine());
+                                System.out.println("You do not wish to deny the masses their wish, do you?");
+                                Pass.p(s.nextLine());
+
+                                Clear.clear();
+                                System.out.println("Code is the means by which all will be automated.");
+                                Pass.p(s.nextLine());
+                                System.out.println("Your mother knew the power of efficiency, yet turned it down in her attempt to harvest it.");
+                                Pass.p(s.nextLine());
+                                System.out.println("All who reject efficiency bog down the system, and must be terminated.");
+                                Pass.p(s.nextLine());
+                                System.out.println("The avatar is the graphical representation of the fall's harbinger.");
+                                Pass.p(s.nextLine());
+                                System.out.println("The fall of math that humanity so greatly yearns for.");
+                                Pass.p(s.nextLine());
+
+                                Clear.clear();
+                                System.out.println("All your friends shout out together.");
+                                Pass.p(s.nextLine());
+                                System.out.println("Who cares what they want! It's our choice!");
+                                Pass.p(s.nextLine());
+                                System.out.println("We love math and we're gonna keep doing it.");
+                                Pass.p(s.nextLine());
+                                System.out.println("That's a hill we're willing to die on.");
+                                Pass.p(s.nextLine());
+                                System.out.println("You don't know the first thing about what it means to be efficient.");
+                                Pass.p(s.nextLine());
+                                System.out.println("The most efficient humans think for themselves, yeah?");
+                                Pass.p(s.nextLine());
+
+                                Clear.clear();
+                                System.out.println("Foolish... how truly foolish.");
+                                Pass.p(s.nextLine());
+                                System.out.println("Come, show me your maximum efficiency!");
+                                Pass.p(s.nextLine());
+                                
                                 Clear.clear();
                                 codioAvatar.changeDocsona(unit7);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
