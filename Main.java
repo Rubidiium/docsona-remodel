@@ -513,6 +513,9 @@ public class Main{
                     System.out.println("Vee's HP is " + vee.cHP);
                     Pass.p(s.nextLine());
                     break;
+                case 3:
+                    System.out.println("");
+                    Pass.p(s.nextLine());
             }
             while(vee.hasTurn){
                 Clear.clear();
