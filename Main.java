@@ -1498,6 +1498,8 @@ public class Main{
                                 Pass.p(s.nextLine());
                                 System.out.println("Come, show me your maximum efficiency!");
                                 Pass.p(s.nextLine());
+                                System.out.println("Know that I will!");
+                                Pass.p(s.nextLine());
                                 
                                 Clear.clear();
                                 codioAvatar.changeDocsona(unit7);
