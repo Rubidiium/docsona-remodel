@@ -41,6 +41,9 @@ public class Skill{
 
     //Cast a damage skill on a target
     public int castDamage(Actor player, Actor target){
+        //Reset critical tracker
+        Battle.wasCritical = false;
+        
         //Temporary value for calculations
         double temp = 0;
         double fin = 0;
@@ -132,13 +135,13 @@ public class Skill{
                 //Dizzy penalty
                 if(((Math.random() * (100 - 0) + 0) - (int)(tAG/10) + (int)(pAG/10)) > 10 && !target.down){
                     //Return 0 if missed
-                    System.out.println("MISS");
+                    System.out.println("MISS\n");
                     Battle.missed = true;
                     return 0; } 
             } else {  
                 if(((Math.random() * (100 - 0) + 0) - (int)(tAG/10) + (int)(pAG/10)) > 90 && !target.down){
                     //Return 0 if missed
-                    System.out.println("MISS");
+                    System.out.println("MISS\n");
                     Battle.missed = true;
                     return 0; } } }
 
@@ -221,7 +224,7 @@ public class Skill{
 
         //Calculate critical for physical attacks; Down target if critical
         fin = this.criticalCalc(player, target, temp);
-        if(fin > temp){
+        if(Battle.wasCritical){
             target.down = true;
         }
 

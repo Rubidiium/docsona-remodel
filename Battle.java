@@ -98,9 +98,9 @@ public class Battle{
                             System.out.println(damage + " damage to " + t.name);
                             t.cHP -= damage;
                             t.down = true;
-                            System.out.println("\n1 MORE\n"); 
                             System.out.println(t.name + "'s HP is " + t.cHP);
                             if(!Battle.is1more){
+                                System.out.println("\n1 MORE\n"); 
                                 Battle.is1more = true;
                                 a.hasTurn = true; } 
                             } else {
@@ -219,7 +219,7 @@ public class Battle{
                         t.ailmentT = 4;
                         System.out.println(t.name + " was poisoned!"); } }
                 //Inflict Despair - 50% Chance
-                if(s.type == 16){
+                if(s.type == 18){
                     damage = (int)(Math.random() * (100 - 0) + 0);
                     if(damage >= 50){
                         a.hasTurn = false;
@@ -409,7 +409,16 @@ public class Battle{
                                         t.cHP -= damage;
                                         t.down = true;
                                         System.out.println(t.name + "'s HP is " + t.cHP + "\n");
-                                        t.unconscious(); } }
+                                        if(!Battle.is1more){
+                                            System.out.println("1 MORE\n"); 
+                                            Battle.is1more = true;
+                                            a.hasTurn = true; }
+                                        } else {
+                                            System.out.println(damage + " damage to " + t.name);
+                                            t.cHP -= damage;
+                                            System.out.println(t.name + "'s HP is " + t.cHP + "\n");
+                                        }
+                                        t.unconscious(); }
                                 break;
                             //Enemy is weak
                             case 1:
@@ -503,7 +512,33 @@ public class Battle{
                                         break;
                             }
                         }
-                    }
+                        }
+                        //Handle ailment skills
+                        if(s.type >= 16 && s.type <= 18){
+                            //Inflict Fear - 50% Chance
+                            if(s.type == 16){
+                                damage = (int)(Math.random() * (100 - 0) + 0);
+                                if(damage >= 50){
+                                    a.hasTurn = false;
+                                    t.ailment = 5;
+                                    t.ailmentT = 4;
+                                    System.out.println(t.name + " became fearful!"); } }
+                            //Inflict Poison - 75% Chance
+                            if(s.type == 17){
+                                damage = (int)(Math.random() * (100 - 0) + 0);
+                                if(damage >= 25){
+                                    a.hasTurn = false;
+                                    t.ailment = 6;
+                                    t.ailmentT = 4;
+                                    System.out.println(t.name + " was poisoned!"); } }
+                            //Inflict Despair - 50% Chance
+                            if(s.type == 18){
+                                damage = (int)(Math.random() * (100 - 0) + 0);
+                                if(damage >= 50){
+                                    a.hasTurn = false;
+                                    t.ailment = 7;
+                                    t.ailmentT = 4;
+                                    System.out.println(t.name + " is despairing!"); } } }
                 }
             }
             //Restore 1 nore for one critical

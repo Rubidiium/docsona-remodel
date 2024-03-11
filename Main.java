@@ -464,98 +464,6 @@ public class Main{
         Actor activeActor = null;
         int highestAgility = 0;
 
-        //FINAL BATTLE TEST
-        vee.resetState();
-        codio.resetState();
-
-        Battle.battleActive = true;
-        AI.phase = 0;
-
-        while(Battle.battleActive == true){
-            Battle.arrCounter = 0;
-            vee.hasTurn = true;
-            codio.hasTurn = true;
-            AI.phase++;
-            Clear.clear();
-            switch(AI.phase){
-                case 1:
-                    System.out.println("You can't really describe what you see.");
-                    Pass.p(s.nextLine());
-                    System.out.println("Actually, it's downright impossible to describe it.");
-                    Pass.p(s.nextLine());
-                    System.out.println("It's immaterial, but you can still feel it.");
-                    Pass.p(s.nextLine());
-                    System.out.println("It burns, it stings, it pulls, it calls for you.");
-                    Pass.p(s.nextLine());
-                    System.out.println("You have to fight back, do something, do anything!");
-                    Pass.p(s.nextLine());
-                    break;
-                case 2:
-                    System.out.println("All you hear is ringing, you can barely hang on to any of your senses.");
-                    Pass.p(s.nextLine());
-                    System.out.println("You're struggling to keep your eyes open, let alone stand.");
-                    Pass.p(s.nextLine());
-                    System.out.println("Suddenly, you hear Hinni's voice in your head.");
-                    Pass.p(s.nextLine());
-                    
-                    Clear.clear();
-                    System.out.println("Keep fighting Vee. We're all down here waiting for you!");
-                    Pass.p(s.nextLine());
-                    System.out.println("We know you'll come back, you always do!");
-                    Pass.p(s.nextLine());
-
-                    Clear.clear();
-                    System.out.println("Your resolve strengthens, you feel your strength begin to come back.");
-                    Pass.p(s.nextLine());
-                    vee.cHP += (int)(vee.mHP * 0.33);
-                    if(vee.cHP >= vee.mHP){
-                        vee.cHP = vee.mHP; }
-                    System.out.println("Vee's HP is " + vee.cHP);
-                    Pass.p(s.nextLine());
-                    break;
-                case 3:
-                    System.out.println("The pain remains strong, but gradually begins to go away.");
-                    Pass.p(s.nextLine());
-            }
-            while(vee.hasTurn){
-                Clear.clear();
-                if(!Battle.sealAvailible){
-                    System.out.println("It's Vee's turn!\n\nWhat will you do?\n1. Attack"); }
-                if(Battle.sealAvailible){
-                    System.out.println("It's Vee's turn!\n\nWhat will you do?\n3. Docsona"); }
-                System.out.println("\n    " + actors2[0].name);
-                System.out.println("HP: " + actors2[0].cHP + "/" + actors2[0].mHP);
-                System.out.print("SP: " + actors2[0].cSP + "/" + actors2[0].mSP);
-                System.out.println("\n-----------------------------\n" + actors2[1].HPString());
-                choice = s.nextLine();
-                //If only attack is availible
-                switch(choice){
-                    case "1":
-                        Battle.useSSkill(vee, codio, attack, choice);
-                        Pass.p(s.nextLine());
-                        break;
-                    default:
-                        break; }
-            }
-            while(codio.hasTurn == true){
-                Clear.clear();
-                System.out.println("It's Codio's turn!");
-                Pass.p(s.nextLine());
-
-                Clear.clear();
-                System.out.println("Codio optimizes the world!\n");
-                System.out.println("9999 damage to Vee");
-                vee.cHP = 1;
-                System.out.println("\nVee survived the attack!");
-                System.out.println("Vee's HP is " + vee.cHP);
-                codio.hasTurn = false;
-                Pass.p(s.nextLine());
-                break;
-            }
-        }
-
-        /*
-
         //Determine the turn order at the beginning of each cycle
         while(Battle.battleActive == true){
             //End the battle if Vee or Nyx dies
@@ -1656,7 +1564,7 @@ public class Main{
             } else {
                 continue; } }
             
-        } */
+        }
         //Post battle dialogue
         if(Battle.battleWon){
             //Good Ending
@@ -1738,7 +1646,184 @@ public class Main{
             System.out.println("You're not sure what's going on, but you still have to fight.");
             Pass.p(s.nextLine());
 
-            
+        //FINAL BATTLE TEST
+        vee.resetState();
+        codio.resetState();
+
+        Battle.battleActive = true;
+        AI.phase = 1;
+
+        while(Battle.battleActive == true){
+            Battle.arrCounter = 0;
+            vee.hasTurn = true;
+            codio.hasTurn = false;
+            Clear.clear();
+            switch(AI.phase){
+                case 1:
+                    System.out.println("You can't really describe what you see.");
+                    Pass.p(s.nextLine());
+                    System.out.println("Actually, it's downright impossible to describe it.");
+                    Pass.p(s.nextLine());
+                    System.out.println("It's immaterial, but you can still feel it.");
+                    Pass.p(s.nextLine());
+                    System.out.println("It burns, it stings, it pulls, it calls for you.");
+                    Pass.p(s.nextLine());
+                    System.out.println("You have to fight back, do something, do anything!");
+                    Pass.p(s.nextLine());
+                    break;
+
+                case 2:
+                    System.out.println("All you hear is ringing, you can barely hang on to any of your senses.");
+                    Pass.p(s.nextLine());
+                    System.out.println("You're struggling to keep your eyes open, let alone stand.");
+                    Pass.p(s.nextLine());
+                    System.out.println("Suddenly, you hear Hinni's voice in your head.");
+                    Pass.p(s.nextLine());
+                    
+                    Clear.clear();
+                    System.out.println("Keep fighting Vee. We're all down here waiting for you!");
+                    Pass.p(s.nextLine());
+                    System.out.println("We know you'll come back, you always do!");
+                    Pass.p(s.nextLine());
+
+                    Clear.clear();
+                    System.out.println("Your resolve strengthens, you feel your strength begin to come back.");
+                    Pass.p(s.nextLine());
+                    vee.cHP = (int)(vee.mHP * 0.33);
+                    if(vee.cHP >= vee.mHP){
+                        vee.cHP = vee.mHP; }
+                    System.out.println("Vee's HP is now " + vee.cHP);
+                    code.setAffinities(2, 0, 0, 0, 0, 0, 0);
+                    Pass.p(s.nextLine());
+                    break;
+
+                case 3:
+                    System.out.println("The pain remains strong, but gradually begins to go away.");
+                    Pass.p(s.nextLine());
+                    System.out.println("You're able to catch your breath and focus your vision.");
+                    Pass.p(s.nextLine());
+                    System.out.println("As you collect yourself, you hear Ed's voice call out to you.");
+                    Pass.p(s.nextLine());
+
+                    Clear.clear();
+                    System.out.println("You're not planning on dying up there, are you?");
+                    Pass.p(s.nextLine());
+                    System.out.println("Nah, who am I kidding? You'd never.");
+                    Pass.p(s.nextLine());
+                    System.out.println("You take your time, we'll be right here for you when you're ready.");
+                    Pass.p(s.nextLine());
+
+                    Clear.clear();
+                    System.out.println("You're starting to feel like new, you feel even better than before.");
+                    Pass.p(s.nextLine());
+                    vee.cHP = (int)(vee.mHP * 0.66);
+                    if(vee.cHP >= vee.mHP){
+                        vee.cHP = vee.mHP; }
+                    System.out.println("Vee's HP is now " + vee.cHP);
+                    code.setAffinities(0, 0, 0, 0, 0, 0, 0);
+                    Pass.p(s.nextLine());
+                    break;
+                
+                case 4:
+                    Clear.clear();
+                    System.out.println("You catch your breath, and feel like you're fighting again.");
+                    Pass.p(s.nextLine());
+                    System.out.println("You know why you're fighting, and you're ready to do what it takes to save your friends.");
+                    Pass.p(s.nextLine());
+                    System.out.println("You anticipate hearing Antonio's voice, and it arrives on time.");
+                    Pass.p(s.nextLine());
+
+                    Clear.clear();
+                    System.out.println("We're not giving up that easily, are we?");
+                    Pass.p(s.nextLine());
+                    System.out.println("What would I do after school without Math Research? Go home?");
+                    Pass.p(s.nextLine());
+                    System.out.println("Like hell, take him down Vee.");
+                    Pass.p(s.nextLine());
+
+                    Clear.clear();
+                    System.out.println("You're as good as new... no, you're better. You're ready.");
+                    Pass.p(s.nextLine());
+                    vee.cHP = (int)(vee.mHP * 1);
+                    if(vee.cHP >= vee.mHP){
+                        vee.cHP = vee.mHP; }
+                    System.out.println("Vee's HP is now " + vee.cHP);
+                    Battle.sealAvailible = true;
+                    Pass.p(s.nextLine());
+                    break;
+            }
+            while(vee.hasTurn){
+                Clear.clear();
+                if(!Battle.sealAvailible){
+                    System.out.println("It's Vee's turn!\n\nWhat will you do?\n\n1. Attack"); }
+                if(Battle.sealAvailible){
+                    System.out.println("It's Vee's turn!\n\nWhat will you do?\n\n3. Docsona"); }
+                System.out.println("\n    " + actors2[0].name);
+                System.out.println("HP: " + actors2[0].cHP + "/" + actors2[0].mHP);
+                System.out.print("SP: " + actors2[0].cSP + "/" + actors2[0].mSP);
+                System.out.println("\n-----------------------------\n" + actors2[1].HPString());
+                choice = s.nextLine();
+                //If only attack is availible
+                if(!Battle.sealAvailible){
+                    switch(choice){
+                        case "1":
+                            Clear.clear();
+                            System.out.println("Attack what?\n\n1. Codio");
+                            choice = s.nextLine();
+                            switch(choice){
+                                case "1":
+                                    Battle.useSSkill(vee, codio, attack, choice); 
+                                    Pass.p(s.nextLine());
+                                    codio.hasTurn = true;
+                                    vee.hasTurn = false;
+                                    break;
+                                default:
+                                    break; }
+                            break;
+                        default:
+                            break; } }
+                if(Battle.sealAvailible){
+                    switch(choice){
+                        case "3":
+                            Clear.clear();
+                            System.out.println("DOCSONA\n\n1. git pull\n" + vee.mHP + " HP\nInternalize and protect, store the code somewhere safe");
+                            choice = s.nextLine();
+                            switch(choice){
+                                case "1":
+                                    Clear.clear();
+                                    System.out.println("Pull what?\n\n1. Codio");
+                                    choice = s.nextLine();
+                                    switch(choice){
+                                        case "1":
+                                            Battle.battleActive = false;
+                                            vee.hasTurn = false;
+                                            codio.hasTurn = false;
+                                            break;
+                                        default:
+                                            break; }
+                                    break;
+                                default:
+                                    break; } }
+            }
+            while(codio.hasTurn == true){
+                Clear.clear();
+                System.out.println("It's Codio's turn!");
+                Pass.p(s.nextLine());
+
+                Clear.clear();
+                System.out.println("Codio optimizes the world!\n");
+                System.out.println("9999 damage to Vee");
+                vee.cHP = 1;
+                System.out.println("\nVee survived the attack!");
+                System.out.println("Vee's HP is " + vee.cHP);
+                codio.hasTurn = false;
+                vee.hasTurn = false;
+                AI.phase++;
+                Pass.p(s.nextLine());
+                break;
+            }
+            }
+        }
 
         } else {
             //Bad Ending

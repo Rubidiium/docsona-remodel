@@ -116,7 +116,6 @@ public class AI{
                 AI.unit7started = true;
                 break; 
         }
-        a.hasTurn = false;
     }
 
     //Determines the ideal weighting to use for skills depending on the current status of all actors

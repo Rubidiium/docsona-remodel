@@ -115,7 +115,6 @@ public class Actor{
     }
 
     public void headerUI(Actor[] actors){
-        Clear.clear();
         //Print the battle UI
         if(this.player){
         this.battleUI(); 
