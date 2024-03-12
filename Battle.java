@@ -2,6 +2,7 @@ public class Battle{
     //Global flags
     public static boolean missed;
     public static boolean wasCritical;
+    public static boolean totalCritical;
     public static boolean wasWeak;
     public static boolean wasResisted;
     public static boolean wasNulled;
@@ -14,7 +15,7 @@ public class Battle{
     public static boolean ailmentPrint;
     public static boolean sealAvailible;
     public static boolean pulled;
-    public static boolean scared;
+    public static boolean moveCancel;
     public static boolean is1healed;
     //Counter for when all actors have had a turn
     public static int cycleCounter;
@@ -49,13 +50,23 @@ public class Battle{
         //Reset battle trackers
         Battle.wasCritical = false;
         Battle.missed = false;
-        Battle.scared = false;
+        Battle.moveCancel = false;
+        //Cancel action if insufficient HP/SP
+        if(s.type == 0 && !(a.cHP > s.cost)){
+            a.hasTurn = true;
+            System.out.println("Insufficient HP!");
+            Battle.moveCancel = true;
+        } else if(!(a.cSP > s.cost)){
+            a.hasTurn = true;
+            System.out.println("Insufficient HP!");
+            Battle.moveCancel = true; }
         //90% chance to lose turn if fearful
         if(a.ailment == 5){
             if(Math.random() >= 0.10){
                 a.hasTurn = false;
                 System.out.println(a.name + " is too afraid to move!");
-                Battle.scared = true; } } else {
+                Battle.moveCancel = true; } } 
+        if(!Battle.moveCancel){
         //Perform a basic attack
         if(s.name.equals("Attack")){
             System.out.println(a.name + " attacks " + t.name + "\n"); } else {
@@ -72,25 +83,15 @@ public class Battle{
                 a.hasTurn = false;
                 damage = s.castDamage(a, t);
                 if(!Battle.missed){
-                    if(Battle.wasCritical){
-                        System.out.println("CRITICAL");
-                        t.down = true;
                         System.out.println(damage + " damage to " + t.name);
                         t.cHP -= damage;
-                        t.down = true;
+                        if(t.cHP < 0){
+                            t.cHP = 0;}
                         System.out.println(t.name + "'s HP is " + t.cHP);
-                        if(!Battle.is1more){
-                            System.out.println("\n1 MORE\n"); 
-                            Battle.is1more = true;
-                            a.hasTurn = true; } 
-                        } else {
-                            System.out.println(damage + " damage to " + t.name);
-                            t.cHP -= damage;
-                            System.out.println(t.name + "'s HP is " + t.cHP);
-                        }
                         t.unconscious(); } }
             //Handle damage skills
             if((s.type >= 0 && s.type <= 6)){
+            Battle.wasCritical = false;
             switch(t.edocsona.affinities[s.type]){
                 //No affinities
                 default:
@@ -99,10 +100,13 @@ public class Battle{
                     if(!Battle.missed){
                         if(Battle.wasCritical){
                             System.out.println("CRITICAL");
+                            if(!t.down){
+                                System.out.println(t.name + " was knocked down!"); }
                             t.down = true;
-                            System.out.println(t.name + " was knocked down!");
                             System.out.println(damage + " damage to " + t.name);
                             t.cHP -= damage;
+                            if(t.cHP < 0){
+                                t.cHP = 0;}
                             System.out.println(t.name + "'s HP is " + t.cHP);
                             if(!Battle.is1more){
                                 System.out.println("\n1 MORE\n"); 
@@ -111,10 +115,13 @@ public class Battle{
                             } else {
                                 System.out.println(damage + " damage to " + t.name);
                                 t.cHP -= damage;
+                                if(t.cHP < 0){
+                                    t.cHP = 0;}
                                 System.out.println(t.name + "'s HP is " + t.cHP);
                             }
                             t.unconscious();
-                    }
+                    } else {
+                        Battle.wasCritical = false; }
                     break;
                 //Enemy is weak
                 case 1:
@@ -125,8 +132,11 @@ public class Battle{
                         a.hasTurn = true; }
                         System.out.println("WEAK");
                         t.cHP -= damage;
+                        if(t.cHP < 0){
+                            t.cHP = 0;}
+                        if(!t.down){
+                            System.out.println(t.name + " was knocked down!"); }
                         t.down = true;
-                        System.out.println(t.name + " was knocked down!");
                         System.out.println(damage + " damage to " + t.name);
                     if(!Battle.is1more){
                         System.out.println("1 MORE"); }
@@ -139,6 +149,8 @@ public class Battle{
                     damage = s.castDamage(a, t);
                     System.out.println("RESIST");
                     t.cHP -= damage;
+                    if(t.cHP < 0){
+                            t.cHP = 0;}
                     System.out.println(damage + " damage to " + t.name);
                     System.out.println(t.name + "'s HP is " + t.cHP);
                     t.unconscious();
@@ -179,11 +191,11 @@ public class Battle{
                 if(s.type == 10){
                     a.hasTurn = false;
                     t.atk = 2;
-                    t.atkT += 4;
+                    t.atkT += 3;
                     t.def = 2;
-                    t.defT += 4;
+                    t.defT += 3;
                     t.acc = 2;
-                    t.accT += 4;
+                    t.accT += 3;
                     System.out.println(t.name + "'s ATK/DEF/ACC fell");
                 //Singular debuffs
                 } else {
@@ -191,19 +203,19 @@ public class Battle{
                         case 11:
                             a.hasTurn = false;
                             t.atk = 2;
-                            t.atkT += 4;
+                            t.atkT += 3;
                             System.out.println(t.name + "'s ATK fell");
                             break;
                         case 12:
                             a.hasTurn = false;
                             t.def = 2;
-                            t.defT += 4;
+                            t.defT += 3;
                             System.out.println(t.name + "'s DEF fell");
                             break;
                         case 13:
                             a.hasTurn = false;
                             t.acc = 2;
-                            t.accT += 4;
+                            t.accT += 3;
                             System.out.println(t.name + "'s ACC fell");
                             break; } } }
             //Handle ailment skills
@@ -214,7 +226,7 @@ public class Battle{
                     if(damage >= 50){
                         a.hasTurn = false;
                         t.ailment = 5;
-                        t.ailmentT = 4;
+                        t.ailmentT = 3;
                         System.out.println(t.name + " became fearful!"); } else {
                             System.out.println("MISS");
                         } } 
@@ -224,7 +236,7 @@ public class Battle{
                     if(damage >= 25){
                         a.hasTurn = false;
                         t.ailment = 6;
-                        t.ailmentT = 4;
+                        t.ailmentT = 3;
                         System.out.println(t.name + " was poisoned!"); }else {
                             System.out.println("MISS");
                         } }
@@ -234,7 +246,7 @@ public class Battle{
                     if(damage >= 50){
                         a.hasTurn = false;
                         t.ailment = 7;
-                        t.ailmentT = 4;
+                        t.ailmentT = 3;
                         System.out.println(t.name + " is despairing!"); } else {
                             System.out.println("MISS");
                         } } }
@@ -268,11 +280,11 @@ public class Battle{
                 if(s.type == 10){
                     a.hasTurn = false;
                     t.atk = 1;
-                    t.atkT += 4;
+                    t.atkT += 3;
                     t.def = 1;
-                    t.defT += 4;
+                    t.defT += 3;
                     t.acc = 1;
-                    t.accT += 4;
+                    t.accT += 3;
                     System.out.println(t.name + "'s ATK/DEF/ACC rose");
                 //Singular buffs
                 } else {
@@ -280,19 +292,19 @@ public class Battle{
                         case 11:
                             a.hasTurn = false;
                             t.atk = 1;
-                            t.atkT += 4;
+                            t.atkT += 3;
                             System.out.println(t.name + "'s ATK rose");
                             break;
                         case 12:
                             a.hasTurn = false;
                             t.def = 1;
-                            t.defT += 4;
+                            t.defT += 3;
                             System.out.println(t.name + "'s DEF rose");
                             break;
                         case 13:
                             a.hasTurn = false;
                             t.acc = 1;
-                            t.accT += 4;
+                            t.accT += 3;
                             System.out.println(t.name + "'s ACC rose");
                             break;
                         case 14:
@@ -402,14 +414,24 @@ public class Battle{
         //Reset battle trackers
         Battle.wasCritical = false;
         Battle.missed = false;
-        Battle.scared = false;
+        Battle.moveCancel = false;
         Battle.is1healed = false;
+        //Cancel action if insufficient HP/SP
+        if(s.type == 0 && !(a.cHP > s.cost)){
+            a.hasTurn = true;
+            System.out.println("Insufficient HP!");
+            Battle.moveCancel = true;
+        } else if(!(a.cSP > s.cost)){
+            a.hasTurn = true;
+            System.out.println("Insufficient SP!");
+            Battle.moveCancel = true; }
         //90% chance to lose turn if fearful
         if(a.ailment == 5){
             if(Math.random() >= 0.10){
                 a.hasTurn = false;
                 System.out.println(a.name + " is too afraid to move!");
-                Battle.scared = true; } } else {
+                Battle.moveCancel = true; } } 
+        if(!Battle.moveCancel){
         //Print out the attack name
         System.out.println(a.name + " uses " + s.name + " on all allies!" +  "\n");
         //Subtract HP/SP cost
@@ -424,6 +446,8 @@ public class Battle{
                 if(t.player){
                     //Handle damage skills
                     if((s.type >= 0 && s.type <= 6) || s.type == 8){
+                        Battle.wasCritical = false;
+                        Battle.missed = false;
                         switch(t.edocsona.affinities[s.type]){
                             //No affinities
                             default:
@@ -431,17 +455,24 @@ public class Battle{
                                 damage = s.castDamage(a, t);
                                 if(!Battle.missed){
                                     if(Battle.wasCritical){
+                                        Battle.totalCritical = true;
                                         System.out.println("CRITICAL");
-                                        System.out.println(t.name + " was knocked down!");
+                                        if(!t.down){
+                                        System.out.println(t.name + " was knocked down!"); }
                                         t.down = true;
                                         System.out.println(damage + " damage to " + t.name);
                                         t.cHP -= damage;
+                                        if(t.cHP < 0){
+                                            t.cHP = 0;}
                                         System.out.println(t.name + "'s HP is " + t.cHP + "\n");
                                         } else {
                                             System.out.println(damage + " damage to " + t.name);
                                             t.cHP -= damage;
+                                            if(t.cHP < 0){
+                                                t.cHP = 0;}
                                             System.out.println(t.name + "'s HP is " + t.cHP + "\n"); }
-                                        t.unconscious(); }
+                                        t.unconscious(); } else {
+                                            Battle.wasCritical = false; }
                                 break;
                             //Enemy is weak
                             case 1:
@@ -450,14 +481,17 @@ public class Battle{
                                 if(!Battle.missed){
                                 if(!Battle.is1more){
                                     a.hasTurn = true; }
+                                    Battle.totalCritical = true;
                                     System.out.println("WEAK");
                                     t.cHP -= damage;
+                                    if(t.cHP < 0){
+                                        t.cHP = 0;}
+                                    if(!t.down){
+                                        System.out.println(t.name + " was knocked down!"); }
                                     t.down = true;
-                                    System.out.println(t.name + " was knocked down!");
                                     System.out.println(damage + " damage to " + t.name  + "\n");
                                 if(!Battle.is1more){
-                                    Battle.is1more = true;
-                                    System.out.println("1 MORE"); }
+                                    Battle.is1more = true; }
                                     System.out.println(t.name + "'s HP is " + t.cHP  + "\n"); }
                                 t.unconscious();
                                 break;
@@ -467,6 +501,8 @@ public class Battle{
                                 damage = s.castDamage(a, t);
                                 System.out.println("RESIST");
                                 t.cHP -= damage;
+                                if(t.cHP < 0){
+                                    t.cHP = 0;}
                                 System.out.println(damage + " damage to " + t.name);
                                 System.out.println(t.name + "'s HP is " + t.cHP  + "\n");
                                 t.unconscious();
@@ -507,11 +543,11 @@ public class Battle{
                             if(s.type == 10){
                                 a.hasTurn = false;
                                 t.atk = 2;
-                                t.atkT = 4;
+                                t.atkT += 3;
                                 t.def = 2;
-                                t.defT = 4;
+                                t.defT += 3;
                                 t.acc = 2;
-                                t.accT = 4;
+                                t.accT += 3;
                                 System.out.println(t.name + "'s ATK/DEF/ACC fell");
                             //Singular debuffs
                             } else {
@@ -519,19 +555,19 @@ public class Battle{
                                     case 11:
                                         a.hasTurn = false;
                                         t.atk = 2;
-                                        t.atkT = 4;
+                                        t.atkT += 3;
                                         System.out.println(t.name + "'s ATK fell");
                                         break;
                                     case 12:
                                         a.hasTurn = false;
                                         t.def = 2;
-                                        t.defT = 4;
+                                        t.defT += 3;
                                         System.out.println(t.name + "'s DEF fell");
                                         break;
                                     case 13:
                                         a.hasTurn = false;
                                         t.acc = 2;
-                                        t.accT = 4;
+                                        t.accT += 3;
                                         System.out.println(t.name + "'s ACC fell");
                                         break;
                             }
@@ -545,7 +581,7 @@ public class Battle{
                                 if(damage >= 50){
                                     a.hasTurn = false;
                                     t.ailment = 5;
-                                    t.ailmentT = 4;
+                                    t.ailmentT = 3;
                                     System.out.println(t.name + " became fearful!"); } else {
                                         System.out.println("MISS");
                                     } }
@@ -555,7 +591,7 @@ public class Battle{
                                 if(damage >= 25){
                                     a.hasTurn = false;
                                     t.ailment = 6;
-                                    t.ailmentT = 4;
+                                    t.ailmentT = 3;
                                     System.out.println(t.name + " was poisoned!"); } else {
                                         System.out.println("MISS");
                                     } }
@@ -565,14 +601,14 @@ public class Battle{
                                 if(damage >= 50){
                                     a.hasTurn = false;
                                     t.ailment = 7;
-                                    t.ailmentT = 4;
+                                    t.ailmentT = 3;
                                     System.out.println(t.name + " is despairing!"); } else {
                                         System.out.println("MISS");
                                     } } }
                 }
             }
-            //Restore 1 nore for one critical
-            if(Battle.wasCritical && !Battle.is1more){
+            //Restore 1 more for one critical
+            if(Battle.totalCritical && !Battle.is1more){
                 System.out.println("1 MORE\n");
                 a.hasTurn = true;
                 Battle.is1more = true;
@@ -607,11 +643,11 @@ public class Battle{
                         if(s.type == 10){
                             a.hasTurn = false;
                             t.atk = 1;
-                            t.atkT = 4;
+                            t.atkT += 3;
                             t.def = 1;
-                            t.defT = 4;
+                            t.defT += 3;
                             t.acc = 1;
-                            t.accT = 4;
+                            t.accT += 3;
                             System.out.println(t.name + "'s ATK/DEF/ACC rose");
                         //Singular debuffs
                         } else {
@@ -619,19 +655,19 @@ public class Battle{
                                 case 11:
                                     a.hasTurn = false;
                                     t.atk = 1;
-                                    t.atkT = 4;
+                                    t.atkT += 3;
                                     System.out.println(t.name + "'s ATK rose");
                                     break;
                                 case 12:
                                     a.hasTurn = false;
                                     t.def = 1;
-                                    t.defT = 4;
+                                    t.defT += 3;
                                     System.out.println(t.name + "'s DEF rose");
                                     break;
                                 case 13:
                                     a.hasTurn = false;
                                     t.acc = 1;
-                                    t.accT = 4;
+                                    t.accT += 3;
                                     System.out.println(t.name + "'s ACC rose");
                                     break; } } } 
                     //Handle ailment heal skills
@@ -715,13 +751,14 @@ public class Battle{
         Clear.clear();
         a.hasTurn = false;
         i.quantity--;
-        Battle.scared = false;
+        Battle.moveCancel = false;
         //90% chance to lose turn if fearful
         if(a.ailment == 5){
             if(Math.random() >= 0.10){
                 a.hasTurn = false;
                 System.out.println(a.name + " is too afraid to move!");
-                Battle.scared = true; } } else {
+                Battle.moveCancel = true; } }
+        if(!Battle.moveCancel){
         //Use the item
         if(i.all && i.type != 7){
             Battle.useASkill(a, targets, i, choice);
@@ -835,7 +872,7 @@ public class Battle{
         Battle.battleActive = true;
         Battle.battleWon = false;
         Battle.pulled = false;
-        Battle.scared = false;
+        Battle.moveCancel = false;
         Battle.is1healed = false;
         System.out.println("Battle.java compiled!\n");
     }

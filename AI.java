@@ -27,7 +27,8 @@ public class AI{
                 //Determine case for weighting
                 AI.weightCalculator(a, actors);
                 //Choose a skill based on weighting
-                System.out.println(random);
+                a.hasTurn = false;
+                Battle.useASkill(a, actors, a.edocsona.skills[0], "0"); /*
                 switch(weightCase){
                     //Purely random - No case defined
                     default:
@@ -84,8 +85,8 @@ public class AI{
                         a.hasTurn = false;
                         //Prioritize targets with no ailments
                         
-                        break;
-                }
+                        break; 
+                } */
                 break;
             //Unit 1 Logic
             case 1:
@@ -119,7 +120,7 @@ public class AI{
     }
 
     //Determines the ideal weighting to use for skills depending on the current status of all actors
-    //A weight case cannot be used twice in a row, a different case must be used each turn
+    //Good enough
     public static void weightCalculator(Actor a, Actor[] actors){
         switch(phase){
             //Calculate the weighting for phase 0

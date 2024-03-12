@@ -397,10 +397,10 @@ public class Actor{
 
     //Check to run if an actor is unconscious or not
     public boolean unconscious(){
-        if(this.cHP == 0){
+        if(this.cHP <= 0){
             this.uc = true;
             this.cHP = 0;
-            System.out.println(name + " was knocked unconscious! They need to be revived before they can move again!");
+            System.out.println(name + " was knocked unconscious! They need to be revived before they can move again!\n");
             return true;
         } else {
             return false;

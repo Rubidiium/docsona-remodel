@@ -12,7 +12,6 @@ public class Main{
 
          * !!!ADD REVIVE SKILS + ITEMS
          * !!!PREVENT USING SKILLS IF HP/SP IS INSUFFICIENT
-         * !!FIX ALL ATTACKS NOT PROPERLY RUNNING UNCONSCIOUS CHECK
          * !MAYBE MAKE TURN CALCULATOR LESS AWKWARD
 
         */
@@ -504,14 +503,26 @@ public class Main{
                 continue; }
             //Idk what this does
             Battle.is1more = false;
+            //Reset buffs for dead players
+            for(Actor acts : actors){
+                if(acts.uc){
+                    acts.atk = 0;
+                    acts.atkT = 0;
+                    acts.def = 0;
+                    acts.defT = 0;
+                    acts.acc = 0;
+                    acts.accT = 0;
+                    acts.charge = 0;
+                    acts.ailment = 0;
+                    acts.ailmentT = 0; } }
             if(a.name.equals(activeActor.name)){
             if(a.down){
                 a.beginTurn(actors);
                 Pass.p(s.nextLine()); } else {
                     a.beginTurn(actors); }
             //Check for player confirmation if turn-impacting ailment or death
-            if(a.cHP <= 0 || (a.ailment != 0 && Battle.ailmentPrint == false && a.player)){
-                Battle.ailmentPrint = true;
+            if(a.ailment != 0 && Battle.ailmentPrint == false && a.player){
+                Battle.ailmentPrint = true; 
                 Pass.p(s.nextLine()); }
             while(a.hasTurn == true){
                 //Check if battle can be ended
