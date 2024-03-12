@@ -8,11 +8,13 @@ public class Main{
         //Objects must be stored in the same place dialogue and execution breaks exist for... reasons
         //Create skill objects
 
-        /* PRESSING BUGS/GLITCHES
+        /* TO-DO (OR DIE)
+
          * ADD 1/2 LEADING ZEROES BEFORE HP, FIND OUT HOW TO DO THIS INSTANTLY
          * FIX ALL ATTACKS NOT PROPERLY RUNNING UNCONSCIOUS CHECK
          * MAYBE MAKE TURN CALCULATOR LESS AWKWARD
-         */
+
+        */
 
         //DEFAULT
         Skill none = new Skill("NONE", 0, false, false, 0, 0, false);
