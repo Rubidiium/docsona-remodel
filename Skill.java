@@ -224,9 +224,6 @@ public class Skill{
 
         //Calculate critical for physical attacks; Down target if critical
         fin = this.criticalCalc(player, target, temp);
-        if(Battle.wasCritical){
-            target.down = true;
-        }
 
         //Apply charge/concentrate bonuses
         if((player.charge == 1 || player.charge == 3) && this.type == 0){
@@ -277,6 +274,7 @@ public class Skill{
             Battle.wasCritical = true;
             return (int)(damage * 1.75); 
         } else {
+            Battle.wasCritical = false;
             return (int)(damage); }
     }
 

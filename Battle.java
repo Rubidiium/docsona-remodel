@@ -13,6 +13,7 @@ public class Battle{
     public static boolean battleWon;
     public static boolean ailmentPrint;
     public static boolean sealAvailible;
+    public static boolean scared;
     //Counter for when all actors have had a turn
     public static int cycleCounter;
     //Misc. counter when needed
@@ -46,11 +47,13 @@ public class Battle{
         //Reset battle trackers
         Battle.wasCritical = false;
         Battle.missed = false;
+        Battle.scared = false;
         //90% chance to lose turn if fearful
         if(a.ailment == 5){
             if(Math.random() >= 0.10){
                 a.hasTurn = false;
-                System.out.println(a.name + " is too afraid to move!"); } }
+                System.out.println(a.name + " is too afraid to move!");
+                Battle.scared = true; } } else {
         //Perform a basic attack
         if(s.name.equals("Attack")){
             System.out.println(a.name + " attacks " + t.name + "\n"); } else {
@@ -95,9 +98,9 @@ public class Battle{
                         if(Battle.wasCritical){
                             System.out.println("CRITICAL");
                             t.down = true;
+                            System.out.println(t.name + " was knocked down!");
                             System.out.println(damage + " damage to " + t.name);
                             t.cHP -= damage;
-                            t.down = true;
                             System.out.println(t.name + "'s HP is " + t.cHP);
                             if(!Battle.is1more){
                                 System.out.println("\n1 MORE\n"); 
@@ -121,6 +124,7 @@ public class Battle{
                         System.out.println("WEAK");
                         t.cHP -= damage;
                         t.down = true;
+                        System.out.println(t.name + " was knocked down!");
                         System.out.println(damage + " damage to " + t.name);
                     if(!Battle.is1more){
                         System.out.println("1 MORE"); }
@@ -209,7 +213,9 @@ public class Battle{
                         a.hasTurn = false;
                         t.ailment = 5;
                         t.ailmentT = 4;
-                        System.out.println(t.name + " became fearful!"); } }
+                        System.out.println(t.name + " became fearful!"); } else {
+                            System.out.println("MISS");
+                        } } 
                 //Inflict Poison - 75% Chance
                 if(s.type == 17){
                     damage = (int)(Math.random() * (100 - 0) + 0);
@@ -217,7 +223,9 @@ public class Battle{
                         a.hasTurn = false;
                         t.ailment = 6;
                         t.ailmentT = 4;
-                        System.out.println(t.name + " was poisoned!"); } }
+                        System.out.println(t.name + " was poisoned!"); }else {
+                            System.out.println("MISS");
+                        } }
                 //Inflict Despair - 50% Chance
                 if(s.type == 18){
                     damage = (int)(Math.random() * (100 - 0) + 0);
@@ -225,7 +233,9 @@ public class Battle{
                         a.hasTurn = false;
                         t.ailment = 7;
                         t.ailmentT = 4;
-                        System.out.println(t.name + " is despairing!"); } } }
+                        System.out.println(t.name + " is despairing!"); } else {
+                            System.out.println("MISS");
+                        } } }
         }
         //Handle friendly skills
         if(s.friendly){
@@ -308,7 +318,6 @@ public class Battle{
                     switch(t.ailment){
                         default:
                             System.out.println("Target inapplicable!");
-                            a.hasTurn = true;
                             a.cSP += s.cost;
                             break;
                         case 1:
@@ -339,7 +348,6 @@ public class Battle{
                     switch(t.ailment){
                         default:
                             System.out.println("Target inapplicable!");
-                            a.hasTurn = true;
                             a.cSP += s.cost;
                             break;
                         case 5:
@@ -369,6 +377,7 @@ public class Battle{
         if(t.ailment != Battle.preAilment){
             t.ailmentCheck(); }
     }
+    }
 
     //Method to use skills that affect multiple actors (ONLY WORKS FOR PARTY)
     public static void useASkill(Actor a, Actor[] targets, Skill s, String choice){
@@ -377,11 +386,13 @@ public class Battle{
         //Reset battle trackers
         Battle.wasCritical = false;
         Battle.missed = false;
+        Battle.scared = false;
         //90% chance to lose turn if fearful
         if(a.ailment == 5){
             if(Math.random() >= 0.10){
                 a.hasTurn = false;
-                System.out.println(a.name + " is too afraid to move!"); } }
+                System.out.println(a.name + " is too afraid to move!");
+                Battle.scared = true; } } else {
         //Print out the attack name
         System.out.println(a.name + " uses " + s.name + " on all allies!" +  "\n");
         //Subtract HP/SP cost
@@ -404,20 +415,15 @@ public class Battle{
                                 if(!Battle.missed){
                                     if(Battle.wasCritical){
                                         System.out.println("CRITICAL");
+                                        System.out.println(t.name + " was knocked down!");
                                         t.down = true;
                                         System.out.println(damage + " damage to " + t.name);
                                         t.cHP -= damage;
-                                        t.down = true;
                                         System.out.println(t.name + "'s HP is " + t.cHP + "\n");
-                                        if(!Battle.is1more){
-                                            System.out.println("1 MORE\n"); 
-                                            Battle.is1more = true;
-                                            a.hasTurn = true; }
                                         } else {
                                             System.out.println(damage + " damage to " + t.name);
                                             t.cHP -= damage;
-                                            System.out.println(t.name + "'s HP is " + t.cHP + "\n");
-                                        }
+                                            System.out.println(t.name + "'s HP is " + t.cHP + "\n"); }
                                         t.unconscious(); }
                                 break;
                             //Enemy is weak
@@ -430,6 +436,7 @@ public class Battle{
                                     System.out.println("WEAK");
                                     t.cHP -= damage;
                                     t.down = true;
+                                    System.out.println(t.name + " was knocked down!");
                                     System.out.println(damage + " damage to " + t.name  + "\n");
                                 if(!Battle.is1more){
                                     Battle.is1more = true;
@@ -522,7 +529,9 @@ public class Battle{
                                     a.hasTurn = false;
                                     t.ailment = 5;
                                     t.ailmentT = 4;
-                                    System.out.println(t.name + " became fearful!"); } }
+                                    System.out.println(t.name + " became fearful!"); } else {
+                                        System.out.println("MISS");
+                                    } }
                             //Inflict Poison - 75% Chance
                             if(s.type == 17){
                                 damage = (int)(Math.random() * (100 - 0) + 0);
@@ -530,7 +539,9 @@ public class Battle{
                                     a.hasTurn = false;
                                     t.ailment = 6;
                                     t.ailmentT = 4;
-                                    System.out.println(t.name + " was poisoned!"); } }
+                                    System.out.println(t.name + " was poisoned!"); } else {
+                                        System.out.println("MISS");
+                                    } }
                             //Inflict Despair - 50% Chance
                             if(s.type == 18){
                                 damage = (int)(Math.random() * (100 - 0) + 0);
@@ -538,13 +549,17 @@ public class Battle{
                                     a.hasTurn = false;
                                     t.ailment = 7;
                                     t.ailmentT = 4;
-                                    System.out.println(t.name + " is despairing!"); } } }
+                                    System.out.println(t.name + " is despairing!"); } else {
+                                        System.out.println("MISS");
+                                    } } }
                 }
             }
             //Restore 1 nore for one critical
             if(Battle.wasCritical && !Battle.is1more){
+                System.out.println("1 MORE\n");
                 a.hasTurn = true;
                 Battle.is1more = true;
+                Battle.wasCritical = false;
             }
         }
         //Handle friendly attacks
@@ -668,12 +683,20 @@ public class Battle{
             } 
         } 
     }
+    }
                         
     public static void useItem(Actor a, Actor t, Actor[] targets, Item i, String choice){
         //Clear the console
         Clear.clear();
         a.hasTurn = false;
         i.quantity--;
+        Battle.scared = false;
+        //90% chance to lose turn if fearful
+        if(a.ailment == 5){
+            if(Math.random() >= 0.10){
+                a.hasTurn = false;
+                System.out.println(a.name + " is too afraid to move!");
+                Battle.scared = true; } } else {
         //Use the item
         if(i.all && i.type != 7){
             Battle.useASkill(a, targets, i, choice);
@@ -708,6 +731,7 @@ public class Battle{
                         targets[Integer.parseInt(choice) - 1].cSP = targets[Integer.parseInt(choice) - 1].cSP;
                         System.out.println(targets[Integer.parseInt(choice) - 1].name + "'s HP is maxed out!\n"); } }
         }
+    }
     }
 
     //Method to print out the availble skills of a Docsona

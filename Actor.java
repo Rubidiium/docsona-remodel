@@ -83,7 +83,7 @@ public class Actor{
         } else {
             if(this.down){
                 this.down = false;
-                System.out.println(this.name + " got back up!"); }
+                System.out.println(this.name + " got back up!\n"); }
             //Only run ailment/buff checks if beginning turn
             if(!Battle.is1more){
                 //Reset Battle flags
@@ -96,7 +96,7 @@ public class Actor{
                 //Check for ailment recovery
                 if(this.ailment != 0 && this.ailmentT <= 0){
                     this.ailment = 0;
-                    System.out.println("Status ailment recovered!"); }
+                    System.out.println("Status ailment recovered!\n"); }
                 //Print out any active ailments
                 
                 if(Battle.ailmentPrint == false){

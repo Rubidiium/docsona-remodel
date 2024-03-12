@@ -8,6 +8,12 @@ public class Main{
         //Objects must be stored in the same place dialogue and execution breaks exist for... reasons
         //Create skill objects
 
+        /* PRESSING BUGS/GLITCHES
+         * ADD 1/2 LEADING ZEROES BEFORE HP, FIND OUT HOW TO DO THIS INSTANTLY
+         * FIX ALL ATTACKS NOT PROPERLY RUNNING UNCONSCIOUS CHECK
+         * MAYBE MAKE TURN CALCULATOR LESS AWKWARD
+         */
+
         //DEFAULT
         Skill none = new Skill("NONE", 0, false, false, 0, 0, false);
         Skill attack = new Skill("Attack", 0, false, false, 0, 8, false);
@@ -191,8 +197,6 @@ public class Main{
 
         //FEAR SKILLS (16)
         Skill introSkill = new Skill("Overview", 16, false, false, 0, 0, true); //Nyx Exclusive
-
-        Skill logicSkill = new Skill("Logic Error", 16, false, false, 0, 0, true); //Nyx Exclusive
         
         Skill algorithmSkill = new Skill("t.screech()", 16, false, true, 0, 0, true); //Nyx Exclusive
 
@@ -204,10 +208,6 @@ public class Main{
         Skill flushSkill = new Skill("Stack Overflow", 17, false, true, 0, 0, true); //Nyx Exclusive
 
         //DESPAIR SKILLS (18)
-        Skill expectedSkill = new Skill("Expected Error", 18, false, false, 0, 0, true); //Nyx Exclusive
-
-        Skill fatalError = new Skill("Fatal Error", 18, false, true, 0, 0, true); //Nyx Exclusive
-
         Skill purgeSkill = new Skill("Mathematical Purge", 18, false, true, 0, 0, true); //Nyx Exclusive
 
         //HEAL MAGIC AILMENTS (19)
@@ -240,7 +240,7 @@ public class Main{
         Item gazpachoItem = new Item("Gazpacho", 19, true, false, 0, 0, true, 10, false);
         gazpachoItem.newDescription(("It's soup... but cold, and heals burn/freeze/dizzy/shock for one ally"));
 
-        Item bigmoneyItem = new Item("Big C Money", 20, true, true, 0, 0, true, 10, false);
+        Item bigmoneyItem = new Item("Big C Money", 20, true, false, 0, 0, true, 10, false);
         bigmoneyItem.newDescription("Regretfully not halal, heals fear/poison/despair for one ally");
 
         //Create Docsona objects
@@ -397,7 +397,6 @@ public class Main{
         System.out.println("\nFor best experience, play with fullscreen/tall terminal.\nCompiled! Press enter to begin, or 1 to skip.");
         choice = s.nextLine();
 
-
         //Dialogue to open the game
         Clear.clear();
         switch(choice){
@@ -476,6 +475,7 @@ public class Main{
             highestAgility = 0;
 
             //Find the fastest actor that hasn't gone yet
+            //It's funky but it works and I have no idea how
             for(Actor a : actors){
                 if(a.edocsona.ag >= highestAgility && a.hasTurn == true){
                     highestAgility = a.edocsona.ag;
@@ -502,7 +502,10 @@ public class Main{
             //Idk what this does
             Battle.is1more = false;
             if(a.name.equals(activeActor.name)){
-            a.beginTurn(actors);
+            if(a.down){
+                a.beginTurn(actors);
+                Pass.p(s.nextLine()); } else {
+                    a.beginTurn(actors); }
             //Check for player confirmation if turn-impacting ailment or death
             if(a.cHP <= 0 || (a.ailment != 0 && Battle.ailmentPrint == false && a.player)){
                 Battle.ailmentPrint = true;
@@ -515,6 +518,7 @@ public class Main{
                 //Start the player's turn
                 if(a.player == true){
                     //Print dialogue to begin the turn
+                    Clear.clear();
                     a.headerUI(actors);
                     choice = s.nextLine();
                 if(!a.uc){
@@ -525,6 +529,7 @@ public class Main{
                             Clear.clear();
                             Battle.targetSelector(a, actors, attack, choice);
                             choice = s.nextLine();
+                            Clear.clear();
                             //Attack Codio Avatar
                             switch(choice){
                                 case "1":
@@ -542,6 +547,7 @@ public class Main{
                             System.out.println("1. Guard");
                             System.out.println("2. Cancel");
                             choice = s.nextLine();
+                            Clear.clear();
                             switch(choice){
                                 case "1":
                                     a.hasTurn = false;
@@ -562,6 +568,7 @@ public class Main{
                             Battle.skillSelector(a);
                             //Use the skill corresponding to input, break if none exists
                             choice = s.nextLine();
+                            Clear.clear();
                             switch(choice){
                                 //If skill 1 is selected
                                 case "1":
@@ -900,6 +907,7 @@ public class Main{
                             //Print out the list of availible items
                             Battle.itemSelector(items);
                             choice = s.nextLine();
+                            Clear.clear();
                             switch(choice){
                                 //Use the first item
                                 case "1":
@@ -1198,6 +1206,7 @@ public class Main{
                             System.out.println("ANALYSIS\n");
                             Battle.analysis(actors);
                             Pass.p(s.nextLine());
+                            Clear.clear();
                             break;
                         //Change Docsonas if Vee
                         case "6":
@@ -1211,6 +1220,7 @@ public class Main{
                                     System.out.println("\n");
                                     Battle.arrCounter++; }
                                 choice = s.nextLine();
+                                Clear.clear();
                                 switch(choice){
                                     case "1":
                                         Clear.clear();
