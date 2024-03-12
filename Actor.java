@@ -28,8 +28,8 @@ public class Actor{
     //Constructor to create each actor
     public Actor(String n, int maxHP, int maxSP, Docsona equippedDocsona){
         name = n;
-        cHP = 3;
-        cSP = 20;
+        cHP = maxHP;
+        cSP = maxSP;
         mHP = maxHP;
         mSP = maxSP;
         edocsona = equippedDocsona;
