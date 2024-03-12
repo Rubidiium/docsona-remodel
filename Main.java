@@ -10,9 +10,16 @@ public class Main{
 
         /* TO-DO (OR DIE)
 
+        MANDATORY
+         * -!- FINISH ENEMY AI
+
+        TWEAKS
          * !!!ADD REVIVE SKILS + ITEMS
          * !!!PREVENT USING SKILLS IF HP/SP IS INSUFFICIENT
          * !MAYBE MAKE TURN CALCULATOR LESS AWKWARD
+
+        BUG FIXES
+         * GOOD LUCK!
 
         */
 
