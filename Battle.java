@@ -648,25 +648,28 @@ public class Battle{
                                     break;
                                 case 1:
                                     a.hasTurn = false;
-                                    Battle.is1healed = true; //FINISH
+                                    Battle.is1healed = true;
                                     t.ailment = 0;
                                     t.ailmentT = 0;
                                     System.out.println(t.name + " was cured of their burns!\n");
                                     break;
                                 case 2:
                                     a.hasTurn = false;
+                                    Battle.is1healed = true;
                                     t.ailment = 0;
                                     t.ailmentT = 0;
                                     System.out.println(t.name + " is no longer frozen!\n");
                                     break;
                                 case 3:
                                     a.hasTurn = false;
+                                    Battle.is1healed = true;
                                     t.ailment = 0;
                                     t.ailmentT = 0;
                                     System.out.println(t.name + " is no longer dizzy!\n");
                                     break;
                                 case 4:
                                     a.hasTurn = false;
+                                    Battle.is1healed = true;
                                     t.ailment = 0;
                                     t.ailmentT = 0;
                                     System.out.println(t.name + " is no longer shocked!\n");
@@ -679,18 +682,21 @@ public class Battle{
                                     break;
                                 case 5:
                                     a.hasTurn = false;
+                                    Battle.is1healed = true;
                                     t.ailment = 0;
                                     t.ailmentT = 0;
                                     System.out.println(t.name + " is no longer afraid!\n");
                                     break;
                                 case 6:
                                     a.hasTurn = false;
+                                    Battle.is1healed = true;
                                     t.ailment = 0;
                                     t.ailmentT = 0;
                                     System.out.println(t.name + " was cured of their poison!\n");
                                     break;
                                 case 7:
                                     a.hasTurn = false;
+                                    Battle.is1healed = true;
                                     t.ailment = 0;
                                     t.ailmentT = 0;
                                     System.out.println(t.name + " is no longer despairing!\n");
