@@ -10,9 +10,10 @@ public class Main{
 
         /* TO-DO (OR DIE)
 
-         * PREVENT USING SKILLS IF HP/SP IS INSUFFICIENT
-         * FIX ALL ATTACKS NOT PROPERLY RUNNING UNCONSCIOUS CHECK
-         * MAYBE MAKE TURN CALCULATOR LESS AWKWARD
+         * !!!ADD REVIVE SKILS + ITEMS
+         * !!!PREVENT USING SKILLS IF HP/SP IS INSUFFICIENT
+         * !!FIX ALL ATTACKS NOT PROPERLY RUNNING UNCONSCIOUS CHECK
+         * !MAYBE MAKE TURN CALCULATOR LESS AWKWARD
 
         */
 
@@ -213,12 +214,12 @@ public class Main{
         Skill purgeSkill = new Skill("Mathematical Purge", 18, false, true, 0, 0, true); //Nyx Exclusive
 
         //HEAL MAGIC AILMENTS (19)
-        Skill beanSkill = new Skill("Green Beans", 19, true, false, 8, 0, true);
-        beanSkill.newDescription("They look like Chile... and heal burn/freeze/dizzy/shock for one ally");
+        Skill beanSkill = new Skill("Green Beans", 19, true, true, 8, 0, true);
+        beanSkill.newDescription("They look like Chile... and heal burn/freeze/dizzy/shock for all allies");
 
         //HEAL SKILL AILMENTS (20)
-        Skill asylumSkill = new Skill("Asylum", 20, true, false, 8, 0, true);
-        asylumSkill.newDescription("Offer asylum... and heal fear/poison/despair for one ally");
+        Skill asylumSkill = new Skill("Asylum", 20, true, true, 8, 0, true);
+        asylumSkill.newDescription("Offer asylum... and heal fear/poison/despair for all allies");
 
         //Create item objects
         Item skipItem = new Item("Skip Day", 7, true, false, 0, 200, true, 10, false);
@@ -1754,6 +1755,20 @@ public class Main{
                     Pass.p(s.nextLine());
 
                     Clear.clear();
+                    System.out.println("You feel you resolve hit a new high. You readjust your posture.");
+                    Pass.p(s.nextLine());
+                    System.out.println("All of a sudden, you hear one more voice ring in the back of your head.");
+                    Pass.p(s.nextLine());
+                    
+                    Clear.clear();
+                    System.out.println("I'm so proud of you, Vee.");
+                    Pass.p(s.nextLine());
+                    System.out.println("You've come so far in the last year.");
+                    Pass.p(s.nextLine());
+                    System.out.println("I'm so sorry you have to go through this.");
+                    Pass.p(s.nextLine());
+
+                    Clear.clear();
                     System.out.println("You're as good as new... no, you're better. You're ready.");
                     Pass.p(s.nextLine());
                     vee.cHP = (int)(vee.mHP * 1);
@@ -1807,6 +1822,7 @@ public class Main{
                                     choice = s.nextLine();
                                     switch(choice){
                                         case "1":
+                                            Battle.pulled = true;
                                             Battle.battleActive = false;
                                             vee.hasTurn = false;
                                             codio.hasTurn = false;
@@ -1837,6 +1853,100 @@ public class Main{
             }
         }
 
+        if(Battle.pulled){
+            //Ending dialogue
+            Clear.clear();
+            System.out.println("You feel incredibly weak.");
+            Pass.p(s.nextLine());
+            System.out.println("You can hardly move, all you can do is stay lying down.");
+            Pass.p(s.nextLine());
+            System.out.println("And yet, you have no desire to move.");
+            Pass.p(s.nextLine());
+            System.out.println("Something feels good... really good.");
+            Pass.p(s.nextLine());
+            System.out.println("Someone is gently caressing your head, stroking your hair.");
+            Pass.p(s.nextLine());
+            System.out.println("As you regain your senses, you begin to feel the warmth of someone's lap.");
+            Pass.p(s.nextLine());
+            System.out.println("You look up, and instantly feel a surge of emotions.");
+            Pass.p(s.nextLine());
+
+            Clear.clear();
+            System.out.println("Mom?");
+            Pass.p(s.nextLine());
+
+            Clear.clear();
+            System.out.println("Shh. It's ok, Vee.");
+            Pass.p(s.nextLine());
+
+            Clear.clear();
+            System.out.println("Mom... I... what happened?");
+            Pass.p(s.nextLine());
+            System.out.println("When you went missing in the arctic, I was so scared.");
+            Pass.p(s.nextLine());
+            System.out.println("I met these friends, and we started looking for you and...");
+            Pass.p(s.nextLine());
+            System.out.println("My friends, where are they?");
+            Pass.p(s.nextLine());
+
+            Clear.clear();
+            System.out.println("Vee, always thinking about others, aren't you?");
+            Pass.p(s.nextLine());
+
+            Clear.clear();
+            System.out.println("You can see her smile grow.");
+            Pass.p(s.nextLine());
+
+            Clear.clear();
+            System.out.println("It's alright, Vee.");
+            Pass.p(s.nextLine());
+            System.out.println("Your friends are all coming.");
+            Pass.p(s.nextLine());
+
+            Clear.clear();
+            System.out.println("You feel a great sense of relaxation wash over you.");
+            Pass.p(s.nextLine());
+            System.out.println("You have so many other questions, but none of them feel pressing enough to ask.");
+            Pass.p(s.nextLine());
+            System.out.println("The relaxation is so strong, it begins to make you feel tired.");
+            Pass.p(s.nextLine());
+            System.out.println("Your eyelids begin to close.");
+            Pass.p(s.nextLine());
+            System.out.println("You only have one question left for mom.");
+            Pass.p(s.nextLine());
+
+            Clear.clear();
+            System.out.println("Mom... is-");
+            Pass.p(s.nextLine());
+
+            Clear.clear();
+            System.out.println("It's ok.");
+            Pass.p(s.nextLine());
+            System.out.println("It's done.");
+            Pass.p(s.nextLine());
+            System.out.println("Everyone is safe.");
+            Pass.p(s.nextLine());
+            System.out.println("Thank you, Vee.");
+            Pass.p(s.nextLine());
+
+            Clear.clear();
+            System.out.println("You can faintly hear the sound of your friends drawing near.");
+            Pass.p(s.nextLine());
+            System.out.println("You smile, and close your eyes...");
+            Pass.p(s.nextLine());
+
+            Clear.clear();
+            System.out.println("DOCSONA REMODEL");
+            Pass.p(s.nextLine());
+            System.out.print("Developed By: Ryan Bennett");
+            Pass.p(s.nextLine());
+            System.out.print("Inspired By: Persona 3 Reload");
+            Pass.p(s.nextLine());
+            System.out.print("Special Thanks: Doc Summers\n");
+            Pass.p(s.nextLine());
+            System.out.println("FIN\n");
+        }
+
         } else {
             //Bad Ending
             Clear.clear();
@@ -1865,5 +1975,7 @@ public class Main{
             System.out.println("POWER OFF");
             Pass.p(s.nextLine());
         }
+
+        s.close();
     }
 }

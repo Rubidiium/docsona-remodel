@@ -13,7 +13,9 @@ public class Battle{
     public static boolean battleWon;
     public static boolean ailmentPrint;
     public static boolean sealAvailible;
+    public static boolean pulled;
     public static boolean scared;
+    public static boolean is1healed;
     //Counter for when all actors have had a turn
     public static int cycleCounter;
     //Misc. counter when needed
@@ -318,28 +320,35 @@ public class Battle{
                     switch(t.ailment){
                         default:
                             System.out.println("Target inapplicable!");
+                            //Grant back the turn if no one was healed
+                            if(!Battle.is1healed){
+                                a.hasTurn = true; }
                             a.cSP += s.cost;
                             break;
                         case 1:
                             a.hasTurn = false;
+                            Battle.is1healed = true;
                             t.ailment = 0;
                             t.ailmentT = 0;
                             System.out.println(t.name + " was cured of their burns!");
                             break;
                         case 2:
                             a.hasTurn = false;
+                            Battle.is1healed = true;
                             t.ailment = 0;
                             t.ailmentT = 0;
                             System.out.println(t.name + " is no longer frozen!");
                             break;
                         case 3:
                             a.hasTurn = false;
+                            Battle.is1healed = true;
                             t.ailment = 0;
                             t.ailmentT = 0;
                             System.out.println(t.name + " is no longer dizzy!");
                             break;
                         case 4:
                             a.hasTurn = false;
+                            Battle.is1healed = true;
                             t.ailment = 0;
                             t.ailmentT = 0;
                             System.out.println(t.name + " is no longer shocked!");
@@ -348,22 +357,29 @@ public class Battle{
                     switch(t.ailment){
                         default:
                             System.out.println("Target inapplicable!");
+                            Battle.is1healed = true;
+                            //Grant back the turn if no one was healed
+                            if(!Battle.is1healed){
+                                a.hasTurn = true; }
                             a.cSP += s.cost;
                             break;
                         case 5:
                             a.hasTurn = false;
+                            Battle.is1healed = true;
                             t.ailment = 0;
                             t.ailmentT = 0;
                             System.out.println(t.name + " is no longer afraid!");
                             break;
                         case 6:
                             a.hasTurn = false;
+                            Battle.is1healed = true;
                             t.ailment = 0;
                             t.ailmentT = 0;
                             System.out.println(t.name + " was cured of their poison!");
                             break;
                         case 7:
                             a.hasTurn = false;
+                            Battle.is1healed = true;
                             t.ailment = 0;
                             t.ailmentT = 0;
                             System.out.println(t.name + " is no longer despairing!");
@@ -387,6 +403,7 @@ public class Battle{
         Battle.wasCritical = false;
         Battle.missed = false;
         Battle.scared = false;
+        Battle.is1healed = false;
         //90% chance to lose turn if fearful
         if(a.ailment == 5){
             if(Math.random() >= 0.10){
@@ -624,11 +641,14 @@ public class Battle{
                             switch(t.ailment){
                                 default:
                                     System.out.println("Target inapplicable!\n");
-                                    a.hasTurn = true;
+                                    //Grant back the turn if no one was healed
+                                    if(!Battle.is1healed){
+                                        a.hasTurn = true; }
                                     a.cSP += s.cost;
                                     break;
                                 case 1:
                                     a.hasTurn = false;
+                                    Battle.is1healed = true; //FINISH
                                     t.ailment = 0;
                                     t.ailmentT = 0;
                                     System.out.println(t.name + " was cured of their burns!\n");
@@ -655,7 +675,6 @@ public class Battle{
                             switch(t.ailment){
                                 default:
                                     System.out.println("Target inapplicable!\n");
-                                    a.hasTurn = true;
                                     a.cSP += s.cost;
                                     break;
                                 case 5:
@@ -809,6 +828,9 @@ public class Battle{
         Battle.is1more = false;
         Battle.battleActive = true;
         Battle.battleWon = false;
+        Battle.pulled = false;
+        Battle.scared = false;
+        Battle.is1healed = false;
         System.out.println("Battle.java compiled!\n");
     }
 }
