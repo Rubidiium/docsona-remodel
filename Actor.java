@@ -28,8 +28,8 @@ public class Actor{
     //Constructor to create each actor
     public Actor(String n, int maxHP, int maxSP, Docsona equippedDocsona){
         name = n;
-        cHP = maxHP;
-        cSP = maxSP;
+        cHP = 3;
+        cSP = 20;
         mHP = maxHP;
         mSP = maxSP;
         edocsona = equippedDocsona;
@@ -130,10 +130,83 @@ public class Actor{
     }
 
     public void statusUI(Actor[] actors){
+        //Reformat each variable to three digits
+        String actor1cHP = Integer.toString(actors[0].cHP);
+        String actor2cHP = Integer.toString(actors[1].cHP);
+        String actor3cHP = Integer.toString(actors[2].cHP);
+        String actor4cHP = Integer.toString(actors[3].cHP);
+
+        for(Actor a : actors){
+            if(a.player){
+                if(a.cHP < 100 && a.cHP >= 10){
+                    switch(a.name){
+                        case "Vee":
+                            actor1cHP = "0" + Integer.toString(a.cHP);
+                            break;
+                        case "Hinni":
+                            actor2cHP = "0" + Integer.toString(a.cHP);
+                            break;
+                        case "Ed":
+                            actor3cHP = "0" + Integer.toString(a.cHP);
+                            break;
+                        case "Antonio":
+                            actor4cHP = "0" + Integer.toString(a.cHP);
+                            break; } }
+                if(a.cHP < 10){
+                    switch(a.name){
+                        case "Vee":
+                            actor1cHP = "00" + Integer.toString(a.cHP);
+                            break;
+                        case "Hinni":
+                            actor2cHP = "00" + Integer.toString(a.cHP);
+                            break;
+                        case "Ed":
+                            actor3cHP = "00" + Integer.toString(a.cHP);
+                            break;
+                        case "Antonio":
+                            actor4cHP = "00" + Integer.toString(a.cHP);
+                            break; } } } }
+        
+        String actor1cSP = Integer.toString(actors[0].cSP);
+        String actor2cSP = Integer.toString(actors[1].cSP);
+        String actor3cSP = Integer.toString(actors[2].cSP);
+        String actor4cSP = Integer.toString(actors[3].cSP);
+
+        for(Actor a : actors){
+            if(a.player){
+                if(a.cSP < 100 && a.cSP >= 10){
+                    switch(a.name){
+                        case "Vee":
+                            actor1cSP = "0" + Integer.toString(a.cSP);
+                            break;
+                        case "Hinni":
+                            actor2cSP = "0" + Integer.toString(a.cSP);
+                            break;
+                        case "Ed":
+                            actor3cSP = "0" + Integer.toString(a.cSP);
+                            break;
+                        case "Antonio":
+                            actor4cSP = "0" + Integer.toString(a.cSP);
+                            break; } }
+                if(a.cSP < 10){
+                    switch(a.name){
+                        case "Vee":
+                            actor1cSP = "00" + Integer.toString(a.cSP);
+                            break;
+                        case "Hinni":
+                            actor2cSP = "00" + Integer.toString(a.cSP);
+                            break;
+                        case "Ed":
+                            actor3cSP = "00" + Integer.toString(a.cSP);
+                            break;
+                        case "Antonio":
+                            actor4cSP = "00" + Integer.toString(a.cSP);
+                            break; } } } }
+        
         //Print out player status
         System.out.println("\n\n    " + actors[0].name + "        " + actors[1].name + "       " + actors[2].name + "          " + actors[3].name);
-        System.out.println("HP: " + actors[0].cHP + "/" + actors[0].mHP + "    "  + actors[1].cHP + "/" + actors[1].mHP + "     "  + actors[2].cHP + "/" + actors[2].mHP + "     "  + actors[3].cHP + "/" + actors[3].mHP);
-        System.out.println("SP: " + actors[0].cSP + "/" + actors[0].mSP + "    "  + actors[1].cSP + "/" + actors[1].mSP + "     "  + actors[2].cSP + "/" + actors[2].mSP + "     "  + actors[3].cSP + "/" + actors[3].mSP);
+        System.out.println("HP: " + actor1cHP + "/" + actors[0].mHP + "    "  + actor2cHP + "/" + actors[1].mHP + "     "  + actor3cHP + "/" + actors[2].mHP + "     "  + actor4cHP + "/" + actors[3].mHP);
+        System.out.println("SP: " + actor1cSP + "/" + actors[0].mSP + "    "  + actor2cSP + "/" + actors[1].mSP + "     "  + actor3cSP + "/" + actors[2].mSP + "     "  + actor4cSP + "/" + actors[3].mSP);
         //Print out status buffs
         System.out.print("ATK: ");
         for(Actor a : actors){    
@@ -326,6 +399,7 @@ public class Actor{
     public boolean unconscious(){
         if(this.cHP == 0){
             this.uc = true;
+            this.cHP = 0;
             System.out.println(name + " was knocked unconscious! They need to be revived before they can move again!");
             return true;
         } else {
