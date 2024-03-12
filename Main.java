@@ -19,6 +19,7 @@ public class Main{
          * !MAYBE MAKE TURN CALCULATOR LESS AWKWARD
 
         BUG FIXES
+         * FIX CODIO AVATAR DEATH (PHRASING AND FUNCTION)
          * GOOD LUCK!
 
         */
