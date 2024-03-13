@@ -96,7 +96,7 @@ Unit 0
 3. Reorder (20 Physical Damage)
 4. Overview (Fear One Ally)
 
-Unit 1 ***
+Unit 1
 
 - t.attack (8 Physical Damage)
 
@@ -106,7 +106,7 @@ Unit 1 ***
 4. t.speed(2) (Raise Foe ACC)
 5. t.screech() (Fear All Allies)
 
-Unit 2
+Unit 2 ***
 
 - Attack (8 Physical Damage)
 
