@@ -28,7 +28,6 @@ public class AI{
                 AI.weightCalculator(a, actors);
                 //Choose a skill based on weighting
                 a.hasTurn = false;
-                Battle.useASkill(a, actors, a.edocsona.skills[0], "0"); /*
                 switch(weightCase){
                     //Purely random - No case defined
                     default:
@@ -86,7 +85,7 @@ public class AI{
                         //Prioritize targets with no ailments
                         
                         break; 
-                } */
+                }
                 break;
             //Unit 1 Logic
             case 1:

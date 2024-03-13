@@ -56,7 +56,7 @@ public class Battle{
             a.hasTurn = true;
             System.out.println("Insufficient HP!");
             Battle.moveCancel = true;
-        } else if(!(a.cSP > s.cost)){
+        } else if(!(a.cSP >= s.cost)){
             a.hasTurn = true;
             System.out.println("Insufficient HP!");
             Battle.moveCancel = true; }
@@ -269,10 +269,20 @@ public class Battle{
                     System.out.println(t.name + "'s HP is " + t.cHP); 
                 } else {
                     a.cSP += s.cost;
+                    if(a.cSP >= a.mSP){
+                        a.cSP = a.mSP; } 
                     if(t.unconscious()){
-                        System.out.println("Target cannot be healed! They must be revived!"); }
+                        System.out.println("Target cannot be healed! They must be revived!");
+                        a.hasTurn = true;
+                        a.cSP += s.cost;
+                        if(a.cSP >= a.mSP){
+                            a.cSP = a.mSP; } }
                     if(t.cHP == t.mHP){
-                        System.out.println("Target does not need healing!"); }
+                        System.out.println("Target does not need healing!");
+                        a.hasTurn = true;
+                        a.cSP += s.cost;
+                        if(a.cSP >= a.mSP){
+                            a.cSP = a.mSP; } }
                 } }
             //Handle buff skils
             if(s.type >= 10 && s.type <= 15){
@@ -326,7 +336,7 @@ public class Battle{
                             System.out.println(t.name + " is charged up");
                             break; } } }
             //Handle ailment heal skills
-            if(s.type >= 19 && s.type <= 20){
+            if(s.type >= 19 && s.type <= 21){
                 //Heal magic ailments
                 if(s.type == 19){
                     switch(t.ailment){
@@ -334,8 +344,10 @@ public class Battle{
                             System.out.println("Target inapplicable!");
                             //Grant back the turn if no one was healed
                             if(!Battle.is1healed){
-                                a.hasTurn = true; }
-                            a.cSP += s.cost;
+                                a.hasTurn = true;
+                                a.cSP += s.cost;
+                                if(a.cSP >= a.mSP){
+                                    a.cSP = a.mSP; } }
                             break;
                         case 1:
                             a.hasTurn = false;
@@ -372,8 +384,10 @@ public class Battle{
                             Battle.is1healed = true;
                             //Grant back the turn if no one was healed
                             if(!Battle.is1healed){
-                                a.hasTurn = true; }
-                            a.cSP += s.cost;
+                                a.hasTurn = true;
+                                a.cSP += s.cost;
+                                if(a.cSP >= a.mSP){
+                                    a.cSP = a.mSP; } }
                             break;
                         case 5:
                             a.hasTurn = false;
@@ -398,6 +412,35 @@ public class Battle{
                             break;
                     }
                 }
+                //Revive skills
+                if(s.type == 21){
+                    //Return action if chosen target is not, in fact, dead
+                    if(!t.uc){
+                        a.hasTurn = true;
+                        System.out.println("Target inapplicable!");
+                        a.cSP += s.cost;
+                        if(a.cSP >= a.mSP){
+                            a.cSP = a.mSP; } } else if(t.unconscious()){
+                            switch(s.basePower){
+                                case 50:
+                                    t.uc = false;
+                                    System.out.println(t.name + " was revived!");
+                                    t.cHP += (int)(t.mHP / 2);
+                                    if(t.cHP >= t.mHP || t.cHP == t.mHP){
+                                        t.cHP = t.mHP;
+                                        System.out.println(t.name + "'s HP is maxed out!"); }
+                                    System.out.println(t.name + "'s HP is " + t.cHP);
+                                    break;
+                                case 100:
+                                    t.uc = true;
+                                    System.out.println(t.name + " was revived!");
+                                    t.cHP += t.mHP;    
+                                    System.out.println(t.name + "'s HP is maxed out!");
+                                    System.out.println(t.name + "'s HP is " + t.cHP);
+                                    break;
+                            }
+                        }
+                }
             }
         }
 
@@ -421,7 +464,7 @@ public class Battle{
             a.hasTurn = true;
             System.out.println("Insufficient HP!");
             Battle.moveCancel = true;
-        } else if(!(a.cSP > s.cost)){
+        } else if(!(a.cSP >= s.cost)){
             a.hasTurn = true;
             System.out.println("Insufficient SP!");
             Battle.moveCancel = true; }
@@ -617,6 +660,7 @@ public class Battle{
         }
         //Handle friendly attacks
         if(s.friendly){
+            Battle.is1healed = false;
             //Cycle through each friendly actor
             for(Actor t : targets){
                 if(t.player){
@@ -624,6 +668,7 @@ public class Battle{
                         if(!t.unconscious()){
                             a.hasTurn = false;
                             damage = s.castHealing(a, t);
+                            Battle.is1healed = true;
                             if(a.name.equals(t.name)){
                                 System.out.println(damage + " healing to themself");
                             } else {
@@ -631,11 +676,22 @@ public class Battle{
                             t.cHP += damage;
                             if(t.cHP >= t.mHP || t.cHP == t.mHP){
                                 t.cHP = t.mHP;
-                                System.out.println(t.name + "'s HP is maxed out!");
-                            }
-                            System.out.println(t.name + "'s HP is " + t.cHP); } else {
+                                System.out.println(t.name + "'s HP is maxed out!"); }
+                            System.out.println(t.name + "'s HP is " + t.cHP); 
+                        } else if(t.unconscious()){
                                 System.out.println(t.name + " is unconscious and must be revived first");
-                            } 
+                                if(!Battle.is1healed){
+                                    a.hasTurn = true;
+                                    a.cSP += s.cost;
+                                    if(a.cSP >= a.mSP){
+                                        a.cSP = a.mSP; } } 
+                        } else if(t.cHP >= t.mHP){
+                            System.out.println(t.name + " does not need healing");
+                            if(!Battle.is1healed){
+                                a.hasTurn = true;
+                                a.cSP += s.cost;
+                                if(a.cSP >= a.mSP){
+                                    a.cSP = a.mSP; } } }
                         System.out.println("\n"); }
                     //Handle buff skils
                     if(s.type >= 10 && s.type <= 13){
@@ -679,8 +735,10 @@ public class Battle{
                                     System.out.println("Target inapplicable!\n");
                                     //Grant back the turn if no one was healed
                                     if(!Battle.is1healed){
-                                        a.hasTurn = true; }
-                                    a.cSP += s.cost;
+                                        a.hasTurn = true;
+                                        a.cSP += s.cost;
+                                        if(a.cSP >= a.mSP){
+                                            a.cSP = a.mSP; } }
                                     break;
                                 case 1:
                                     a.hasTurn = false;
@@ -714,7 +772,12 @@ public class Battle{
                             switch(t.ailment){
                                 default:
                                     System.out.println("Target inapplicable!\n");
-                                    a.cSP += s.cost;
+                                    //Grant back the turn if no one was healed
+                                    if(!Battle.is1healed){
+                                        a.hasTurn = true;
+                                        a.cSP += s.cost;
+                                        if(a.cSP >= a.mSP){
+                                            a.cSP = a.mSP; } }
                                     break;
                                 case 5:
                                     a.hasTurn = false;
@@ -744,6 +807,8 @@ public class Battle{
             } 
         } 
     }
+    if(a.cSP <= 0){
+        a.cSP = 0; }
     }
                         
     public static void useItem(Actor a, Actor t, Actor[] targets, Item i, String choice){
@@ -752,6 +817,30 @@ public class Battle{
         a.hasTurn = false;
         i.quantity--;
         Battle.moveCancel = false;
+        Battle.is1healed = false;
+        //Cancel for revive items if the target is alive
+        if(!t.unconscious() && i.type == 21){
+            a.hasTurn = true;
+            System.out.println("Target inapplicable!");
+            Battle.moveCancel = true;
+            i.quantity++; }
+        //Cancel items for dead targets
+        if(t.unconscious() && i.type != 21){
+            a.hasTurn = true;
+            System.out.println("Target unconscious!");
+            Battle.moveCancel = true;
+            i.quantity++; }
+        //Cancel for useless ailment items
+        if(i.type == 19 && !(t.ailment >= 1 || t.ailment <= 4)){
+            a.hasTurn = true;
+            System.out.println("Target inapplicable!");
+            Battle.moveCancel = true;
+            i.quantity++; }
+        if(i.type == 20 && !(t.ailment >= 5 || t.ailment <= 7)){
+            a.hasTurn = true;
+            System.out.println("Target inapplicable!");
+            Battle.moveCancel = true;
+            i.quantity++; }
         //90% chance to lose turn if fearful
         if(a.ailment == 5){
             if(Math.random() >= 0.10){

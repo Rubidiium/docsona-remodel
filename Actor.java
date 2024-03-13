@@ -397,30 +397,16 @@ public class Actor{
 
     //Check to run if an actor is unconscious or not
     public boolean unconscious(){
+        if(this.cSP <= 0){
+            this.cSP = 0; }
         if(this.cHP <= 0){
             this.uc = true;
             this.cHP = 0;
-            System.out.println(name + " was knocked unconscious! They need to be revived before they can move again!\n");
-            return true;
+            if(!(this.name.equals("Codio Avatar"))){
+            System.out.println(name + " was knocked unconscious! They need to be revived before they can move again!\n"); }
+            return true;  
         } else {
             return false;
-        }
-    }
-
-    public void endTurn(){
-        int damage = (int)(this.mHP * 0.10);
-        //Apply negative effects from ailments
-        switch(this.ailment){
-            case 1:
-                System.out.println(this.name + " took " + damage + " damage from burns");
-                this.cHP -= damage;
-            case 6:
-                System.out.println(this.name + " took " + damage + " damage from poison");
-                this.cHP -= damage;
-            case 7:
-                damage = (int)(this.mSP * 0.05);
-                System.out.println(this.name + " lost " + damage + " SP from despair");
-                this.cHP -= damage;
         }
     }
 

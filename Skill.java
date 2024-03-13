@@ -1,7 +1,7 @@
 public class Skill{
     //Instance variables for each skill
     public String name;
-    //States (Type): 0 = Physical, 1 = Fire, 2 = Ice, 3 = Wind, 4 = Electric, 5 = Light, 6 = Dark, 7 = Healing, 8 = Almighty, 10 = Enemy AllDebuff, 11 = Attack Buff/Debuff, 12 = Defense Buff/Debuff, 13 = Accuracy Buff/Debuff, 14 = Concetrate, 15 = Charge, 16 = Fear, 17 = Poison, 18 = Despair, 19 = Skill Ailment Heal, 20 = Other Ailment Heal
+    //States (Type): 0 = Physical, 1 = Fire, 2 = Ice, 3 = Wind, 4 = Electric, 5 = Light, 6 = Dark, 7 = Healing, 8 = Almighty, 10 = Enemy AllDebuff, 11 = Attack Buff/Debuff, 12 = Defense Buff/Debuff, 13 = Accuracy Buff/Debuff, 14 = Concetrate, 15 = Charge, 16 = Fear, 17 = Poison, 18 = Despair, 19 = Skill Ailment Heal, 20 = Other Ailment Heal, 21 = Revive Heal
     public int type;
     //Determines whether an attack targets enemy or allies
     public boolean friendly;

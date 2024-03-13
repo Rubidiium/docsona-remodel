@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main{
     public static void main(String[] args){
-        //Clear the console blank
+        //Clear the console
         Clear.clear();
         
         //Objects must be stored in the same place dialogue and execution breaks exist for... reasons
@@ -14,12 +14,9 @@ public class Main{
          * -!- FINISH ENEMY AI
 
         TWEAKS
-         * !!!ADD REVIVE SKILS + ITEMS
-         * !!!PREVENT USING SKILLS IF HP/SP IS INSUFFICIENT
-         * !MAYBE MAKE TURN CALCULATOR LESS AWKWARD
+         * ! MAYBE MAKE TURN CALCULATOR LESS AWKWARD
 
         BUG FIXES
-         * FIX CODIO AVATAR DEATH (PHRASING AND FUNCTION)
          * GOOD LUCK!
 
         */
@@ -221,16 +218,23 @@ public class Main{
         Skill purgeSkill = new Skill("Mathematical Purge", 18, false, true, 0, 0, true); //Nyx Exclusive
 
         //HEAL MAGIC AILMENTS (19)
-        Skill beanSkill = new Skill("Green Beans", 19, true, true, 8, 0, true);
+        Skill beanSkill = new Skill("Green Beans", 19, true, true, 16, 0, true);
         beanSkill.newDescription("They look like Chile... and heal burn/freeze/dizzy/shock for all allies");
 
         //HEAL SKILL AILMENTS (20)
-        Skill asylumSkill = new Skill("Asylum", 20, true, true, 8, 0, true);
+        Skill asylumSkill = new Skill("Asylum", 20, true, true, 16, 0, true);
         asylumSkill.newDescription("Offer asylum... and heal fear/poison/despair for all allies");
 
+        //REVIVE HEAL SKILL (21)
+        Skill resusciateSkill = new Skill("Resuscitate", 21, true, false, 10, 50, true);
+        resusciateSkill.newDescription(("Revive one ally with 50% HP"));
+
+        Skill awakenSkill = new Skill("Awaken", 21, true, false, 18, 100, true);
+        awakenSkill.newDescription(("Slap your slips down on the desk... and revive one ally with a full heal"));
+
         //Create item objects
-        Item skipItem = new Item("Skip Day", 7, true, false, 0, 200, true, 10, false);
-        skipItem.newDescription("Take a day off, and heal an ally for 200 HP");
+        Item skipItem = new Item("Skip Day", 21, true, false, 0, 100, true, 5, false);
+        skipItem.newDescription("Take a day off, and bring an ally back with full HP");
 
         Item greenSlip = new Item("Green Slip", 11, true, true, 0, 0, true, 5, false);
         greenSlip.newDescription(("Enrages everyone, raises all allies' ATK"));
@@ -270,19 +274,19 @@ public class Main{
         warner.setSkills(tackleSkill, chargeSkill, resonanceSkill, defensiveSkill, none, none, none, none);
         warner.setAttack(attack);
 
-        Docsona sheldon = new Docsona("Sheldon", 44, 76, 55, 55, 43);
+        Docsona sheldon = new Docsona("Sheldon", 44, 76, 69, 55, 43);
         sheldon.setAffinities(1, 2, 2, 0, 5, 0, 3);
         sheldon.setSkills(bazingaSkill, intimidateSkill, warmupSkill, bangSkill, none, none, none, none);
         sheldon.setAttack(attack);
 
-        Docsona agosti = new Docsona("Agosti", 38, 88, 34, 67, 66);
+        Docsona agosti = new Docsona("Agosti", 38, 88, 64, 67, 66);
         agosti.setAffinities(0, 1, 4, 4, 2, 0, 0);
         agosti.setSkills(infernoSkill, chillerSkill, tornadoSkill, shockerSkill, none, none, none, none);
         agosti.setAttack(attack);
 
-        Docsona cassidy = new Docsona("Cassidy", 46, 66, 60, 58, 68);
+        Docsona cassidy = new Docsona("Cassidy", 46, 66, 70, 58, 68);
         cassidy.setAffinities(0, 0, 0, 0, 0, 1, 2);
-        cassidy.setSkills(tearSkill, beanSkill, asylumSkill, none, none, none, none, none);
+        cassidy.setSkills(tearSkill, beanSkill, asylumSkill, awakenSkill, none, none, none, none);
         cassidy.setAttack(attack);
 
         //HINNI DOCSONA
@@ -292,15 +296,15 @@ public class Main{
         kaplan.setAttack(attack);
 
         //ED DOCSONA
-        Docsona ryzsard = new Docsona("Ryzsard", 45, 78, 67, 44, 78);
+        Docsona ryzsard = new Docsona("Ryzsard", 45, 78, 78, 44, 78);
         ryzsard.setAffinities(0, 2, 0, 0, 0, 4, 1);
         ryzsard.setSkills(brightSkill, buttonSkill, hikingSkill, focusSkill, crusadeSkill, none, none, none);
         ryzsard.setAttack(attack);
 
         //ANTONIO DOCSONA
-        Docsona cole = new Docsona("Cole", 88, 45, 77, 34, 54);
+        Docsona cole = new Docsona("Cole", 88, 45, 84, 34, 54);
         cole.setAffinities(4, 2, 0, 1, 0, 0, 2);
-        cole.setSkills(headrushSkill, tackleSkill, madmenSkill, warmupSkill, weakenSkill, none, none, none);
+        cole.setSkills(headrushSkill, tackleSkill, madmenSkill, warmupSkill, weakenSkill, resusciateSkill, none, none);
         cole.setAttack(attack);
 
         //NYX DOCSONAS
@@ -508,6 +512,8 @@ public class Main{
             //End the battle if Vee or Nyx dies
             if(actors[0].uc || actors[4].uc){
                 Battle.battleActive = false;
+                if(actors[4].uc || actors[4].cHP <= 0){
+                    Battle.battleWon = true; }
                 continue; }
             //Idk what this does
             Battle.is1more = false;
@@ -1116,7 +1122,6 @@ public class Main{
                                    if(items[5].quantity > 0){
                                        //Find who to use the skill on
                                        Battle.targetSelector(a, actors, items[5], choice);
-                                       System.out.println("5. Back");
                                        choice = s.nextLine();
                                        //Logic to use the item
                                        if(items[5].all){
@@ -1303,6 +1308,9 @@ public class Main{
                                 Pass.p(s.nextLine());
                                 System.out.println("Graphics which render sight useless.");
                                 Pass.p(s.nextLine());
+
+                                Clear.clear();
+                                System.out.println("Codio Avatar uses unit shift!");
                                 codioAvatar.changeDocsona(unit1);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
                                 Pass.p(s.nextLine()); 
@@ -1342,6 +1350,8 @@ public class Main{
                                 Clear.clear();
                                 System.out.println("You hear Hinni shout out.");
                                 Pass.p(s.nextLine());
+
+                                Clear.clear();
                                 System.out.println("You're wrong! Coding can't even exist without math!");
                                 Pass.p(s.nextLine());
 
@@ -1350,6 +1360,7 @@ public class Main{
                                 Pass.p(s.nextLine());
 
                                 Clear.clear();
+                                System.out.println("Codio Avatar uses unit shift!");
                                 codioAvatar.changeDocsona(unit2);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have chaned!");
                                 Pass.p(s.nextLine()); }
@@ -1369,6 +1380,7 @@ public class Main{
                                 Pass.p(s.nextLine());
 
                                 Clear.clear();
+                                System.out.println("Codio Avatar uses unit shift!");
                                 codioAvatar.changeDocsona(unit3);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
                                 Pass.p(s.nextLine()); }
@@ -1404,6 +1416,8 @@ public class Main{
                                 Clear.clear();
                                 System.out.println("Ed turns to you.");
                                 Pass.p(s.nextLine());
+
+                                Clear.clear();
                                 System.out.println("Pft, this guy doesn't know what he's yapping about.");
                                 Pass.p(s.nextLine());
                                 System.out.println("He's starting to get tired.");
@@ -1420,6 +1434,7 @@ public class Main{
                                 Pass.p(s.nextLine());
                                 
                                 Clear.clear();
+                                System.out.println("Codio Avatar uses unit shift!");
                                 codioAvatar.changeDocsona(unit4);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
                                 Pass.p(s.nextLine()); }
@@ -1443,6 +1458,7 @@ public class Main{
                                 Pass.p(s.nextLine());
                                 
                                 Clear.clear();
+                                System.out.println("Codio Avatar uses unit shift!");
                                 codioAvatar.changeDocsona(unit5);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
                                 Pass.p(s.nextLine()); }
@@ -1481,6 +1497,8 @@ public class Main{
                                 Clear.clear();
                                 System.out.println("Antonio turns to you and chuckles.");
                                 Pass.p(s.nextLine());
+
+                                Clear.clear();
                                 System.out.println("This guy's really starting to lose it.");
                                 Pass.p(s.nextLine());
                                 System.out.println("He's contradicting himself all over.");
@@ -1489,6 +1507,7 @@ public class Main{
                                 Pass.p(s.nextLine());
                                 
                                 Clear.clear();
+                                System.out.println("Codio Avatar uses unit shift!");
                                 codioAvatar.changeDocsona(unit6);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
                                 Pass.p(s.nextLine()); }
@@ -1526,6 +1545,8 @@ public class Main{
                                 Clear.clear();
                                 System.out.println("All your friends shout out together.");
                                 Pass.p(s.nextLine());
+
+                                Clear.clear();
                                 System.out.println("Who cares what they want! It's our choice!");
                                 Pass.p(s.nextLine());
                                 System.out.println("We love math and we're gonna keep doing it.");
@@ -1546,6 +1567,7 @@ public class Main{
                                 Pass.p(s.nextLine());
                                 
                                 Clear.clear();
+                                System.out.println("Codio Avatar uses unit shift!");
                                 codioAvatar.changeDocsona(unit7);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
                                 Pass.p(s.nextLine()); }
@@ -1586,6 +1608,8 @@ public class Main{
                     case 7:
                         Battle.damage = (int)(a.mSP * 0.05);
                         a.cSP -= Battle.damage;
+                        if(a.cSP <= 0){
+                            a.cSP = 0;}
                         System.out.println(a.name + " lost " + Battle.damage + " SP to despair!");
                         System.out.println(a.name + "'s SP is " + a.cSP);
                         Battle.damage = 0;
