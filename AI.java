@@ -21,7 +21,7 @@ public class AI{
         random = Math.random() * 100;
         //Cancel the starting sequence for each phase, use special skill if necessary
         switch(AI.phase){
-            //Unit 0 Logic
+            //Unit 0 Logic (DONE)
             case 0:
                 AI.unit0started = true;
                 //Determine case for weighting
@@ -76,14 +76,30 @@ public class AI{
                             Battle.useSSkill(a, actors[target], a.edocsona.skills[3], "0"); }
                         else if((int)(random) > 85 && (int)(random) <= 93){
                             Battle.useSSkill(a, actors[target], a.edocsona.skills[2], "0"); }
-                        else if((int)(random) > 93){
+                        else if((int)(random) > 93 && (int)(random) <= 98){
                             Battle.useASkill(a, actors, a.edocsona.skills[0], "0"); }
+                        else if((int)(random) > 98){
+                            Battle.useSSkill(a, actors[target], a.edocsona.attack, "0"); }
                         break;
                     //Prioritize ailments
                     case 2:
                         a.hasTurn = false;
                         //Prioritize targets with no ailments
-                        
+                        for(int i = 0; i < actors.length; i++){
+                            if(actors[i].ailment == 0){
+                                //70% chance to select a target
+                                if(random >= 30){
+                                    target = i;} } }
+                        if((int)(random) <= 80){
+                            Battle.useSSkill(a, actors[target], a.edocsona.skills[3], "0"); }
+                        else if((int)(random) > 80 && (int)(random) <= 85){
+                            Battle.useASkill(a, actors, a.edocsona.skills[0], "0"); }
+                        else if((int)(random) > 85 && (int)(random) <= 90){
+                            Battle.useSSkill(a, actors[target], a.edocsona.skills[1], "0"); }
+                        else if((int)(random) > 90 && (int)(random) <= 95){
+                            Battle.useSSkill(a, actors[target], a.edocsona.skills[2], "0"); }
+                        else if((int)(random) > 95){
+                            Battle.useSSkill(a, actors[target], a.edocsona.attack, "0"); }
                         break; 
                 }
                 break;
