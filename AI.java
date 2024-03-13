@@ -135,42 +135,44 @@ public class AI{
     }
 
     //Determines the ideal weighting to use for skills depending on the current status of all actors
-    //Good enough
+    //The same case cannot be used twice in a row
     public static void weightCalculator(Actor a, Actor[] actors){
+        Battle.weightChanged = false;
         switch(phase){
             //Calculate the weighting for phase 0
             case 0:
-                //Prioritize ailments if all players have none
-                if(weightCase != 2){
-                    for(Actor player : actors){
-                        if(player.player){
-                            if(player.ailment == 0){
-                                weightCase = 2;
-                            } else {
-                                weightCase = -1; } } } }
-                //Priotize buffs and debuffs if a player has an active buff
-                if(weightCase != 1){
-                    for(Actor player : actors){
-                        if(player.player){    
-                            if(player.atk != 0 || player.def != 0 || player.acc != 0){
-                                weightCase = 1;
-                                break;
-                            } else {
-                                weightCase = -1; } } } }
                 //Priotiize physical attacks if a player is above 50% HP
-                if(weightCase != 0){
+                if(AI.weightCase != 0){
                     for(Actor player : actors){
                         if(player.player){
                             if(player.cHP >= player.mHP / 2){
-                                weightCase = 0;
-                                break;
-                            } else {
-                                weightCase = -1; } } } }
+                                AI.weightCase = 0;
+                                Battle.weightChanged = true;
+                                break; } } } 
+                //Priotize buffs and debuffs if a player has an active buff
+                } else if(AI.weightCase != 1){
+                    for(Actor player : actors){
+                        if(player.player){    
+                            if(player.atk != 0 || player.def != 0 || player.acc != 0){
+                                AI.weightCase = 1;
+                                Battle.weightChanged = true;
+                                break; } } }
+                //Prioritize ailments if all players have none
+                } else if(AI.weightCase != 2){
+                    for(Actor player : actors){
+                        if(player.player){
+                            if(player.ailment == 0){
+                                AI.weightCase = 2; 
+                                Battle.weightChanged = true;
+                                break; } } } }
+                //Reset if the same case was used twice
+                if(!Battle.weightChanged){
+                    weightCase = -1;
+                    break; }
                 break;
             //Calculate the weighting for phase 1
             case 1:
-
-                break;
+                
             //Calculate the weighting for phase 2
             case 2:
 

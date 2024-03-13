@@ -9,6 +9,7 @@ public class Battle{
     public static boolean wasDrained;
     public static boolean wasRepeled;
     public static boolean docsonaChanged;
+    public static boolean weightChanged;
     public static boolean is1more;
     public static boolean battleActive;
     public static boolean battleWon;
@@ -420,7 +421,7 @@ public class Battle{
                         System.out.println("Target inapplicable!");
                         a.cSP += s.cost;
                         if(a.cSP >= a.mSP){
-                            a.cSP = a.mSP; } } else if(t.unconscious()){
+                            a.cSP = a.mSP; } } else if(t.uc){
                             switch(s.basePower){
                                 case 50:
                                     t.uc = false;
@@ -443,7 +444,6 @@ public class Battle{
                 }
             }
         }
-
         //Print if any ailments were applied
         if(t.ailment != Battle.preAilment){
             t.ailmentCheck(); }

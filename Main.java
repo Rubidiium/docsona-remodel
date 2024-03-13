@@ -18,7 +18,7 @@ public class Main{
          * -!- FINISH ENEMY AI
 
         TWEAKS
-         * ! MAYBE MAKE TURN CALCULATOR LESS AWKWARD
+         * NONE!
 
         BUG FIXES
          * GOOD LUCK!
@@ -31,13 +31,13 @@ public class Main{
         Skill tattack = new Skill("t.attack()", 0, false, false, 0, 8, false);
         
         //PHYSICAL SKILLS (0)
-        Skill tackleSkill = new Skill("Tackle", 0, false, false, 85, 18, true);
+        Skill tackleSkill = new Skill("Tackle", 0, false, false, 65, 18, true);
         tackleSkill.newDescription("Strong physical damage to one foe");
         
         Skill headrushSkill = new Skill("Headrush", 0, false, false, 130, 30, true);
-        headrushSkill.newDescription("Severe physical damage to one foe");
+        headrushSkill.newDescription("Crazy physical damage to one foe");
 
-        Skill crusadeSkill = new Skill("Crusade", 0, false, false, 85, 18, true);
+        Skill crusadeSkill = new Skill("Crusade", 0, false, false, 65, 18, true);
         crusadeSkill.newDescription("Strong physical damage to one foe");
 
         Skill orderSkill = new Skill("Reorder", 0, false, false, 0, 20, true); //Nyx Exclusive
@@ -48,13 +48,13 @@ public class Main{
         
         Skill abstractSkill = new Skill("t.smash()", 0, false, true, 0, 20, true); //Nyx Exclusive
 
-        Skill stringSkill = new Skill("String Algorithm", 0, false, true, 0, 25, true); //Nyx Exclusive
+        Skill stringSkill = new Skill("String Algorithm", 0, false, true, 0, 22, true); //Nyx Exclusive
 
-        Skill objectSkill = new Skill("Object-Oriented Attack", 0, false, true, 0, 25, true); //Nyx Exclusive
+        Skill objectSkill = new Skill("Object-Oriented Attack", 0, false, true, 0, 20, true); //Nyx Exclusive
 
-        Skill swordSkill = new Skill("\"has-a\" sword", 0, false, false, 0, 35, true); //Nyx Exclusive
+        Skill swordSkill = new Skill("\"has-a\" sword", 0, false, false, 0, 28, true); //Nyx Exclusive
 
-        Skill heirarchSkill = new Skill("Class Monarchy", 0, false, true, 0, 35, true); //Nyx Exclusive
+        Skill heirarchSkill = new Skill("Class Monarchy", 0, false, true, 0, 25, true); //Nyx Exclusive
 
         //FIRE SKILLS (1)
         Skill infernoSkill = new Skill("Seville", 1, false, false, 18, 15, true);
@@ -364,6 +364,10 @@ public class Main{
         code.setSkills(codeSkill, none, none, none, none, none, none, none);
 
         //Create Actor objects
+        //Dummy actor
+        Actor dummy = new Actor("Dummy", 1, 1, placeholder);
+        dummy.resetState();
+
         Actor vee = new Actor("Vee", 657, 488, summers);
         vee.resetState();
         vee.player = true;
@@ -493,7 +497,7 @@ public class Main{
             highestAgility = 0;
 
             //Find the fastest actor that hasn't gone yet
-            //It's funky but it works and I have no idea how
+            //It's funky but it works and I have no idea how it works
             for(Actor a : actors){
                 if(a.edocsona.ag >= highestAgility && a.hasTurn == true){
                     highestAgility = a.edocsona.ag;
@@ -505,8 +509,9 @@ public class Main{
             //Reset the cycle if all actors have gone
             if(Battle.cycleCounter == 5){
                 for(int i = 0; i < actors.length; i++){
-                    actors[i].hasTurn = true; }
-            }
+                    actors[i].hasTurn = true; 
+                    activeActor = dummy;
+                    highestAgility = 0; } }
 
         //Reset ailment printing
         Battle.ailmentPrint = false;    
@@ -518,7 +523,7 @@ public class Main{
                 Battle.battleActive = false;
                 if(actors[4].uc || actors[4].cHP <= 0){
                     Battle.battleWon = true; }
-                continue; }
+                break; }
             //Idk what this does
             Battle.is1more = false;
             //Reset buffs for dead players
