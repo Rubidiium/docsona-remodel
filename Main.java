@@ -15,11 +15,12 @@ public class Main{
         /* TO-DO (OR DIE)
 
         MANDATORY
-         * -!- FINISH ENEMY AI
+         * -!- FINISH ENEMY AI (2, 3, 4, 5, 6, 7)
 
         TWEAKS
-         * ADD TURN ORDER TO ANALYSIS SCREEN
-         * RETURN TURN FOR HEALING ITEMS IF TARGET HP FULL
+         * ! ADD TURN ORDER TO ANALYSIS SCREEN
+         * !! RETURN TURN FOR HEALING ITEMS IF TARGET HP FULL
+         * (MAYBE) LOCK CHARGE/FOCUS TO USER
 
         BUG FIXES
          * GOOD LUCK!
@@ -500,6 +501,7 @@ public class Main{
             //Find the fastest actor that hasn't gone yet
             //It's funky but it works and I have no idea how it works
             for(Actor a : actors){
+                a.active = false;
                 if(a.edocsona.ag >= highestAgility && a.hasTurn == true){
                     highestAgility = a.edocsona.ag;
                     activeActor = a;
@@ -519,6 +521,7 @@ public class Main{
         
         //Create a loop that finds the original object based on activeActor
         for(Actor a : actors){
+            a.active = false;
             //End the battle if Vee or Nyx dies
             if(actors[0].uc || actors[4].uc){
                 Battle.battleActive = false;
@@ -540,6 +543,7 @@ public class Main{
                     acts.ailment = 0;
                     acts.ailmentT = 0; } }
             if(a.name.equals(activeActor.name)){
+                a.active = true;
             if(a.down){
                 a.beginTurn(actors);
                 Pass.p(s.nextLine()); } else {
@@ -626,6 +630,8 @@ public class Main{
                                                         break; } }
                                             //Target actors in order if friendly skill
                                             if(a.edocsona.skills[0].friendly){
+                                                if(choice.equals("")){
+                                                    choice += "9";}
                                                 if(Integer.parseInt(choice) >= 1 && Integer.parseInt(choice) <= 4){
                                                     Battle.useSSkill(a, actors[(Integer.parseInt(choice) - 1)], a.edocsona.skills[0], choice);
                                                     Pass.p(s.nextLine()); } }
@@ -667,6 +673,8 @@ public class Main{
                                                         break; } }
                                             //Target actors in order if friendly skill
                                             if(a.edocsona.skills[1].friendly){
+                                                if(choice.equals("")){
+                                                    choice += "9";}
                                                 if(Integer.parseInt(choice) >= 1 && Integer.parseInt(choice) <= 4){
                                                     Battle.useSSkill(a, actors[(Integer.parseInt(choice) - 1)], a.edocsona.skills[1], choice);
                                                     Pass.p(s.nextLine());  } }
@@ -708,6 +716,8 @@ public class Main{
                                                         break; } }
                                             //Target actors in order if friendly skill
                                             if(a.edocsona.skills[2].friendly){
+                                                if(choice.equals("")){
+                                                    choice += "9";}
                                                 if(Integer.parseInt(choice) >= 1 && Integer.parseInt(choice) <= 4){
                                                     Battle.useSSkill(a, actors[(Integer.parseInt(choice) - 1)], a.edocsona.skills[2], choice);
                                                     Pass.p(s.nextLine()); } }
@@ -749,6 +759,8 @@ public class Main{
                                                         break; } }
                                             //Target actors in order if friendly skill
                                             if(a.edocsona.skills[3].friendly){
+                                                if(choice.equals("")){
+                                                    choice += "9";}
                                                 if(Integer.parseInt(choice) >= 1 && Integer.parseInt(choice) <= 4){
                                                     Battle.useSSkill(a, actors[(Integer.parseInt(choice) - 1)], a.edocsona.skills[3], choice);
                                                     Pass.p(s.nextLine()); } }
@@ -790,6 +802,8 @@ public class Main{
                                                         break; } }
                                             //Target actors in order if friendly skill
                                             if(a.edocsona.skills[4].friendly){
+                                                if(choice.equals("")){
+                                                    choice += "9";}
                                                 if(Integer.parseInt(choice) >= 1 && Integer.parseInt(choice) <= 4){
                                                     Battle.useSSkill(a, actors[(Integer.parseInt(choice) - 1)], a.edocsona.skills[4], choice);
                                                     Pass.p(s.nextLine()); } }
@@ -831,6 +845,8 @@ public class Main{
                                                         break; } }
                                             //Target actors in order if friendly skill
                                             if(a.edocsona.skills[5].friendly){
+                                                if(choice.equals("")){
+                                                    choice += "9";}
                                                 if(Integer.parseInt(choice) >= 1 && Integer.parseInt(choice) <= 4){
                                                     Battle.useSSkill(a, actors[(Integer.parseInt(choice) - 1)], a.edocsona.skills[5], choice);
                                                     Pass.p(s.nextLine()); } }
@@ -872,6 +888,8 @@ public class Main{
                                                         break; } }
                                             //Target actors in order if friendly skill
                                             if(a.edocsona.skills[6].friendly){
+                                                if(choice.equals("")){
+                                                    choice += "9";}
                                                 if(Integer.parseInt(choice) >= 1 && Integer.parseInt(choice) <= 4){
                                                     Battle.useSSkill(a, actors[(Integer.parseInt(choice) - 1)], a.edocsona.skills[6], choice);
                                                     Pass.p(s.nextLine()); } }
@@ -913,6 +931,8 @@ public class Main{
                                                         break; } }
                                             //Target actors in order if friendly skill
                                             if(a.edocsona.skills[7].friendly){
+                                                if(choice.equals("")){
+                                                    choice += "9";}
                                                 if(Integer.parseInt(choice) >= 1 && Integer.parseInt(choice) <= 4){
                                                     Battle.useSSkill(a, actors[(Integer.parseInt(choice) - 1)], a.edocsona.skills[7], choice);
                                                     Pass.p(s.nextLine()); } }
@@ -1258,6 +1278,8 @@ public class Main{
                                     Battle.arrCounter++; }
                                 choice = s.nextLine();
                                 Clear.clear();
+                                if(choice.equals("")){
+                                    choice += "9";}
                                 switch(choice){
                                     case "1":
                                         Clear.clear();

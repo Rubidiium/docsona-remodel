@@ -20,6 +20,7 @@ public class Actor{
     public int ailmentT;
     public boolean player;
     public boolean hasTurn;
+    public boolean active;
     public boolean guard;
     public boolean uc;
     public boolean down;
@@ -46,6 +47,7 @@ public class Actor{
         ailment = 0;
         ailmentT = 0;
         hasTurn = true;
+        active = false;
         uc = false;
         guard = false;
         down = false;
@@ -53,8 +55,11 @@ public class Actor{
 
     //Return the actor as a string in a format compatibile with the battle interface
     public String HPString(){
+        if(this.active){
+            return(name + " * | HP: " + cHP + " / " + mHP);
+        } else {
         return(name + " | HP: " + cHP + " / " + mHP);
-    }
+    } }
 
     public String SPString(){
         return(" | SP: " + cSP + " / " + mSP);
