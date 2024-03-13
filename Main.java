@@ -7,22 +7,23 @@ public class Main{
         
         /*
          * 🙏🙏🙏
-         */
+        */
 
         //Objects must be stored in the same place dialogue and execution breaks exist for... reasons
         //Create skill objects
 
         /* TO-DO (OR DIE)
 
-        MANDATORY
+         MANDATORY
          * -!- FINISH ENEMY AI (2, 3, 4, 5, 6, 7)
 
-        TWEAKS
+         TWEAKS
+         * !! MAKE GUARD NEGATE WEAKNESS (probably done)
+         * !! MAKE FOCUS/CONCENTRATE APPLY TO USER ONLY
          * ! ADD TURN ORDER TO ANALYSIS SCREEN
-         * !! RETURN TURN FOR HEALING ITEMS IF TARGET HP FULL
-         * (MAYBE) LOCK CHARGE/FOCUS TO USER
+         
 
-        BUG FIXES
+         BUG FIXES
          * GOOD LUCK!
 
         */
@@ -544,6 +545,7 @@ public class Main{
                     acts.ailmentT = 0; } }
             if(a.name.equals(activeActor.name)){
                 a.active = true;
+                a.guard = false;
             if(a.down){
                 a.beginTurn(actors);
                 Pass.p(s.nextLine()); } else {
@@ -595,7 +597,7 @@ public class Main{
                                     a.hasTurn = false;
                                     a.guard = true;
                                     Clear.clear();
-                                    System.out.println(a.name + " is on guard");
+                                    System.out.println(a.name + " is on guard!");
                                     Pass.p(s.nextLine());
                                     break;
                                 default:
@@ -605,7 +607,7 @@ public class Main{
                         //Use a Docsona skill
                         case "3":
                             Clear.clear();
-                            System.out.println("DOCSONA\n");
+                            System.out.println("DOCSONA (" + a.edocsona.name + ")\n");
                             //Print out the list of skills
                             Battle.skillSelector(a);
                             //Use the skill corresponding to input, break if none exists
@@ -1267,6 +1269,7 @@ public class Main{
                             break;
                         //Change Docsonas if Vee
                         case "6":
+                        if(!Battle.docsonaChanged || !Battle.is1more){
                             if(a.name.equals("Vee")){
                                 Clear.clear();
                                 System.out.println("DOCSONA CHANGE\n");
@@ -1283,34 +1286,45 @@ public class Main{
                                 switch(choice){
                                     case "1":
                                         Clear.clear();
+                                        if(!(docsonas[Integer.parseInt(choice) - 1].name.equals(Battle.firstDocsona)) && !Battle.is1more){
+                                            Battle.docsonaChanged = true; }
                                         a.changeDocsona(docsonas[Integer.parseInt(choice) - 1]);
                                         System.out.println(a.name + " changed their Docsona to " + a.edocsona.name);
                                         Pass.p(s.nextLine());
                                         break;
                                     case "2":
                                         Clear.clear();
+                                        if(!(docsonas[Integer.parseInt(choice) - 1].name.equals(Battle.firstDocsona)) && !Battle.is1more){
+                                            Battle.docsonaChanged = true; }
                                         a.changeDocsona(docsonas[Integer.parseInt(choice) - 1]);
                                         System.out.println(a.name + " changed their Docsona to " + a.edocsona.name);
                                         Pass.p(s.nextLine());
                                         break;
                                     case "3":
                                         Clear.clear();
+                                        if(!(docsonas[Integer.parseInt(choice) - 1].name.equals(Battle.firstDocsona)) && !Battle.is1more){
+                                            Battle.docsonaChanged = true; }
                                         a.changeDocsona(docsonas[Integer.parseInt(choice) - 1]);
                                         System.out.println(a.name + " changed their Docsona to " + a.edocsona.name);
                                         Pass.p(s.nextLine());
                                         break;
                                     case "4":
                                         Clear.clear();
+                                        if(!(docsonas[Integer.parseInt(choice) - 1].name.equals(Battle.firstDocsona)) && !Battle.is1more){
+                                            Battle.docsonaChanged = true; }
                                         a.changeDocsona(docsonas[Integer.parseInt(choice) - 1]);
                                         System.out.println(a.name + " changed their Docsona to " + a.edocsona.name);
                                         Pass.p(s.nextLine());
                                         break;
                                     case "5":
                                         Clear.clear();
+                                        if(!(docsonas[Integer.parseInt(choice) - 1].name.equals(Battle.firstDocsona)) && !Battle.is1more){
+                                            Battle.docsonaChanged = true; }
                                         a.changeDocsona(docsonas[Integer.parseInt(choice) - 1]);
                                         System.out.println(a.name + " changed their Docsona to " + a.edocsona.name);
                                         Pass.p(s.nextLine());
                                         break;
+                                    }
                                 }
                             }
                         }

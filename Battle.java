@@ -18,6 +18,7 @@ public class Battle{
     public static boolean pulled;
     public static boolean moveCancel;
     public static boolean is1healed;
+    public static String firstDocsona;
     //Counter for when all actors have had a turn
     public static int cycleCounter;
     //Misc. counter when needed
@@ -131,6 +132,7 @@ public class Battle{
                     if(!Battle.missed){
                     if(!Battle.is1more){
                         a.hasTurn = true; }
+                        if(!t.guard){
                         System.out.println("WEAK");
                         t.cHP -= damage;
                         if(t.cHP < 0){
@@ -141,6 +143,13 @@ public class Battle{
                         System.out.println(damage + " damage to " + t.name);
                     if(!Battle.is1more){
                         System.out.println("1 MORE"); }
+                        System.out.println(t.name + "'s HP is " + t.cHP); } 
+                    //Normal attack if guarding
+                    } else {
+                        System.out.println(damage + " damage to " + t.name);
+                        t.cHP -= damage;
+                        if(t.cHP < 0){
+                            t.cHP = 0;}
                         System.out.println(t.name + "'s HP is " + t.cHP); }
                     t.unconscious();
                     break;
@@ -191,33 +200,107 @@ public class Battle{
                 //All debuff
                 if(s.type == 10){
                     a.hasTurn = false;
-                    t.atk = 2;
-                    t.atkT += 3;
-                    t.def = 2;
-                    t.defT += 3;
-                    t.acc = 2;
-                    t.accT += 3;
-                    System.out.println(t.name + "'s ATK/DEF/ACC fell");
+                    switch(t.atk){
+                        case 0:
+                            t.atk = 2;
+                            t.atkT += 3;
+                            System.out.println(t.name + "'s ATK fell!");
+                            break;
+                        case 2:
+                            t.atkT += 3;
+                            System.out.println(t.name + "'s ATK decrease extended!");
+                            break;
+                        case 1:
+                            t.atk = 0;
+                            t.atkT = 0;
+                            System.out.println(t.name + "'s ATK fell!");
+                            break; }
+                    switch(t.def){
+                        case 0:
+                            t.def = 2;
+                            t.defT += 3;
+                            System.out.println(t.name + "'s DEF fell!");
+                            break;
+                        case 2:
+                            t.defT += 3;
+                            System.out.println(t.name + "'s DEF decreased extended!");
+                            break;
+                        case 1:
+                            t.def = 0;
+                            t.defT = 0;
+                            System.out.println(t.name + "'s DEF fell!");
+                            break; }
+                    switch(t.acc){
+                        case 0:
+                            t.acc = 2;
+                            t.accT += 3;
+                            System.out.println(t.name + "'s ACC fell!");
+                            break;
+                        case 2:
+                            t.accT += 3;
+                            System.out.println(t.name + "'s ACC decrease extended!");
+                            break;
+                        case 1:
+                            t.acc = 0;
+                            t.accT = 0;
+                            System.out.println(t.name + "'s ACC fell!");
+                            break; }
                 //Singular debuffs
                 } else {
                     switch(s.type){
                         case 11:
                             a.hasTurn = false;
-                            t.atk = 2;
-                            t.atkT += 3;
-                            System.out.println(t.name + "'s ATK fell");
+                            switch(t.atk){
+                                case 0:
+                                    t.atk = 2;
+                                    t.atkT += 3;
+                                    System.out.println(t.name + "'s ATK fell!");
+                                    break;
+                                case 2:
+                                    t.atkT += 3;
+                                    System.out.println(t.name + "'s ATK decrease extended!");
+                                    break;
+                                case 1:
+                                    t.atk = 0;
+                                    t.atkT = 0;
+                                    System.out.println(t.name + "'s ATK fell!");
+                                    break; }
                             break;
                         case 12:
                             a.hasTurn = false;
-                            t.def = 2;
-                            t.defT += 3;
-                            System.out.println(t.name + "'s DEF fell");
+                            switch(t.def){
+                                case 0:
+                                    t.def = 2;
+                                    t.defT += 3;
+                                    System.out.println(t.name + "'s DEF fell!");
+                                    break;
+                                case 2:
+                                    t.defT += 3;
+                                    System.out.println(t.name + "'s DEF decreased extended!");
+                                    break;
+                                case 1:
+                                    t.def = 0;
+                                    t.defT = 0;
+                                    System.out.println(t.name + "'s DEF fell!");
+                                    break; }
                             break;
                         case 13:
                             a.hasTurn = false;
-                            t.acc = 2;
-                            t.accT += 3;
-                            System.out.println(t.name + "'s ACC fell");
+                            switch(t.acc){
+                                case 0:
+                                    t.acc = 2;
+                                    t.accT += 3;
+                                    System.out.println(t.name + "'s ACC fell!");
+                                    break;
+                                case 2:
+                                    t.accT += 3;
+                                    System.out.println(t.name + "'s ACC decrease extended!");
+                                    break;
+                                case 1:
+                                    t.acc = 0;
+                                    t.accT = 0;
+                                    System.out.println(t.name + "'s ACC fell!");
+                                    break; }
                             break; } } }
             //Handle ailment skills
             if(s.type >= 16 && s.type <= 18){
@@ -290,33 +373,107 @@ public class Battle{
                 //All buff
                 if(s.type == 10){
                     a.hasTurn = false;
-                    t.atk = 1;
-                    t.atkT += 3;
-                    t.def = 1;
-                    t.defT += 3;
-                    t.acc = 1;
-                    t.accT += 3;
-                    System.out.println(t.name + "'s ATK/DEF/ACC rose");
+                    switch(t.atk){
+                        case 0:
+                            t.atk = 1;
+                            t.atkT += 3;
+                            System.out.println(t.name + "'s ATK rose!");
+                            break;
+                        case 1:
+                            t.atkT += 3;
+                            System.out.println(t.name + "'s ATK increase extended!");
+                            break;
+                        case 2:
+                            t.atk = 0;
+                            t.atkT = 0;
+                            System.out.println(t.name + "'s ATK rose!");
+                            break; }
+                    switch(t.def){
+                        case 0:
+                            t.def = 1;
+                            t.defT += 3;
+                            System.out.println(t.name + "'s DEF rose!");
+                            break;
+                        case 1:
+                            t.defT += 3;
+                            System.out.println(t.name + "'s DEF increase extended!");
+                            break;
+                        case 2:
+                            t.def = 0;
+                            t.defT = 0;
+                            System.out.println(t.name + "'s DEF rose!");
+                            break; }
+                    switch(t.acc){
+                        case 0:
+                            t.acc = 1;
+                            t.accT += 3;
+                            System.out.println(t.name + "'s ACC rose!");
+                            break;
+                        case 1:
+                            t.accT += 3;
+                            System.out.println(t.name + "'s ACC increase extended!");
+                            break;
+                        case 2:
+                            t.acc = 0;
+                            t.accT = 0;
+                            System.out.println(t.name + "'s ACC rose!");
+                            break; }
                 //Singular buffs
                 } else {
                     switch(s.type){
                         case 11:
                             a.hasTurn = false;
-                            t.atk = 1;
-                            t.atkT += 3;
-                            System.out.println(t.name + "'s ATK rose");
+                            switch(t.atk){
+                                case 0:
+                                    t.atk = 1;
+                                    t.atkT += 3;
+                                    System.out.println(t.name + "'s ATK rose!");
+                                    break;
+                                case 1:
+                                    t.atkT += 3;
+                                    System.out.println(t.name + "'s ATK increase extended!");
+                                    break;
+                                case 2:
+                                    t.atk = 0;
+                                    t.atkT = 0;
+                                    System.out.println(t.name + "'s ATK rose!");
+                                    break; }
                             break;
                         case 12:
                             a.hasTurn = false;
-                            t.def = 1;
-                            t.defT += 3;
-                            System.out.println(t.name + "'s DEF rose");
+                            switch(t.def){
+                                case 0:
+                                    t.def = 1;
+                                    t.defT += 3;
+                                    System.out.println(t.name + "'s DEF rose!");
+                                    break;
+                                case 1:
+                                    t.defT += 3;
+                                    System.out.println(t.name + "'s DEF increase extended!");
+                                    break;
+                                case 2:
+                                    t.def = 0;
+                                    t.defT = 0;
+                                    System.out.println(t.name + "'s DEF rose!");
+                                    break; }
                             break;
                         case 13:
                             a.hasTurn = false;
-                            t.acc = 1;
-                            t.accT += 3;
-                            System.out.println(t.name + "'s ACC rose");
+                            switch(t.acc){
+                                case 0:
+                                    t.acc = 1;
+                                    t.accT += 3;
+                                    System.out.println(t.name + "'s ACC rose!");
+                                    break;
+                                case 1:
+                                    t.accT += 3;
+                                    System.out.println(t.name + "'s ACC increase extended!");
+                                    break;
+                                case 2:
+                                    t.acc = 0;
+                                    t.accT = 0;
+                                    System.out.println(t.name + "'s ACC rose!");
+                                    break; }
                             break;
                         case 14:
                             a.hasTurn = false;
@@ -585,21 +742,71 @@ public class Battle{
                             //All debuff
                             if(s.type == 10){
                                 a.hasTurn = false;
-                                t.atk = 2;
-                                t.atkT += 3;
-                                t.def = 2;
-                                t.defT += 3;
-                                t.acc = 2;
-                                t.accT += 3;
-                                System.out.println(t.name + "'s ATK/DEF/ACC fell");
+                                switch(t.atk){
+                                    case 0:
+                                        t.atk = 2;
+                                        t.atkT += 3;
+                                        System.out.println(t.name + "'s ATK fell!");
+                                        break;
+                                    case 2:
+                                        t.atkT += 3;
+                                        System.out.println(t.name + "'s ATK decrease extended!");
+                                        break;
+                                    case 1:
+                                        t.atk = 0;
+                                        t.atkT = 0;
+                                        System.out.println(t.name + "'s ATK fell!");
+                                        break; }
+                                switch(t.def){
+                                    case 0:
+                                        t.def = 2;
+                                        t.defT += 3;
+                                        System.out.println(t.name + "'s DEF fell!");
+                                        break;
+                                    case 2:
+                                        t.defT += 3;
+                                        System.out.println(t.name + "'s DEF decreased extended!");
+                                        break;
+                                    case 1:
+                                        t.def = 0;
+                                        t.defT = 0;
+                                        System.out.println(t.name + "'s DEF fell!");
+                                        break; }
+                                switch(t.acc){
+                                    case 0:
+                                        t.acc = 2;
+                                        t.accT += 3;
+                                        System.out.println(t.name + "'s ACC fell!");
+                                        break;
+                                    case 2:
+                                        t.accT += 3;
+                                        System.out.println(t.name + "'s ACC decrease extended!");
+                                        break;
+                                    case 1:
+                                        t.acc = 0;
+                                        t.accT = 0;
+                                        System.out.println(t.name + "'s ACC fell!");
+                                        break; }
                             //Singular debuffs
                             } else {
                                 switch(s.type){
                                     case 11:
                                         a.hasTurn = false;
-                                        t.atk = 2;
-                                        t.atkT += 3;
-                                        System.out.println(t.name + "'s ATK fell");
+                                        switch(t.atk){
+                                            case 0:
+                                                t.atk = 2;
+                                                t.atkT += 3;
+                                                System.out.println(t.name + "'s ATK fell!");
+                                                break;
+                                            case 2:
+                                                t.atkT += 3;
+                                                System.out.println(t.name + "'s ATK decrease extended!");
+                                                break;
+                                            case 1:
+                                                t.atk = 0;
+                                                t.atkT = 0;
+                                                System.out.println(t.name + "'s ATK fell!");
+                                                break; }
                                         break;
                                     case 12:
                                         a.hasTurn = false;
@@ -698,33 +905,107 @@ public class Battle{
                         //All buff
                         if(s.type == 10){
                             a.hasTurn = false;
-                            t.atk = 1;
-                            t.atkT += 3;
-                            t.def = 1;
-                            t.defT += 3;
-                            t.acc = 1;
-                            t.accT += 3;
-                            System.out.println(t.name + "'s ATK/DEF/ACC rose");
+                            switch(t.atk){
+                                case 0:
+                                    t.atk = 1;
+                                    t.atkT += 3;
+                                    System.out.println(t.name + "'s ATK rose!");
+                                    break;
+                                case 1:
+                                    t.atkT += 3;
+                                    System.out.println(t.name + "'s ATK increase extended!");
+                                    break;
+                                case 2:
+                                    t.atk = 0;
+                                    t.atkT = 0;
+                                    System.out.println(t.name + "'s ATK rose!");
+                                    break; }
+                            switch(t.def){
+                                case 0:
+                                    t.def = 1;
+                                    t.defT += 3;
+                                    System.out.println(t.name + "'s DEF rose!");
+                                    break;
+                                case 1:
+                                    t.defT += 3;
+                                    System.out.println(t.name + "'s DEF increase extended!");
+                                    break;
+                                case 2:
+                                    t.def = 0;
+                                    t.defT = 0;
+                                    System.out.println(t.name + "'s DEF rose!");
+                                    break; }
+                            switch(t.acc){
+                                case 0:
+                                    t.acc = 1;
+                                    t.accT += 3;
+                                    System.out.println(t.name + "'s ACC rose!");
+                                    break;
+                                case 1:
+                                    t.accT += 3;
+                                    System.out.println(t.name + "'s ACC increase extended!");
+                                    break;
+                                case 2:
+                                    t.acc = 0;
+                                    t.accT = 0;
+                                    System.out.println(t.name + "'s ACC rose!");
+                                    break; }
                         //Singular debuffs
                         } else {
                             switch(s.type){
                                 case 11:
                                     a.hasTurn = false;
-                                    t.atk = 1;
-                                    t.atkT += 3;
-                                    System.out.println(t.name + "'s ATK rose");
+                                    switch(t.atk){
+                                        case 0:
+                                            t.atk = 1;
+                                            t.atkT += 3;
+                                            System.out.println(t.name + "'s ATK rose!");
+                                            break;
+                                        case 1:
+                                            t.atkT += 3;
+                                            System.out.println(t.name + "'s ATK increase extended!");
+                                            break;
+                                        case 2:
+                                            t.atk = 0;
+                                            t.atkT = 0;
+                                            System.out.println(t.name + "'s ATK rose!");
+                                            break; }
                                     break;
                                 case 12:
                                     a.hasTurn = false;
-                                    t.def = 1;
-                                    t.defT += 3;
-                                    System.out.println(t.name + "'s DEF rose");
+                                    switch(t.def){
+                                        case 0:
+                                            t.def = 1;
+                                            t.defT += 3;
+                                            System.out.println(t.name + "'s DEF rose!");
+                                            break;
+                                        case 1:
+                                            t.defT += 3;
+                                            System.out.println(t.name + "'s DEF increase extended!");
+                                            break;
+                                        case 2:
+                                            t.def = 0;
+                                            t.defT = 0;
+                                            System.out.println(t.name + "'s DEF rose!");
+                                            break; }
                                     break;
                                 case 13:
                                     a.hasTurn = false;
-                                    t.acc = 1;
-                                    t.accT += 3;
-                                    System.out.println(t.name + "'s ACC rose");
+                                    switch(t.acc){
+                                        case 0:
+                                            t.acc = 1;
+                                            t.accT += 3;
+                                            System.out.println(t.name + "'s ACC rose!");
+                                            break;
+                                        case 1:
+                                            t.accT += 3;
+                                            System.out.println(t.name + "'s ACC increase extended!");
+                                            break;
+                                        case 2:
+                                            t.acc = 0;
+                                            t.accT = 0;
+                                            System.out.println(t.name + "'s ACC rose!");
+                                            break; }
                                     break; } } } 
                     //Handle ailment heal skills
                     if(s.type >= 19 && s.type <= 20){
@@ -821,24 +1102,29 @@ public class Battle{
         //Cancel for revive items if the target is alive
         if(!t.unconscious() && i.type == 21){
             a.hasTurn = true;
-            System.out.println("Target inapplicable!");
+            System.out.println("Target does not need to be revived!");
             Battle.moveCancel = true;
             i.quantity++; }
         //Cancel items for dead targets
         if(t.unconscious() && i.type != 21){
             a.hasTurn = true;
-            System.out.println("Target unconscious!");
+            System.out.println("Target is unconscious!");
             Battle.moveCancel = true;
             i.quantity++; }
         //Cancel for useless ailment items
         if(i.type == 19 && !(t.ailment >= 1 || t.ailment <= 4)){
             a.hasTurn = true;
-            System.out.println("Target inapplicable!");
+            System.out.println("Target invalid!");
             Battle.moveCancel = true;
             i.quantity++; }
         if(i.type == 20 && !(t.ailment >= 5 || t.ailment <= 7)){
             a.hasTurn = true;
-            System.out.println("Target inapplicable!");
+            System.out.println("Target invalid!");
+            Battle.moveCancel = true;
+            i.quantity++; }
+        if(i.type == 7 && t.cHP >= t.mHP){
+            a.hasTurn = true;
+            System.out.println("Target does not need healing!");
             Battle.moveCancel = true;
             i.quantity++; }
         //90% chance to lose turn if fearful

@@ -78,6 +78,8 @@ public class Actor{
     public void beginTurn(Actor[] actors){
         //Clear the console
         Clear.clear();
+        //Set Docsona tracker
+        Battle.firstDocsona = this.edocsona.name;
         //Handle knockout
         if(this.cHP <= 0 || this.uc){
             this.resetState();
