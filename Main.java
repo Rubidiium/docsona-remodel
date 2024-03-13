@@ -18,7 +18,8 @@ public class Main{
          * -!- FINISH ENEMY AI
 
         TWEAKS
-         * NONE!
+         * ADD TURN ORDER TO ANALYSIS SCREEN
+         * RETURN TURN FOR HEALING ITEMS IF TARGET HP FULL
 
         BUG FIXES
          * GOOD LUCK!
@@ -249,11 +250,11 @@ public class Main{
         Item studyHall = new Item("Study Hall", 13, true, true, 0, 0, true, 5, false);
         studyHall.newDescription(("Rest for a moment, raises all allies' ACC"));
 
-        Item hotPotato = new Item("Hot Potato", 10, true, false, 0, 200, true, 3, false);
-        hotPotato.newDescription("Makes you warm, raises an ally's ATK/DEF/ACC");
+        Item hotPotato = new Item("Flyer Special", 7, true, false, 0, 999, true, 3, false);
+        hotPotato.newDescription("Not great, but good enough to fully heal one ally.");
 
-        Item special = new Item("Flyer Special", 7, true, true, 0, 999, true, 3, true);
-        special.newDescription("Forget the pain, restore all HP/SP to all allies");
+        Item special = new Item("Recollection", 7, true, true, 0, 999, true, 3, true);
+        special.newDescription("Come together, play dodgeball, and restore all HP/SP to all allies");
 
         Item gazpachoItem = new Item("Gazpacho", 19, true, false, 0, 0, true, 10, false);
         gazpachoItem.newDescription(("It's soup... but cold, and heals burn/freeze/dizzy/shock for one ally"));
@@ -307,7 +308,7 @@ public class Main{
 
         //ANTONIO DOCSONA
         Docsona cole = new Docsona("Cole", 88, 45, 84, 34, 54);
-        cole.setAffinities(4, 2, 0, 1, 0, 0, 2);
+        cole.setAffinities(3, 2, 0, 1, 0, 0, 2);
         cole.setSkills(headrushSkill, tackleSkill, madmenSkill, warmupSkill, weakenSkill, resusciateSkill, none, none);
         cole.setAttack(attack);
 
@@ -1319,7 +1320,7 @@ public class Main{
                                 Pass.p(s.nextLine());
 
                                 Clear.clear();
-                                System.out.println("Codio Avatar uses unit shift!");
+                                System.out.println("Codio Avatar used Unit Shift!\n");
                                 codioAvatar.changeDocsona(unit1);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
                                 Pass.p(s.nextLine()); 
@@ -1369,7 +1370,7 @@ public class Main{
                                 Pass.p(s.nextLine());
 
                                 Clear.clear();
-                                System.out.println("Codio Avatar uses unit shift!");
+                                System.out.println("Codio Avatar used Unit Shift!\n");
                                 codioAvatar.changeDocsona(unit2);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have chaned!");
                                 Pass.p(s.nextLine()); }
@@ -1389,7 +1390,7 @@ public class Main{
                                 Pass.p(s.nextLine());
 
                                 Clear.clear();
-                                System.out.println("Codio Avatar uses unit shift!");
+                                System.out.println("Codio Avatar used Unit Shift!\n");
                                 codioAvatar.changeDocsona(unit3);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
                                 Pass.p(s.nextLine()); }
@@ -1443,7 +1444,7 @@ public class Main{
                                 Pass.p(s.nextLine());
                                 
                                 Clear.clear();
-                                System.out.println("Codio Avatar uses unit shift!");
+                                System.out.println("Codio Avatar used Unit Shift!\n");
                                 codioAvatar.changeDocsona(unit4);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
                                 Pass.p(s.nextLine()); }
@@ -1467,7 +1468,7 @@ public class Main{
                                 Pass.p(s.nextLine());
                                 
                                 Clear.clear();
-                                System.out.println("Codio Avatar uses unit shift!");
+                                System.out.println("Codio Avatar used Unit Shift!\n");
                                 codioAvatar.changeDocsona(unit5);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
                                 Pass.p(s.nextLine()); }
@@ -1516,7 +1517,7 @@ public class Main{
                                 Pass.p(s.nextLine());
                                 
                                 Clear.clear();
-                                System.out.println("Codio Avatar uses unit shift!");
+                                System.out.println("Codio Avatar used Unit Shift!\n");
                                 codioAvatar.changeDocsona(unit6);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
                                 Pass.p(s.nextLine()); }
@@ -1576,7 +1577,7 @@ public class Main{
                                 Pass.p(s.nextLine());
                                 
                                 Clear.clear();
-                                System.out.println("Codio Avatar uses unit shift!");
+                                System.out.println("Codio Avatar used Unit Shift!\n");
                                 codioAvatar.changeDocsona(unit7);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
                                 Pass.p(s.nextLine()); }

@@ -72,7 +72,8 @@ public class AI{
                             if(actors[i].atk != 0 || actors[i].def != 0 || actors[i].acc != 0){
                                 //70% chance to select a target
                                 if(random >= 30){
-                                    target = i;} } }
+                                    target = i;
+                                    break; } } }
                         if((int)(random) <= 70){
                             Battle.useSSkill(a, actors[target], a.edocsona.skills[1], "0"); }
                         else if((int)(random) > 70 && (int)(random) <= 85){
@@ -160,9 +161,75 @@ public class AI{
                         else if((int)(random) > 70 && (int)(random) <= 80){
                             //t.attack()
                             Battle.useSSkill(a, actors[target], a.edocsona.attack, "0"); }
-                    case 1:
+                        else if((int)(random) > 80 && (int)(random) <= 85){
+                            //t.slow()
+                            Battle.useSSkill(a, actors[target], a.edocsona.skills[2], "0"); }
+                        else if((int)(random) > 85 && (int)(random) <= 90){
+                            //t.speed(2)
+                            Battle.useSSkill(a, a, a.edocsona.skills[3], "0"); }
+                        else if((int)(random) > 90){
+                            //t.screech()
+                            Battle.useASkill(a, actors, a.edocsona.skills[4], "0"); }
                         break;
+                    //Prioritize buffs and debuffs
+                    case 1:
+                        a.hasTurn = false;
+                        //Prioritize target with buffs, else random
+                        for(int i = 0; i < actors.length; i++){
+                            if(actors[i].atk != 0 || actors[i].def != 0 || actors[i].acc != 0){
+                                //70% chance to select a target
+                                if(random >= 30){
+                                    target = i;
+                                    break; } } }
+                        //Favor buffs/debuffs
+                        if((int)(random) <= 35){
+                           //t.slow()
+                            Battle.useSSkill(a, actors[target], a.edocsona.skills[2], "0"); } 
+                        else if((int)(random) > 35 && (int)(random) <= 70){
+                            //t.speed(2)
+                            Battle.useSSkill(a, a, a.edocsona.skills[3], "0"); }
+                        else if((int)(random) > 70 && (int)(random) <= 80){
+                            //t.attack()
+                            Battle.useSSkill(a, actors[target], a.edocsona.attack, "0"); }
+                        else if((int)(random) > 80 && (int)(random) <= 85){
+                            //t.stomp()
+                            Battle.useSSkill(a, actors[target], a.edocsona.skills[0], "0"); }
+                        else if((int)(random) > 85 && (int)(random) <= 90){
+                            //t.smash()
+                            Battle.useASkill(a, actors, a.edocsona.skills[1], "0"); }
+                        else if((int)(random) > 90){
+                            //t.screech()
+                            Battle.useASkill(a, actors, a.edocsona.skills[4], "0"); }
+                        break;
+                    //Priotiize ailments
                     case 2:
+                        a.hasTurn = false;
+                        //Prioritize targets with no ailments
+                        for(int i = 0; i < actors.length; i++){
+                            if(actors[i].ailment == 0){
+                                //70% chance to select a target
+                                if(random >= 30){
+                                    target = i;
+                                    break; } } }
+                        //Favor buffs/debuffs
+                        if((int)(random) <= 45){
+                            //t.screech()
+                            Battle.useASkill(a, actors, a.edocsona.skills[4], "0"); }
+                        else if((int)(random) > 45 && (int)(random) <= 70){
+                            //t.speed(2)
+                            Battle.useSSkill(a, a, a.edocsona.skills[3], "0"); }
+                        else if((int)(random) > 70 && (int)(random) <= 80){
+                            //t.attack()
+                            Battle.useSSkill(a, actors[target], a.edocsona.attack, "0"); }
+                        else if((int)(random) > 80 && (int)(random) <= 85){
+                            //t.slow()
+                            Battle.useSSkill(a, actors[target], a.edocsona.skills[2], "0"); } 
+                        else if((int)(random) > 85 && (int)(random) <= 90){
+                            //t.stomp()
+                            Battle.useSSkill(a, actors[target], a.edocsona.skills[0], "0"); }
+                        else if((int)(random) > 90){
+                            //t.smash()
+                            Battle.useASkill(a, actors, a.edocsona.skills[1], "0"); }
                         break;
                 }
                 break;

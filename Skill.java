@@ -133,13 +133,13 @@ public class Skill{
         if(this.type == 8 || target.edocsona.affinities[this.type] == 0 || target.edocsona.affinities[this.type] == 1){
             if(player.ailment == 3){
                 //Dizzy penalty
-                if(((Math.random() * (100 - 0) + 0) - (int)(tAG/10) + (int)(pAG/10)) > 10 && !target.down){
+                if(((Math.random() * (100 - 0) + 0) - (int)(tAG/10) + (int)(pAG/10)) > 5 && !target.down){
                     //Return 0 if missed
                     System.out.println("MISS\n");
                     Battle.missed = true;
                     return 0; } 
             } else {  
-                if(((Math.random() * (100 - 0) + 0) - (int)(tAG/10) + (int)(pAG/10)) > 90 && !target.down){
+                if(((Math.random() * (100 - 0) + 0) - (int)(tAG/10) + (int)(pAG/10)) > 95 && !target.down){
                     //Return 0 if missed
                     System.out.println("MISS\n");
                     Battle.missed = true;
@@ -264,12 +264,12 @@ public class Skill{
             return (int)(damage); }
         //Create a random value
         int rando = (int)(Math.random() * (100 - 0) + 0);
-        //Add 70 if the target is dizzy
+        //Add 90 if the target is dizzy
         if(target.ailment == 3){
-            rando += 70;
+            rando += 90;
         }
         //Formula to check for critical
-        if(rando + (int)(player.edocsona.lu/10) >= 90){
+        if(rando + (int)(player.edocsona.lu/10) > 95){
             //75% damage boost if critical
             Battle.wasCritical = true;
             return (int)(damage * 1.75); 
