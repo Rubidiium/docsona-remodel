@@ -13,12 +13,15 @@ public class AI{
     public static int weightCase;
     public static double random;
     public static int target;
+    private static int intHolder;
 
     public static void act(Actor a, Actor[] actors){
         //Find out what phase Nyx is in
         AI.phaseCalculator(a);
         //Create a random double between 0 and 100
         random = Math.random() * 100;
+        //Reset the intHolder in case of needed
+        intHolder = 0;
         //Cancel the starting sequence for each phase, use special skill if necessary
         switch(AI.phase){
             //Unit 0 Logic (DONE)
@@ -89,7 +92,8 @@ public class AI{
                             if(actors[i].ailment == 0){
                                 //70% chance to select a target
                                 if(random >= 30){
-                                    target = i;} } }
+                                    target = i;
+                                    break; } } }
                         if((int)(random) <= 80){
                             Battle.useSSkill(a, actors[target], a.edocsona.skills[3], "0"); }
                         else if((int)(random) > 80 && (int)(random) <= 85){
@@ -106,6 +110,61 @@ public class AI{
             //Unit 1 Logic
             case 1:
                 AI.unit1started = true;
+                //Determine case for weighting
+                AI.weightCalculator(a, actors);
+                //Choose a skill based on weighting
+                a.hasTurn = false;
+                switch(weightCase){
+                    //Purely random - No case defined
+                    default:
+                        a.hasTurn = false;
+                        //Pick a random target
+                        target = (int)(Math.random() * (4));
+                        //Pick a random attack
+                        if((int)(random) <= 13){
+                            //t.attack()
+                            Battle.useSSkill(a, actors[target], a.edocsona.attack, "0"); }
+                        else if((int)(random) > 13 && (int)(random) <= 33){
+                            //t.stomp()
+                            Battle.useSSkill(a, actors[target], a.edocsona.skills[0], "0"); }
+                        else if((int)(random) > 33 && (int)(random) <= 50){
+                            //t.smash()
+                            Battle.useASkill(a, actors, a.edocsona.skills[1], "0"); }
+                        else if((int)(random) > 50 && (int)(random) <= 66){
+                            //t.slow()
+                            Battle.useSSkill(a, actors[target], a.edocsona.skills[2], "0"); }
+                        else if((int)(random) > 66 && (int)(random) <= 85){
+                            //t.speed(2)
+                            Battle.useSSkill(a, a, a.edocsona.skills[3], "0"); }
+                        else if((int)(random) > 85){
+                            //t.screech()
+                            Battle.useASkill(a, actors, a.edocsona.skills[4], "0"); }
+                        break;
+                    //Prioritize physical
+                    case 0:
+                        //Pick the target with the most HP
+                        for(int i = 0; i < actors.length; i++){
+                            if(actors[i].cHP > intHolder){
+                                //70% chance to select a target
+                                if(random >= 30){
+                                    intHolder = actors[i].cHP;
+                                    target = i;
+                                    break; } } }
+                        //Favor physical attacks
+                        if((int)(random) <= 35){
+                           //t.stomp()
+                           Battle.useSSkill(a, actors[target], a.edocsona.skills[0], "0"); } 
+                        else if((int)(random) > 35 && (int)(random) <= 70){
+                            //t.smash()
+                            Battle.useASkill(a, actors, a.edocsona.skills[1], "0"); }
+                        else if((int)(random) > 70 && (int)(random) <= 80){
+                            //t.attack()
+                            Battle.useSSkill(a, actors[target], a.edocsona.attack, "0"); }
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                }
                 break;
             //Unit 2 Logic
             case 2:
@@ -172,7 +231,35 @@ public class AI{
                 break;
             //Calculate the weighting for phase 1
             case 1:
-                
+                //Priotiize physical attacks if a player is above 50% HP
+                if(AI.weightCase != 0){
+                    for(Actor player : actors){
+                        if(player.player){
+                            if(player.cHP >= player.mHP / 2){
+                                AI.weightCase = 0;
+                                Battle.weightChanged = true;
+                                break; } } } 
+                //Priotize buffs and debuffs if a player has an active buff
+                } else if(AI.weightCase != 1){
+                    for(Actor player : actors){
+                        if(player.player){    
+                            if(player.atk != 0 || player.def != 0 || player.acc != 0){
+                                AI.weightCase = 1;
+                                Battle.weightChanged = true;
+                                break; } } }
+                //Prioritize ailments if all players have none
+                } else if(AI.weightCase != 2){
+                    for(Actor player : actors){
+                        if(player.player){
+                            if(player.ailment == 0){
+                                AI.weightCase = 2; 
+                                Battle.weightChanged = true;
+                                break; } } } }
+                //Reset if the same case was used twice
+                if(!Battle.weightChanged){
+                    weightCase = -1;
+                    break; }
+                break;
             //Calculate the weighting for phase 2
             case 2:
 
