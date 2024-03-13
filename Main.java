@@ -5,6 +5,10 @@ public class Main{
         //Clear the console
         Clear.clear();
         
+        /*
+         * 🙏🙏🙏
+         */
+
         //Objects must be stored in the same place dialogue and execution breaks exist for... reasons
         //Create skill objects
 
