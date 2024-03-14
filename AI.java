@@ -11,6 +11,8 @@ public class AI{
     public static boolean unit7started;
     //Number for which AI weighting case to use - Varies depending on phase
     public static int weightCase;
+    //Number to space out certain cases a static amount
+    public static int weightCounter;
     public static double random;
     public static int target;
     private static int intHolder;
@@ -329,27 +331,106 @@ public class AI{
                 break;
             //Calculate the weighting for phase 2
             case 2:
-
+                //Prioritize magic skills
+                if(AI.weightCounter == 0){
+                    AI.weightCounter = 1;
+                    AI.weightCase = 0; 
+                //Random every other turn
+                } else {
+                    AI.weightCounter = 0;
+                    AI.weightCase = 1; }
                 break;
             //Calculate the weighting for phase 3
             case 3:
-
+                //Prioritize magic skills
+                if(AI.weightCounter < 5){
+                    AI.weightCounter++;
+                    AI.weightCase = 0; }
+                //Concentrate every 5 turns
+                if(AI.weightCounter >= 5){
+                    AI.weightCounter = 0;
+                    AI.weightCase = 1; }
                 break;
             //Calculate the weighting for phase 4
             case 4:
-
+                //Prioritize light/dark attack every other turn
+                if(AI.weightCounter == 0){
+                    AI.weightCounter = 1;
+                    AI.weightCase = 0; 
+                //Priotize charge/physical every other turn
+                } else {
+                    AI.weightCounter = 0;
+                    AI.weightCase = 1; }
                 break;
             //Calculate the weighting for phase 5
             case 5:
-
+                //Move down the elemental list and loop back at end
+                switch(AI.weightCounter){
+                    //Fire
+                    case 0:
+                        AI.weightCase = 0;
+                        AI.weightCounter++;
+                        break;
+                    //Ice
+                    case 1:
+                        AI.weightCase = 1;
+                        AI.weightCounter++;
+                        break;
+                    //Wind
+                    case 3:
+                        AI.weightCase = 2;
+                        AI.weightCounter++;
+                        break;
+                    //Elec
+                    case 4:
+                        AI.weightCase = 3;
+                        AI.weightCounter++;
+                        break;
+                    //Light
+                    case 5:
+                        AI.weightCase = 4;
+                        AI.weightCounter++;
+                        break;
+                    //Dark
+                    case 6:
+                        AI.weightCase = 5;
+                        AI.weightCounter = 0;
+                        break;
+                    //Loop back, random skill
+                    default:
+                        AI.weightCase = 0;
+                        AI.weightCounter = 0;
+                        break; }
                 break;
             //Calculate the weighting for phase 6
             case 6:
-
+                switch(AI.weightCounter){
+                    //One magic attack
+                    case 0:
+                        AI.weightCase = 0;
+                        AI.weightCounter++;
+                        break;
+                    //One physical attack
+                    case 1:
+                        AI.weightCase = 1;
+                        AI.weightCounter++;
+                        break;
+                    //One buff/ailment
+                    case 2:
+                        AI.weightCase = 2;
+                        AI.weightCounter = 0;
+                        break; }
                 break;
             //Calculate the weighting for phase 7
             case 7:
-
+                //Total automation every 5 turns
+                if(AI.weightCounter >= 5){
+                    AI.weightCase = 0;
+                    AI.weightCounter = 0;
+                //Random otherwise
+                } else {
+                    AI.weightCase = 1;
+                    AI.weightCounter++; }
                 break;
         }
     }
@@ -383,6 +464,7 @@ public class AI{
         unit5started = false;
         unit6started = false;
         unit7started = false;
+        AI.weightCounter = 0;
         System.out.println("AI.java compiled!");
     }
 }

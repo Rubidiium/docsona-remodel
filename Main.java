@@ -6,11 +6,8 @@ public class Main{
         Clear.clear();
         
         /*
-         * 🙏🙏🙏
+         * 🙏🙏🙏 
         */
-
-        //Objects must be stored in the same place dialogue and execution breaks exist for... reasons
-        //Create skill objects
 
         /* TO-DO (OR DIE)
 
@@ -19,15 +16,14 @@ public class Main{
 
          TWEAKS
          * !! MAKE GUARD NEGATE WEAKNESS (probably done)
-         * !! MAKE FOCUS/CONCENTRATE APPLY TO USER ONLY
          * ! ADD TURN ORDER TO ANALYSIS SCREEN
          
-
          BUG FIXES
          * GOOD LUCK!
 
         */
 
+        //Create skill objects
         //DEFAULT
         Skill none = new Skill("NONE", 0, false, false, 0, 0, false);
         Skill attack = new Skill("Attack", 0, false, false, 0, 8, false);
@@ -149,7 +145,7 @@ public class Main{
 
         Skill automationSkill = new Skill("Total Automation", 8, false, true, 0, 50, true); //Nyx Exclusive
 
-        Skill codeSkill = new Skill("CODE", 8, false, false, 0, 999, true); //Codio Exclusive
+        Skill codeSkill = new Skill("CODE", 8, false, false, 0, 9999, true); //Codio Exclusive
 
         //ALL BUFF SKILLS (10)
         Skill warmupSkill = new Skill("Warmup Routine", 10, true, false, 38, 0, true);
@@ -346,7 +342,7 @@ public class Main{
 
         //Themed around arrays (wild magic)
         Docsona unit5 = new Docsona("Unit 5", 40, 80, 50, 40, 50);
-        unit5.setAffinities(0, 2, 2, 2, 2, 3, 3);
+        unit5.setAffinities(0, 3, 3, 3, 3, 3, 3);
         unit5.setSkills(overheatSkill, deadlockSkill, airSkill, wireSkill, lightSkill, terminateSkill, none, none);
         unit5.setAttack(attack);
 
@@ -1358,6 +1354,8 @@ public class Main{
                                 Clear.clear();
                                 System.out.println("Codio Avatar used Unit Shift!\n");
                                 codioAvatar.changeDocsona(unit1);
+                                AI.weightCase = 0;
+                                AI.weightCounter = 0;
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
                                 Pass.p(s.nextLine()); 
 
@@ -1409,6 +1407,8 @@ public class Main{
                                 System.out.println("Codio Avatar used Unit Shift!\n");
                                 codioAvatar.changeDocsona(unit2);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have chaned!");
+                                AI.weightCase = 0;
+                                AI.weightCounter = 0;
                                 Pass.p(s.nextLine()); }
                                 break;
                         case 3:
@@ -1429,6 +1429,8 @@ public class Main{
                                 System.out.println("Codio Avatar used Unit Shift!\n");
                                 codioAvatar.changeDocsona(unit3);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
+                                AI.weightCase = 0;
+                                AI.weightCounter = 0;
                                 Pass.p(s.nextLine()); }
                                 break;
                         case 4:
@@ -1483,6 +1485,8 @@ public class Main{
                                 System.out.println("Codio Avatar used Unit Shift!\n");
                                 codioAvatar.changeDocsona(unit4);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
+                                AI.weightCase = 0;
+                                AI.weightCounter = 0;
                                 Pass.p(s.nextLine()); }
                                 break;
                         case 5:
@@ -1507,6 +1511,8 @@ public class Main{
                                 System.out.println("Codio Avatar used Unit Shift!\n");
                                 codioAvatar.changeDocsona(unit5);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
+                                AI.weightCase = 0;
+                                AI.weightCounter = 0;
                                 Pass.p(s.nextLine()); }
                         case 6:
                             if(!AI.unit6started){
@@ -1556,6 +1562,8 @@ public class Main{
                                 System.out.println("Codio Avatar used Unit Shift!\n");
                                 codioAvatar.changeDocsona(unit6);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
+                                AI.weightCase = 0;
+                                AI.weightCounter = 0;
                                 Pass.p(s.nextLine()); }
                                 break;
                         case 7:
@@ -1609,13 +1617,15 @@ public class Main{
                                 Pass.p(s.nextLine());
                                 System.out.println("Come, show me your maximum efficiency!");
                                 Pass.p(s.nextLine());
-                                System.out.println("Know that I will!");
+                                System.out.println("Bear witness to total automation!");
                                 Pass.p(s.nextLine());
                                 
                                 Clear.clear();
                                 System.out.println("Codio Avatar used Unit Shift!\n");
                                 codioAvatar.changeDocsona(unit7);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
+                                AI.weightCase = 0;
+                                AI.weightCounter = 5;
                                 Pass.p(s.nextLine()); }
                                 break;
                         default:
@@ -1945,9 +1955,47 @@ public class Main{
         if(Battle.pulled){
             //Ending dialogue
             Clear.clear();
+            System.out.println("You take your golf club, and stick it up as high as you can.");
+            Pass.p(s.nextLine());
+            System.out.println("With the energy of the world, you put your all into one, final attack.");
+            Pass.p(s.nextLine());
+            System.out.println("Doc...");
+            Pass.p(s.nextLine());
+            System.out.println("So...");
+            Pass.p(s.nextLine());
+            System.out.println("NA!!!");
+            Pass.p(s.nextLine());
+
+            Clear.clear();
+            System.out.println("The ground begins to rumble again, but you remain unfazed.");
+            Pass.p(s.nextLine());
+            System.out.println("You still can't make out the shape of Codio, but you can feel it struggling.");
+            Pass.p(s.nextLine());
+            System.out.println("It's warping, moving, disappearing...");
+            Pass.p(s.nextLine());
+            System.out.println("You feel your chest begin to get heavier and heavier, until, just as Codio has totally disappeared, you collapse.");
+            Pass.p(s.nextLine());
+
+            Clear.clear();
+            System.out.print(". ");
+            Pass.p(s.nextLine());
+            System.out.print(". ");
+            Pass.p(s.nextLine());
+            System.out.println(".");
+            Pass.p(s.nextLine());
+
+            Clear.clear();
+            System.out.println("You open your eyes to a beautiful day.");
+            Pass.p(s.nextLine());
+            System.out.println("Blue sky, genetle breeze, perfect temperature.");
+            Pass.p(s.nextLine());
+            System.out.println("It's tiring, yet soothing...");
+            Pass.p(s.nextLine());
+
+            Clear.clear();
             System.out.println("You feel incredibly weak.");
             Pass.p(s.nextLine());
-            System.out.println("You can hardly move, all you can do is stay lying down.");
+            System.out.println("You can hardly move; all you can do is stay lying down.");
             Pass.p(s.nextLine());
             System.out.println("And yet, you have no desire to move.");
             Pass.p(s.nextLine());
@@ -2064,7 +2112,9 @@ public class Main{
             System.out.println("POWER OFF");
             Pass.p(s.nextLine());
         }
-
         s.close();
     }
 }
+
+// With Passion,
+// -Rb

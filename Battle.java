@@ -132,7 +132,7 @@ public class Battle{
                     if(!Battle.missed){
                     if(!Battle.is1more){
                         a.hasTurn = true; }
-                        if(!t.guard){
+                    if(!t.guard){
                         System.out.println("WEAK");
                         t.cHP -= damage;
                         if(t.cHP < 0){
@@ -682,6 +682,7 @@ public class Battle{
                                 if(!Battle.is1more){
                                     a.hasTurn = true; }
                                     Battle.totalCritical = true;
+                                if(!t.guard){
                                     System.out.println("WEAK");
                                     t.cHP -= damage;
                                     if(t.cHP < 0){
@@ -692,7 +693,14 @@ public class Battle{
                                     System.out.println(damage + " damage to " + t.name  + "\n");
                                 if(!Battle.is1more){
                                     Battle.is1more = true; }
-                                    System.out.println(t.name + "'s HP is " + t.cHP  + "\n"); }
+                                    System.out.println(t.name + "'s HP is " + t.cHP  + "\n"); } 
+                                //Negate weakness if guarding
+                                } else {
+                                    System.out.println(damage + " damage to " + t.name);
+                                    t.cHP -= damage;
+                                    if(t.cHP < 0){
+                                        t.cHP = 0;}
+                                    System.out.println(t.name + "'s HP is " + t.cHP); }
                                 t.unconscious();
                                 break;
                             //Enemy resists
