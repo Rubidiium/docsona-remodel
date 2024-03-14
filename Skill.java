@@ -43,6 +43,7 @@ public class Skill{
     public int castDamage(Actor player, Actor target){
         //Reset critical tracker
         Battle.wasCritical = false;
+        Battle.wasWeak = false;
         
         //Temporary value for calculations
         double temp = 0;
@@ -155,31 +156,35 @@ public class Skill{
             temp = ((Math.random() * (1 - 0.8) + 0.8) * Math.sqrt(this.basePower) * pMA) - (tEN * 0.2);
 
             //Check for ailment immunity or pre-existing ailment
-            if(target.ailment != 10 && target.ailment == 0 && target.edocsona.affinities[this.type] < 2){
+            if(target.ailment != 10 && target.ailment == 0 && target.edocsona.affinities[this.type] < 3){
                 //Calculate chance for ailments
                 switch(this.type){
                     //Burning
                     case 1:
                         if(Math.random() >= 0.8){
                             target.ailment = 1; 
+                            target.ailmentT = 3;
                             System.out.println(target.name + " was inflicted with burns\n"); }
                         break;
                     //Frozen
                     case 2:
                         if(Math.random() >= 0.9){
                             target.ailment = 2; 
+                            target.ailmentT = 3;
                             System.out.println(target.name + " was frozen\n"); }
                         break;
                     //Dizzy
                     case 3:
                         if(Math.random() >= 0.8){
                             target.ailment = 3;
+                            target.ailmentT = 3;
                             System.out.println(target.name + " is dizzy\n"); }
                         break;
                     //Shocked
                     case 4:
                         if(Math.random() >= 0.9){
                             target.ailment = 4; 
+                            target.ailmentT = 3;
                             System.out.println(target.name + " was shocked\n"); }
                         break;
                 }
@@ -200,10 +205,13 @@ public class Skill{
             //Weak = 25% bonus
             case 1:
                 //Negate weakness if guarding
-                if(target.guard == true){
-                    break; }
+                if(target.guard){
+                    Battle.wasWeak = false;
+                    break; 
+                } else {
                 temp *= 1.25;
-                target.down = true;
+                Battle.wasWeak = true;
+                target.down = true; }
                 break;
             //Resist = 50% penalty
             case 2:
@@ -244,8 +252,6 @@ public class Skill{
 
         //Apply final guard penalty
         if(target.guard == true){
-            //Consume guard and apply resist penalty
-            target.guard = false;
             fin *= 0.5;
         }
 

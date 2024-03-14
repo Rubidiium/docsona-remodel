@@ -12,10 +12,9 @@ public class Main{
         /* TO-DO (OR DIE)
 
          MANDATORY
-         * -!- FINISH ENEMY AI (2, 3, 4, 5, 6, 7)
+         * -!- FINISH ENEMY AI (3, 4, 5, 6, 7)
 
          TWEAKS
-         * !! MAKE GUARD NEGATE WEAKNESS (probably done)
          * ! ADD TURN ORDER TO ANALYSIS SCREEN
          
          BUG FIXES
@@ -306,7 +305,7 @@ public class Main{
 
         //ANTONIO DOCSONA
         Docsona cole = new Docsona("Cole", 88, 45, 84, 34, 54);
-        cole.setAffinities(3, 2, 0, 1, 0, 0, 2);
+        cole.setAffinities(3, 0, 2, 1, 0, 0, 2);
         cole.setSkills(headrushSkill, tackleSkill, madmenSkill, warmupSkill, weakenSkill, resusciateSkill, none, none);
         cole.setAttack(attack);
 
@@ -541,7 +540,6 @@ public class Main{
                     acts.ailmentT = 0; } }
             if(a.name.equals(activeActor.name)){
                 a.active = true;
-                a.guard = false;
             if(a.down){
                 a.beginTurn(actors);
                 Pass.p(s.nextLine()); } else {
@@ -562,6 +560,8 @@ public class Main{
                     a.headerUI(actors);
                     choice = s.nextLine();
                 if(!a.uc){
+                    //Reset guard
+                    a.guard = false;
                     //Process the player's turn choice
                     switch(choice){
                         //Perform a regular attack
@@ -1430,7 +1430,7 @@ public class Main{
                                 codioAvatar.changeDocsona(unit3);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
                                 AI.weightCase = 0;
-                                AI.weightCounter = 0;
+                                AI.weightCounter = 5;
                                 Pass.p(s.nextLine()); }
                                 break;
                         case 4:

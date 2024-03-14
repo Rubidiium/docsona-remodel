@@ -70,7 +70,7 @@ public class AI{
                     case 1:
                         a.hasTurn = false;
                         //Prioritize target with buffs, else random
-                        for(int i = 0; i < actors.length; i++){
+                        for(int i = 0; i < actors.length - 1; i++){
                             if(actors[i].atk != 0 || actors[i].def != 0 || actors[i].acc != 0){
                                 //70% chance to select a target
                                 if(random >= 30){
@@ -91,7 +91,7 @@ public class AI{
                     case 2:
                         a.hasTurn = false;
                         //Prioritize targets with no ailments
-                        for(int i = 0; i < actors.length; i++){
+                        for(int i = 0; i < actors.length - 1; i++){
                             if(actors[i].ailment == 0){
                                 //70% chance to select a target
                                 if(random >= 30){
@@ -146,7 +146,7 @@ public class AI{
                     //Prioritize physical
                     case 0:
                         //Pick the target with the most HP
-                        for(int i = 0; i < actors.length; i++){
+                        for(int i = 0; i < actors.length - 1; i++){
                             if(actors[i].cHP > intHolder){
                                 //70% chance to select a target
                                 if(random >= 30){
@@ -177,7 +177,7 @@ public class AI{
                     case 1:
                         a.hasTurn = false;
                         //Prioritize target with buffs, else random
-                        for(int i = 0; i < actors.length; i++){
+                        for(int i = 0; i < actors.length - 1; i++){
                             if(actors[i].atk != 0 || actors[i].def != 0 || actors[i].acc != 0){
                                 //70% chance to select a target
                                 if(random >= 30){
@@ -207,7 +207,7 @@ public class AI{
                     case 2:
                         a.hasTurn = false;
                         //Prioritize targets with no ailments
-                        for(int i = 0; i < actors.length; i++){
+                        for(int i = 0; i < actors.length - 1; i++){
                             if(actors[i].ailment == 0){
                                 //70% chance to select a target
                                 if(random >= 30){
@@ -238,10 +238,85 @@ public class AI{
             //Unit 2 Logic
             case 2:
                 AI.unit2started = true;
+                //Determine case for weighting
+                AI.weightCalculator(a, actors);
+                //Choose a skill based on weighting
+                a.hasTurn = false;
+                switch(weightCase){
+                    //Favor magic
+                    case 0:
+                        a.hasTurn = false;
+                        //Pick a random target
+                        target = (int)(Math.random() * (4));
+                        //Prioritize magic skills
+                        if((int)(random) <= 45){
+                            Battle.useSSkill(a, actors[target], a.edocsona.skills[0], "0"); }
+                        else if((int)(random) > 45 && (int)(random) <= 90){
+                            Battle.useASkill(a, actors, a.edocsona.skills[1], "0"); }
+                        else if((int)(random) > 90 && (int)(random) <= 92){
+                            Battle.useSSkill(a, actors[target], a.edocsona.attack, "0"); }
+                        else if((int)(random) > 92 && (int)(random) <= 94){
+                            Battle.useSSkill(a, a, a.edocsona.skills[2], "0"); }
+                        else if((int)(random) > 94 && (int)(random) <= 96){
+                            Battle.useSSkill(a, actors[target], a.edocsona.skills[3], "0"); }
+                        else if((int)(random) > 96){
+                            Battle.useSSkill(a, actors[target], a.edocsona.skills[4], "0"); }
+                        break;
+                    //Favor status
+                    case 1:
+                        a.hasTurn = false;
+                        //Prioritize target with buffs, else random
+                        for(int i = 0; i < actors.length - 1; i++){
+                            if(actors[i].atk != 0 || actors[i].def != 0 || actors[i].acc != 0){
+                                //80% chance to select a target
+                                if(random >= 20){
+                                    target = i;
+                                    break; } } }
+                        //Prioritize status skills
+                        if((int)(random) <= 40){
+                            Battle.useSSkill(a, a, a.edocsona.skills[2], "0"); }
+                        else if((int)(random) > 40 && (int)(random) <= 70){
+                            Battle.useSSkill(a, actors[target], a.edocsona.skills[3], "0"); }
+                        else if((int)(random) > 70 && (int)(random) <= 90){
+                            Battle.useSSkill(a, actors[target], a.edocsona.skills[4], "0"); }
+                        else if((int)(random) > 92 && (int)(random) <= 94){
+                            Battle.useSSkill(a, actors[target], a.edocsona.attack, "0"); }
+                        else if((int)(random) > 94 && (int)(random) <= 96){
+                            Battle.useSSkill(a, actors[target], a.edocsona.skills[0], "0"); }
+                        else if((int)(random) > 96){
+                            Battle.useASkill(a, actors, a.edocsona.skills[1], "0"); }
+                }
                 break;
             //Unit 3 Logic
             case 3:
                 AI.unit3started = true;
+                //Determine case for weighting
+                AI.weightCalculator(a, actors);
+                //Choose a skill based on weighting
+                a.hasTurn = false;
+                switch(weightCase){
+                    //Magic
+                    case 0:
+                        a.hasTurn = false;
+                        //Pick a random target
+                        target = (int)(Math.random() * (4));
+                        //Prioritize magic skills
+                        if((int)(random) <= 40){
+                            Battle.useSSkill(a, actors[target], a.edocsona.skills[0], "0"); }
+                        else if((int)(random) > 40 && (int)(random) <= 80){
+                            Battle.useASkill(a, actors, a.edocsona.skills[1], "0"); }
+                        else if((int)(random) > 80 && (int)(random) <= 81){
+                            Battle.useSSkill(a, actors[target], a.edocsona.attack, "0"); }
+                        else if((int)(random) > 81){
+                            Battle.useSSkill(a, actors[target], a.edocsona.skills[3], "0"); }
+                        break;
+                    //Concentrate
+                    case 1:
+                        a.hasTurn = false;
+                        //Concentrate without fail
+                        Battle.useSSkill(a, a, a.edocsona.skills[2], "0");
+                        break;
+                }
                 break;
             //Unit 4 Logic
             case 4:
@@ -333,9 +408,9 @@ public class AI{
             case 2:
                 //Prioritize magic skills
                 if(AI.weightCounter == 0){
-                    AI.weightCounter = 1;
                     AI.weightCase = 0; 
-                //Random every other turn
+                    AI.weightCounter = 1; 
+                //Priotize buffs/ailments other turns
                 } else {
                     AI.weightCounter = 0;
                     AI.weightCase = 1; }
@@ -353,7 +428,7 @@ public class AI{
                 break;
             //Calculate the weighting for phase 4
             case 4:
-                //Prioritize light/dark attack every other turn
+                //Prioritize elec/dark attack every other turn
                 if(AI.weightCounter == 0){
                     AI.weightCounter = 1;
                     AI.weightCase = 0; 

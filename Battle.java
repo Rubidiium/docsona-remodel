@@ -50,6 +50,7 @@ public class Battle{
         preAilment = t.ailment;
         Clear.clear();
         //Reset battle trackers
+        Battle.wasWeak = false;
         Battle.wasCritical = false;
         Battle.missed = false;
         Battle.moveCancel = false;
@@ -89,11 +90,12 @@ public class Battle{
                         t.cHP -= damage;
                         if(t.cHP < 0){
                             t.cHP = 0;}
-                        System.out.println(t.name + "'s HP is " + t.cHP);
+                        System.out.println(t.name + "'s HP is " + t.cHP + "\n");
                         t.unconscious(); } }
             //Handle damage skills
             if((s.type >= 0 && s.type <= 6)){
             Battle.wasCritical = false;
+            Battle.wasWeak = false;
             switch(t.edocsona.affinities[s.type]){
                 //No affinities
                 default:
@@ -119,7 +121,7 @@ public class Battle{
                                 t.cHP -= damage;
                                 if(t.cHP < 0){
                                     t.cHP = 0;}
-                                System.out.println(t.name + "'s HP is " + t.cHP);
+                                System.out.println(t.name + "'s HP is " + t.cHP + "\n");
                             }
                             t.unconscious();
                     } else {
@@ -130,9 +132,9 @@ public class Battle{
                     a.hasTurn = false;
                     damage = s.castDamage(a, t);
                     if(!Battle.missed){
-                    if(!Battle.is1more){
-                        a.hasTurn = true; }
                     if(!t.guard){
+                        if(!Battle.is1more){
+                            a.hasTurn = true; }
                         System.out.println("WEAK");
                         t.cHP -= damage;
                         if(t.cHP < 0){
@@ -141,16 +143,16 @@ public class Battle{
                             System.out.println(t.name + " was knocked down!"); }
                         t.down = true;
                         System.out.println(damage + " damage to " + t.name);
-                    if(!Battle.is1more){
-                        System.out.println("1 MORE"); }
-                        System.out.println(t.name + "'s HP is " + t.cHP); } 
+                        System.out.println(t.name + "'s HP is " + t.cHP + "\n");
+                        if(!Battle.is1more){
+                            System.out.println("\n1 MORE\n"); }
                     //Normal attack if guarding
                     } else {
                         System.out.println(damage + " damage to " + t.name);
                         t.cHP -= damage;
                         if(t.cHP < 0){
                             t.cHP = 0;}
-                        System.out.println(t.name + "'s HP is " + t.cHP); }
+                        System.out.println(t.name + "'s HP is " + t.cHP + "\n"); } }
                     t.unconscious();
                     break;
                 //Enemy resists
@@ -162,7 +164,7 @@ public class Battle{
                     if(t.cHP < 0){
                             t.cHP = 0;}
                     System.out.println(damage + " damage to " + t.name);
-                    System.out.println(t.name + "'s HP is " + t.cHP);
+                    System.out.println(t.name + "'s HP is " + t.cHP + "\n");
                     t.unconscious();
                     break;
                 //Enemy blocks
@@ -190,7 +192,7 @@ public class Battle{
                     damage = s.castDamage(a, t);
                     a.cHP -= damage;
                     System.out.println(damage + " to " + a.name);
-                    System.out.println(a.name + "'s HP is " + a.cHP);
+                    System.out.println(a.name + "'s HP is " + a.cHP + "\n");
                     a.unconscious();
                     break;
                 }
@@ -334,6 +336,10 @@ public class Battle{
                         System.out.println(t.name + " is despairing!"); } else {
                             System.out.println("MISS");
                         } } }
+            //Reset guard
+            if(!Battle.missed && t.guard){
+                t.guard = false;
+            }
         }
         //Handle friendly skills
         if(s.friendly){
@@ -679,10 +685,10 @@ public class Battle{
                                 a.hasTurn = false;
                                 damage = s.castDamage(a, t);
                                 if(!Battle.missed){
-                                if(!Battle.is1more){
-                                    a.hasTurn = true; }
-                                    Battle.totalCritical = true;
                                 if(!t.guard){
+                                    if(!Battle.is1more){
+                                        a.hasTurn = true;
+                                        Battle.totalCritical = true; }
                                     System.out.println("WEAK");
                                     t.cHP -= damage;
                                     if(t.cHP < 0){
@@ -690,17 +696,17 @@ public class Battle{
                                     if(!t.down){
                                         System.out.println(t.name + " was knocked down!"); }
                                     t.down = true;
-                                    System.out.println(damage + " damage to " + t.name  + "\n");
+                                    System.out.println(damage + " damage to " + t.name);
                                 if(!Battle.is1more){
                                     Battle.is1more = true; }
-                                    System.out.println(t.name + "'s HP is " + t.cHP  + "\n"); } 
+                                    System.out.println(t.name + "'s HP is " + t.cHP  + "\n");
                                 //Negate weakness if guarding
                                 } else {
                                     System.out.println(damage + " damage to " + t.name);
                                     t.cHP -= damage;
                                     if(t.cHP < 0){
                                         t.cHP = 0;}
-                                    System.out.println(t.name + "'s HP is " + t.cHP); }
+                                    System.out.println(t.name + "'s HP is " + t.cHP + "\n"); } }
                                 t.unconscious();
                                 break;
                             //Enemy resists
@@ -863,15 +869,20 @@ public class Battle{
                                     System.out.println(t.name + " is despairing!"); } else {
                                         System.out.println("MISS");
                                     } } }
+                    //Reset guard
+                    if(!Battle.missed && t.guard){
+                        t.guard = false;
+                    }
                 }
             }
-            //Restore 1 more for one critical
-            if(Battle.totalCritical && !Battle.is1more){
-                System.out.println("1 MORE\n");
-                a.hasTurn = true;
-                Battle.is1more = true;
-                Battle.wasCritical = false;
-            }
+        //Restore 1 more for one critical
+        if((Battle.totalCritical || Battle.wasWeak) && !Battle.is1more){
+            System.out.println("1 MORE\n");
+            a.hasTurn = true;
+            Battle.is1more = true;
+            Battle.wasCritical = false;
+            Battle.wasWeak = false;
+        }
         }
         //Handle friendly attacks
         if(s.friendly){
