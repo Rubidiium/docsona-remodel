@@ -26,8 +26,8 @@ If you are in my AP CSA class and have access to Codio projects, you can run pul
   
   // Run button configuration
       "commands": {
-          "Compile & Run": "cd docsona-remodel; javac Main.java && java Main",
-          "Compile": "cd docsona-remodel; javac {{filename}}",
+          "Compile & Run": "javac Main.java && java Main",
+          "Compile": "javac {{filename}}",
           "Run": "java {{filename_no_ext}}"
       },
   
