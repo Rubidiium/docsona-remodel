@@ -40,7 +40,7 @@ If you are in my AP CSA class and have access to Codio projects, you can run pul
   }
 ```
 
-7. Resize the terminal window to be as large as possible.
+7. Navigate back to Java.main, and click "Compile and Run." Make the terminal window as large as possible.
 
 ### COMPUTER WITH JAVA INSTALLED
 
