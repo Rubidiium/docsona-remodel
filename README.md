@@ -16,7 +16,7 @@ If you are in my AP CSA class and have access to Codio projects, you can run pul
 
 4. Create the project with whatever name you'd like.
 
-5. Select "Java.main" and then "Configure" in the top-middle of the screen.
+5. Select "Main.java" and then "Configure" in the top-middle of the screen.
 
 6. If Codio opens a file that prompts you to configure compile and run, paste the following code:
 
@@ -40,7 +40,7 @@ If you are in my AP CSA class and have access to Codio projects, you can run pul
   }
 ```
 
-7. Navigate back to Java.main, and click "Compile and Run." Make the terminal window as large as possible.
+7. Navigate back to Main.java, and click "Compile and Run." Make the terminal window as large as possible.
 
 ### COMPUTER WITH JAVA INSTALLED
 
