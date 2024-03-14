@@ -268,7 +268,6 @@ public class Skill{
         if(target.ailment == 3){
             rando += 90;
         }
-        rando += 90;
         //Formula to check for critical
         if(rando + (int)(player.edocsona.lu/10) > 95){
             //75% damage boost if critical
