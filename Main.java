@@ -388,9 +388,6 @@ public class Main{
         codioAvatar.resetState();
         codioAvatar.player = false;
         //Set ailment immunity
-
-        codioAvatar.cHP = 2000;
-
         codioAvatar.ailment = 10;
         codioAvatar.ailmentT = 999;
 
