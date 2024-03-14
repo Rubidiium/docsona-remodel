@@ -1,3 +1,5 @@
+//BUILD 2.0.0
+
 //Inherited class for items that have no cost, but instead have a quantity
 public class Item extends Skill{
     public int quantity;

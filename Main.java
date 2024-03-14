@@ -1,3 +1,5 @@
+//BUILD 2.0.0
+
 import java.util.Scanner;
 
 public class Main{
@@ -12,13 +14,13 @@ public class Main{
         /* TO-DO (OR DIE)
 
          MANDATORY
-         * -!- FINISH ENEMY AI (3, 4, 5, 6, 7)
+         * NONE
 
          TWEAKS
-         * ! ADD TURN ORDER TO ANALYSIS SCREEN
+         * NONE
          
          BUG FIXES
-         * GOOD LUCK!
+         * WAIT AND SEE!
 
         */
 
@@ -48,7 +50,7 @@ public class Main{
 
         Skill stringSkill = new Skill("String Algorithm", 0, false, true, 0, 22, true); //Nyx Exclusive
 
-        Skill objectSkill = new Skill("Object-Oriented Attack", 0, false, true, 0, 20, true); //Nyx Exclusive
+        Skill objectSkill = new Skill("Object-Oriented Attack", 0, false, true, 0, 25, true); //Nyx Exclusive
 
         Skill swordSkill = new Skill("\"has-a\" sword", 0, false, false, 0, 28, true); //Nyx Exclusive
 
@@ -61,11 +63,11 @@ public class Main{
         Skill solarSkill = new Skill("Solar Flare", 1, false, false, 26, 25, true);
         solarSkill.newDescription("Severe fire damage to one foe");
 
-        Skill assignSkill = new Skill("Assignment", 1, false, false, 0, 30, true); //Nyx Exclusive
+        Skill assignSkill = new Skill("Assignment", 1, false, false, 0, 25, true); //Nyx Exclusive
 
-        Skill crashingSkill = new Skill("Crash and Burn", 1, false, true, 0, 25, true); //Nyx Exclusive
+        Skill crashingSkill = new Skill("Crash and Burn", 1, false, true, 0, 15, true); //Nyx Exclusive
 
-        Skill overheatSkill = new Skill("Overheat", 1, false, true, 0, 30, true); //Nyx Exclusive
+        Skill overheatSkill = new Skill("Overheat", 1, false, true, 0, 20, true); //Nyx Exclusive
 
         //ICE SKILLS (2)
         Skill chillerSkill = new Skill("Patagonia", 2, false, false, 18, 15, true);
@@ -73,9 +75,9 @@ public class Main{
 
         Skill forSkill = new Skill("for()", 2, false, false, 0, 20, true); //Nyx Exclusive
 
-        Skill whileSkill = new Skill("while()", 2, false, true, 0, 25, true); //Nyx Exclusive
+        Skill whileSkill = new Skill("while()", 2, false, true, 0, 15, true); //Nyx Exclusive
 
-        Skill deadlockSkill = new Skill("Deadlock", 2, false, true, 0, 30, true); //Nyx Exclusive
+        Skill deadlockSkill = new Skill("Deadlock", 2, false, true, 0, 25, true); //Nyx Exclusive
 
         //WIND SKILLS (3)
         Skill tornadoSkill = new Skill("Tornado", 3, false, false, 18, 15, true);
@@ -84,7 +86,7 @@ public class Main{
         Skill tearSkill = new Skill("Tempestuous", 3, false, false, 26, 25, true);
         tearSkill.newDescription("Severe wind damage to one foe");
 
-        Skill airSkill = new Skill("Air Quality Reduction", 3, false, true, 0, 30, true); //Nyx Exclusive
+        Skill airSkill = new Skill("Air Quality Reduction", 3, false, true, 0, 20, true); //Nyx Exclusive
 
         //ELEC SKILLS (4)
         Skill shockerSkill = new Skill("Shocker", 4, false, false, 18, 15, true);
@@ -93,11 +95,11 @@ public class Main{
         Skill bazingaSkill = new Skill("Bazingadyne", 4, false, false, 30, 30, true);
         bazingaSkill.newDescription("Incredible electric damage to one foe");
 
-        Skill staticSkill = new Skill("Static Variable", 4, false, false, 0, 25, true); //Nyx Exclusive
+        Skill staticSkill = new Skill("Static Variable", 4, false, false, 0, 20, true); //Nyx Exclusive
 
-        Skill wireSkill = new Skill("Open Wire", 4, false, true, 0, 30, true); //Nyx Exclusive
+        Skill wireSkill = new Skill("Open Wire", 4, false, true, 0, 20, true); //Nyx Exclusive
 
-        Skill insertionSkill = new Skill("Insertion", 4, false, true, 0, 40, true); //Nyx Exclusive
+        Skill insertionSkill = new Skill("Insertion", 4, false, true, 0, 25, true); //Nyx Exclusive
 
         //LIGHT SKILLS (5)
         Skill brightSkill = new Skill("Inquisition", 5, false, false, 18, 18, true);
@@ -106,9 +108,9 @@ public class Main{
         Skill weirdSkill = new Skill("Be Less Weird", 5, false, false, 30, 30, true);
         weirdSkill.newDescription("Be less weird... and do incredible light damage to one foe");
 
-        Skill lightSkill = new Skill("Light Mode", 5, false, true, 0, 30, true); //Nyx Exclusive
+        Skill lightSkill = new Skill("Light Mode", 5, false, true, 0, 20, true); //Nyx Exclusive
 
-        Skill polymorphSkill = new Skill("Polymorphism", 5, false, true, 0, 30, true); //Nyx Exclusive
+        Skill polymorphSkill = new Skill("Polymorphism", 5, false, true, 0, 25, true); //Nyx Exclusive
 
         //DARK SKILLS (6)
         Skill nothingSkill = new Skill("Nullification", 6, false, false, 18, 15, true);
@@ -117,13 +119,13 @@ public class Main{
         Skill darkSkill = new Skill("Dark Magic", 6, false, false, 18, 15, true);
         darkSkill.newDescription("Get someone into an ivy... and deal strong dark damage to one foe");
 
-        Skill voidSkill = new Skill("Void Method", 6, false, false, 0, 25, true); //Nyx Exclusive
+        Skill voidSkill = new Skill("Void Method", 6, false, false, 0, 20, true); //Nyx Exclusive
 
-        Skill terminateSkill = new Skill("Terminate", 6, false, true, 0, 30, true); //Nyx Exclusive
+        Skill terminateSkill = new Skill("Terminate", 6, false, true, 0, 20, true); //Nyx Exclusive
 
-        Skill demonSkill = new Skill("\"is-a\" monster", 6, false, true, 0, 30, true); //Nyx Exclusive
+        Skill demonSkill = new Skill("\"is-a\" monster", 6, false, true, 0, 20, true); //Nyx Exclusive
 
-        Skill recursionSkill = new Skill("Null Recursion", 6, false, true, 0, 40, true); //Nyx Exclusive
+        Skill recursionSkill = new Skill("Null Recursion", 6, false, true, 0, 25, true); //Nyx Exclusive
 
         //HEALING SKILLS (7)
         Skill counselingSkill = new Skill("Counseling", 7, true, false, 16, 999, true);
@@ -136,13 +138,13 @@ public class Main{
         sittingSkill.newDescription("Sitting... sitting... full heal for all allies");
 
         //ALMIGHTY SKILLS (8)
-        Skill buttonSkill = new Skill("\"That\" Button", 8, false, false, 56, 40, true);
+        Skill buttonSkill = new Skill("\"That\" Button", 8, false, false, 56, 30, true);
         buttonSkill.newDescription("Press \"that\" button and deal incredible almighty damage to one foe");
 
         Skill bangSkill = new Skill("Big Bang", 8, false, false, 30, 30, true);
         bangSkill.newDescription("Start it with this, and deal severe almighty damage to one foe");
 
-        Skill automationSkill = new Skill("Total Automation", 8, false, true, 0, 50, true); //Nyx Exclusive
+        Skill automationSkill = new Skill("Total Automation", 8, false, true, 0, 35, true); //Nyx Exclusive
 
         Skill codeSkill = new Skill("CODE", 8, false, false, 0, 9999, true); //Codio Exclusive
 
@@ -386,6 +388,9 @@ public class Main{
         codioAvatar.resetState();
         codioAvatar.player = false;
         //Set ailment immunity
+
+        codioAvatar.cHP = 2000;
+
         codioAvatar.ailment = 10;
         codioAvatar.ailmentT = 999;
 
@@ -1332,7 +1337,7 @@ public class Main{
                         case 0:
                             if(!AI.unit0started){
                                 Clear.clear();
-                                System.out.println("Code is the means by which all will be automated.");
+                                System.out.println("Code is the means by which all is automated.");
                                 Pass.p(s.nextLine());
                                 System.out.println("Introductions are in order, and order shall be executed.");
                                 Pass.p(s.nextLine());
@@ -1344,7 +1349,7 @@ public class Main{
                         case 1:
                             if(!AI.unit1started){
                                 Clear.clear();
-                                System.out.println("Yes, code is the means by which all will be automated.");
+                                System.out.println("Yes, code is the means by which all is automated.");
                                 Pass.p(s.nextLine());
                                 System.out.println("That which is rendered, that which defines me...");
                                 Pass.p(s.nextLine());
@@ -1407,6 +1412,8 @@ public class Main{
                                 System.out.println("Codio Avatar used Unit Shift!\n");
                                 codioAvatar.changeDocsona(unit2);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have chaned!");
+                                //Reset charge for player's sake
+                                a.charge = 0;
                                 AI.weightCase = 0;
                                 AI.weightCounter = 0;
                                 Pass.p(s.nextLine()); }
@@ -1416,7 +1423,7 @@ public class Main{
                                 Clear.clear();
                                 System.out.println("Reiteration is the fundamental problem which code means to remedy.");
                                 Pass.p(s.nextLine());
-                                System.out.println("Code is the means by which all will be automated.");
+                                System.out.println("Code is the means by which all is automated.");
                                 Pass.p(s.nextLine());
                                 System.out.println("Recognition of the same thought is wasteful by nature.");
                                 Pass.p(s.nextLine());
@@ -1429,6 +1436,8 @@ public class Main{
                                 System.out.println("Codio Avatar used Unit Shift!\n");
                                 codioAvatar.changeDocsona(unit3);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
+                                //Reset charge for player's sake
+                                a.charge = 0;
                                 AI.weightCase = 0;
                                 AI.weightCounter = 5;
                                 Pass.p(s.nextLine()); }
@@ -1440,7 +1449,7 @@ public class Main{
                                 Pass.p(s.nextLine());
                                 System.out.println("Where math requires a mover, code moves itself.");
                                 Pass.p(s.nextLine());
-                                System.out.println("Code is the means by which all will be automated.");
+                                System.out.println("Code is the means by which all is automated.");
                                 Pass.p(s.nextLine());
                                 System.out.println("Once everything is easily identified, everything shall move efficiently.");
                                 Pass.p(s.nextLine());
@@ -1448,6 +1457,8 @@ public class Main{
                                 Clear.clear();
                                 System.out.println("You hear Ed begin to speak up.");
                                 Pass.p(s.nextLine());
+
+                                Clear.clear();
                                 System.out.println("How's code supposed to build itself with a coder, huh?");
                                 Pass.p(s.nextLine());
                                 System.out.println("How's a coder supposed to move anything if he doesn't know math, anyways?");
@@ -1498,7 +1509,7 @@ public class Main{
                                 Pass.p(s.nextLine());
                                 System.out.println("Entropy can never exist as part of a sustainable system.");
                                 Pass.p(s.nextLine());
-                                System.out.println("Code is the means by which all will be automated.");
+                                System.out.println("Code is the means by which all is automated.");
                                 Pass.p(s.nextLine());
                                 System.out.println("Everything exists to exist as one.");
                                 Pass.p(s.nextLine());
@@ -1511,9 +1522,12 @@ public class Main{
                                 System.out.println("Codio Avatar used Unit Shift!\n");
                                 codioAvatar.changeDocsona(unit5);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
+                                //Reset charge for player's sake
+                                a.charge = 0;
                                 AI.weightCase = 0;
                                 AI.weightCounter = 0;
                                 Pass.p(s.nextLine()); }
+                                break;
                         case 6:
                             if(!AI.unit6started){
                                 Clear.clear();
@@ -1521,7 +1535,7 @@ public class Main{
                                 Pass.p(s.nextLine());
                                 System.out.println("Yes, everything can trace its source through code.");
                                 Pass.p(s.nextLine());
-                                System.out.println("Code is the means by which all will be automated.");
+                                System.out.println("Code is the means by which all is automated.");
                                 Pass.p(s.nextLine());
                                 System.out.println("Efficiency cannot exist without order, and order cannot exist without succession.");
                                 Pass.p(s.nextLine());
@@ -1529,6 +1543,8 @@ public class Main{
                                 Clear.clear();
                                 System.out.println("You hear Antonio yell out.");
                                 Pass.p(s.nextLine());
+
+                                Clear.clear();
                                 System.out.println("We know exactly what's keeping us fighting.");
                                 Pass.p(s.nextLine());
                                 System.out.println("We're finding Vee's mom and we're taking back math.");
@@ -1562,6 +1578,8 @@ public class Main{
                                 System.out.println("Codio Avatar used Unit Shift!\n");
                                 codioAvatar.changeDocsona(unit6);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
+                                //Reset charge for player's sake
+                                a.charge = 0;
                                 AI.weightCase = 0;
                                 AI.weightCounter = 0;
                                 Pass.p(s.nextLine()); }
@@ -1585,7 +1603,7 @@ public class Main{
                                 Pass.p(s.nextLine());
 
                                 Clear.clear();
-                                System.out.println("Code is the means by which all will be automated.");
+                                System.out.println("Code is the means by which all is automated.");
                                 Pass.p(s.nextLine());
                                 System.out.println("Your mother knew the power of efficiency, yet turned it down in her attempt to harvest it.");
                                 Pass.p(s.nextLine());
@@ -1624,6 +1642,8 @@ public class Main{
                                 System.out.println("Codio Avatar used Unit Shift!\n");
                                 codioAvatar.changeDocsona(unit7);
                                 System.out.println("Codio Avatar changed his Docsona! His skills and affinities have changed!");
+                                //Reset charge for player's sake
+                                a.charge = 0;
                                 AI.weightCase = 0;
                                 AI.weightCounter = 5;
                                 Pass.p(s.nextLine()); }
@@ -1689,7 +1709,7 @@ public class Main{
             Pass.p(s.nextLine());
             System.out.println("You kids don't know what you've done.");
             Pass.p(s.nextLine());
-            System.out.println("Without me, there will be no order... no selection... no sorting.");
+            System.out.println("Without me, there is no order... no selection... no sorting.");
             Pass.p(s.nextLine());
 
             Clear.clear();

@@ -1,3 +1,5 @@
+//BUILD 2.0.0
+
 public class AI{
     //Tracker for which phase Codio is on
     public static int phase;
@@ -315,24 +317,155 @@ public class AI{
                         a.hasTurn = false;
                         //Concentrate without fail
                         Battle.useSSkill(a, a, a.edocsona.skills[2], "0");
-                        break;
-                }
+                        break; }
                 break;
             //Unit 4 Logic
             case 4:
                 AI.unit4started = true;
+                //Determine case for weighting
+                AI.weightCalculator(a, actors);
+                //Choose a skill based on weighting
+                a.hasTurn = false;
+                switch(weightCase){
+                    //Favor elec/dark
+                    case 0:
+                        a.hasTurn = false;
+                        //Pick a random target
+                        target = (int)(Math.random() * (4));
+                        //Prioritize magic skills
+                        if((int)(random) <= 48){
+                            Battle.useSSkill(a, actors[target], a.edocsona.skills[0], "0"); }
+                        else if((int)(random) > 48 && (int)(random) <= 96){
+                            Battle.useSSkill(a, actors[target], a.edocsona.skills[1], "0"); }
+                        else if((int)(random) > 96){
+                            Battle.useSSkill(a, actors[target], a.edocsona.attack, "0"); }
+                        break;
+                    //Favor physical + charge
+                    case 1:
+                        a.hasTurn = false;
+                        //Pick the target with the most HP
+                        for(int i = 0; i < actors.length - 1; i++){
+                            if(actors[i].cHP > intHolder){
+                                //90% chance to select a target
+                                if(random >= 10){
+                                    intHolder = actors[i].cHP;
+                                    target = i;
+                                    break; } } }
+                        //Prioritize charge if no physical charge
+                        if((int)(random) <= 70 && a.charge != 1){
+                            Battle.useSSkill(a, a, a.edocsona.skills[2], "0"); }
+                        else if((int)(random) > 70 || (a.charge == 1)){
+                            Battle.useASkill(a, actors, a.edocsona.skills[3], "0"); }
+                        break; }
                 break;
             //Unit 5 Logic
             case 5:
                 AI.unit5started = true;
+                //Determine case for weighting
+                AI.weightCalculator(a, actors);
+                //Choose a skill based on weighting
+                a.hasTurn = false;
+                switch(weightCase){
+                    //Fire
+                    case 0:
+                        Battle.useASkill(a, actors, a.edocsona.skills[0], "0");
+                        break;
+                    //Ice
+                    case 1:
+                        Battle.useASkill(a, actors, a.edocsona.skills[1], "0");
+                        break;
+                    //Wind
+                    case 2:
+                        Battle.useASkill(a, actors, a.edocsona.skills[2], "0");
+                        break;
+                    //Elec
+                    case 3:
+                        Battle.useASkill(a, actors, a.edocsona.skills[3], "0");
+                        break;
+                    //Light
+                    case 4:
+                        Battle.useASkill(a, actors, a.edocsona.skills[4], "0");
+                        break;
+                    //Dark
+                    case 5:
+                        Battle.useASkill(a, actors, a.edocsona.skills[5], "0");
+                        break; }
                 break;
             //Unit 6 Logic
             case 6:
                 AI.unit6started = true;
+                //Determine case for weighting
+                AI.weightCalculator(a, actors);
+                //Choose a skill based on weighting
+                a.hasTurn = false;
+                switch(weightCase){
+                    //Magic Attack
+                    case 0:
+                        a.hasTurn = false;
+                        if((int)(random) <= 50){
+                            Battle.useASkill(a, actors, a.edocsona.skills[2], "0"); }
+                        if((int)(random) > 50){
+                            Battle.useASkill(a, actors, a.edocsona.skills[3], "0"); }
+                        break; 
+                    //Physical Attack
+                    case 1:
+                        a.hasTurn = false;
+                        //Pick the target with the most HP
+                        for(int i = 0; i < actors.length - 1; i++){
+                            if(actors[i].cHP > intHolder){
+                                //90% chance to select a target
+                                if(random >= 10){
+                                    intHolder = actors[i].cHP;
+                                    target = i;
+                                    break; } } }
+                        //Favor physical attacks
+                        if((int)(random) <= 50){
+                            Battle.useSSkill(a, actors[target], a.edocsona.skills[0], "0"); }
+                        if((int)(random) > 50){
+                            Battle.useASkill(a, actors, a.edocsona.skills[1], "0"); }
+                        break; 
+                    //Buff/Ailment
+                    case 2:
+                        a.hasTurn = false;
+                        if((int)(random) <= 50){
+                            Battle.useSSkill(a, a, a.edocsona.skills[4], "0"); }
+                        if((int)(random) > 50){
+                            Battle.useASkill(a, actors, a.edocsona.skills[5], "0"); }
+                        break; }
                 break;
             //Unit 7 Logic
             case 7:
                 AI.unit7started = true;
+                //Determine case for weighting
+                AI.weightCalculator(a, actors);
+                //Choose a skill based on weighting
+                a.hasTurn = false;
+                switch(weightCase){
+                    //Total Automation
+                    case 0:
+                        a.hasTurn = false;
+                        Battle.useASkill(a, actors, a.edocsona.skills[0], "0");
+                        break;
+                    case 1:
+                        a.hasTurn = false;
+                        //Pick a random target
+                        target = (int)(Math.random() * (4));
+                        //Act randomly from 7 other skills
+                        if((int)(random) <= 20){
+                            Battle.useASkill(a, actors, a.edocsona.skills[1], "0"); }
+                        else if((int)(random) > 20 && (int)(random) <= 35){
+                            Battle.useASkill(a, actors, a.edocsona.skills[2], "0"); }
+                        else if((int)(random) > 35 && (int)(random) <= 45){
+                            Battle.useSSkill(a, a, a.edocsona.skills[3], "0"); }
+                        else if((int)(random) > 45 && (int)(random) <= 50){
+                            Battle.useASkill(a, actors, a.edocsona.skills[4], "0"); }
+                        else if((int)(random) > 50 && (int)(random) <= 75){
+                            Battle.useASkill(a, actors, a.edocsona.skills[5], "0"); }
+                        else if((int)(random) > 75 && (int)(random) <= 90){
+                            Battle.useASkill(a, actors, a.edocsona.skills[6], "0"); }
+                        else if((int)(random) > 90){
+                            Battle.useSSkill(a, a, a.edocsona.skills[7], "0"); }
+                        break; }
                 break; 
         }
     }
@@ -452,29 +585,29 @@ public class AI{
                         AI.weightCounter++;
                         break;
                     //Wind
-                    case 3:
+                    case 2:
                         AI.weightCase = 2;
                         AI.weightCounter++;
                         break;
                     //Elec
-                    case 4:
+                    case 3:
                         AI.weightCase = 3;
                         AI.weightCounter++;
                         break;
                     //Light
-                    case 5:
+                    case 4:
                         AI.weightCase = 4;
                         AI.weightCounter++;
                         break;
                     //Dark
-                    case 6:
+                    case 5:
                         AI.weightCase = 5;
                         AI.weightCounter = 0;
                         break;
                     //Loop back, random skill
                     default:
                         AI.weightCase = 0;
-                        AI.weightCounter = 0;
+                        AI.weightCounter = 1;
                         break; }
                 break;
             //Calculate the weighting for phase 6
@@ -513,19 +646,19 @@ public class AI{
     public static void phaseCalculator(Actor a){
         if(a.cHP >= 18000){
             phase = 0; }
-        if(a.cHP < 18000 && a.cHP >= 16000){
+        else if(a.cHP < 18000 && a.cHP >= 16000){
             phase = 1; }
-        if(a.cHP < 16000 && a.cHP >= 14000){
+        else if(a.cHP < 16000 && a.cHP >= 14000){
             phase = 2; }
-        if(a.cHP < 12000 && a.cHP >= 10000){
+        else if(a.cHP < 12000 && a.cHP >= 10000){
             phase = 3; }
-        if(a.cHP < 10000 && a.cHP >= 9000){
+        else if(a.cHP < 10000 && a.cHP >= 9000){
             phase = 4; }
-        if(a.cHP < 9000 && a.cHP >= 7500){
+        else if(a.cHP < 9000 && a.cHP >= 7500){
             phase = 5; }
-        if(a.cHP < 7500 && a.cHP >= 5000){
+        else if(a.cHP < 7500 && a.cHP >= 5000){
             phase = 6; }
-        if(a.cHP < 5000){
+        else if(a.cHP < 5000){
             phase = 7; }
     }
 

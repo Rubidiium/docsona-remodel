@@ -1,3 +1,5 @@
+//BUILD 2.0.0
+
 public class Skill{
     //Instance variables for each skill
     public String name;
@@ -156,6 +158,7 @@ public class Skill{
             temp = ((Math.random() * (1 - 0.8) + 0.8) * Math.sqrt(this.basePower) * pMA) - (tEN * 0.2);
 
             //Check for ailment immunity or pre-existing ailment
+        if(this.type != 8){
             if(target.ailment != 10 && target.ailment == 0 && target.edocsona.affinities[this.type] < 3){
                 //Calculate chance for ailments
                 switch(this.type){
@@ -190,6 +193,7 @@ public class Skill{
                 }
             }
         }
+    }
 
         //If the enemy was down, reward a bonus turn and 10% more damage
         if(target.down == true){

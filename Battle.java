@@ -1,3 +1,5 @@
+//BUILD 2.0.0
+
 public class Battle{
     //Global flags
     public static boolean missed;
@@ -69,6 +71,9 @@ public class Battle{
                 a.hasTurn = false;
                 System.out.println(a.name + " is too afraid to move!");
                 Battle.moveCancel = true; } } 
+        //Cancel the turn if the target is unconscious
+        if(t.uc && s.type != 21){
+            Battle.moveCancel = true; }
         if(!Battle.moveCancel){
         //Perform a basic attack
         if(s.name.equals("Attack")){
@@ -596,7 +601,7 @@ public class Battle{
                                     System.out.println(t.name + "'s HP is " + t.cHP);
                                     break;
                                 case 100:
-                                    t.uc = true;
+                                    t.uc = false;
                                     System.out.println(t.name + " was revived!");
                                     t.cHP += t.mHP;    
                                     System.out.println(t.name + "'s HP is maxed out!");
@@ -651,9 +656,20 @@ public class Battle{
             for(Actor t : targets){
                 if(t.player){
                     //Handle damage skills
-                    if((s.type >= 0 && s.type <= 6) || s.type == 8){
                         Battle.wasCritical = false;
                         Battle.missed = false;
+                        //Hack almighty damage
+                        if(s.type == 8){
+                            a.hasTurn = false;
+                            damage = s.castDamage(a, t);
+                            if(!Battle.missed){
+                                    System.out.println(damage + " damage to " + t.name);
+                                    t.cHP -= damage;
+                                    if(t.cHP < 0){
+                                        t.cHP = 0;}
+                                    System.out.println(t.name + "'s HP is " + t.cHP + "\n");
+                                    t.unconscious(); } 
+                        } else if((s.type >= 0 && s.type <= 6) && (!t.uc && s.type != 21)){
                         switch(t.edocsona.affinities[s.type]){
                             //No affinities
                             default:
@@ -724,7 +740,7 @@ public class Battle{
                             //Enemy blocks
                             case 3:
                                 a.hasTurn = false;
-                                System.out.println("BLOCK");
+                                System.out.println("BLOCK\n");
                                 break;
                             //Enemy absorbs
                             case 4:
