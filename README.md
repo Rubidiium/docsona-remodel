@@ -16,9 +16,31 @@ If you are in my AP CSA class and have access to Codio projects, you can run pul
 
 4. Create the project with whatever name you'd like.
 
-5. Select "Java.main" and then "Compile and Run/"
+5. Select "Java.main" and then "Configure" in the top-middle of the screen.
 
-6. Resize the terminal window to be as large as possible.
+6. If Codio opens a file that prompts you to configure compile and run, paste the following code:
+
+```
+{
+  // Configure your Run and Preview buttons here.
+  
+  // Run button configuration
+      "commands": {
+          "Compile & Run": "cd docsona-remodel; javac Main.java && java Main",
+          "Compile": "cd docsona-remodel; javac {{filename}}",
+          "Run": "java {{filename_no_ext}}"
+      },
+  
+  // Preview button configuration
+    "preview": {
+          "Project Index (static)": "https://{{domain}}/{{index}}",
+          "Current File (static)": "https://{{domain}}/{{filepath}}",
+          "Box URL": "https://{{domain3000}}/"
+    }
+  }
+```
+
+7. Resize the terminal window to be as large as possible.
 
 ### COMPUTER WITH JAVA INSTALLED
 
