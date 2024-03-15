@@ -897,8 +897,6 @@ public class Battle{
                     }
                 }
             }
-        System.out.println(Battle.totalWeak);
-        System.out.println(Battle.is1more);
         //Restore 1 more for one critical
         if((Battle.totalCritical || Battle.totalWeak) && !Battle.is1more){
             System.out.println("1 MORE\n");
