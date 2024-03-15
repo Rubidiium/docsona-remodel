@@ -1,4 +1,4 @@
-//BUILD 2.0.2
+//BUILD 2.0.3
 
 import java.util.Scanner;
 
@@ -17,6 +17,7 @@ public class Main{
          * REBALANCED SKILL SETS 
          * FIXED WEAK NOT REWARDING ENEMY BONUS TURN
          * MISC. FIXES
+         * REBALANCED DAMAGE TO BE MORE FAIR (STILL CHALLENGING)
 
         */
 
