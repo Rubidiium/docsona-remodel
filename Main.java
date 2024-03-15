@@ -1,4 +1,4 @@
-//BUILD 2.0.0
+//BUILD 2.0.2
 
 import java.util.Scanner;
 
@@ -63,7 +63,7 @@ public class Main{
 
         Skill crashingSkill = new Skill("Crash and Burn", 1, false, true, 0, 15, true); //Nyx Exclusive
 
-        Skill overheatSkill = new Skill("Overheat", 1, false, true, 0, 20, true); //Nyx Exclusive
+        Skill overheatSkill = new Skill("Overheat", 1, false, true, 0, 15, true); //Nyx Exclusive
 
         //ICE SKILLS (2)
         Skill chillerSkill = new Skill("Patagonia", 2, false, false, 18, 15, true);
@@ -73,7 +73,7 @@ public class Main{
 
         Skill whileSkill = new Skill("while()", 2, false, true, 0, 15, true); //Nyx Exclusive
 
-        Skill deadlockSkill = new Skill("Deadlock", 2, false, true, 0, 25, true); //Nyx Exclusive
+        Skill deadlockSkill = new Skill("Deadlock", 2, false, true, 0, 15, true); //Nyx Exclusive
 
         //WIND SKILLS (3)
         Skill tornadoSkill = new Skill("Tornado", 3, false, false, 18, 15, true);
@@ -82,7 +82,7 @@ public class Main{
         Skill tearSkill = new Skill("Tempestuous", 3, false, false, 26, 25, true);
         tearSkill.newDescription("Severe wind damage to one foe");
 
-        Skill airSkill = new Skill("Air Quality Reduction", 3, false, true, 0, 20, true); //Nyx Exclusive
+        Skill airSkill = new Skill("Air Quality Reduction", 3, false, true, 0, 15, true); //Nyx Exclusive
 
         //ELEC SKILLS (4)
         Skill shockerSkill = new Skill("Shocker", 4, false, false, 18, 15, true);
@@ -93,9 +93,9 @@ public class Main{
 
         Skill staticSkill = new Skill("Static Variable", 4, false, false, 0, 20, true); //Nyx Exclusive
 
-        Skill wireSkill = new Skill("Open Wire", 4, false, true, 0, 20, true); //Nyx Exclusive
+        Skill wireSkill = new Skill("Open Wire", 4, false, true, 0, 15, true); //Nyx Exclusive
 
-        Skill insertionSkill = new Skill("Insertion", 4, false, true, 0, 25, true); //Nyx Exclusive
+        Skill insertionSkill = new Skill("Insertion", 4, false, true, 0, 20, true); //Nyx Exclusive
 
         //LIGHT SKILLS (5)
         Skill brightSkill = new Skill("Inquisition", 5, false, false, 18, 18, true);
@@ -104,9 +104,9 @@ public class Main{
         Skill weirdSkill = new Skill("Be Less Weird", 5, false, false, 30, 30, true);
         weirdSkill.newDescription("Be less weird... and do incredible light damage to one foe");
 
-        Skill lightSkill = new Skill("Light Mode", 5, false, true, 0, 20, true); //Nyx Exclusive
+        Skill lightSkill = new Skill("Light Mode", 5, false, true, 0, 15, true); //Nyx Exclusive
 
-        Skill polymorphSkill = new Skill("Polymorphism", 5, false, true, 0, 25, true); //Nyx Exclusive
+        Skill polymorphSkill = new Skill("Polymorphism", 5, false, true, 0, 20, true); //Nyx Exclusive
 
         //DARK SKILLS (6)
         Skill nothingSkill = new Skill("Nullification", 6, false, false, 18, 15, true);
@@ -117,11 +117,11 @@ public class Main{
 
         Skill voidSkill = new Skill("Void Method", 6, false, false, 0, 20, true); //Nyx Exclusive
 
-        Skill terminateSkill = new Skill("Terminate", 6, false, true, 0, 20, true); //Nyx Exclusive
+        Skill terminateSkill = new Skill("Terminate", 6, false, true, 0, 15, true); //Nyx Exclusive
 
         Skill demonSkill = new Skill("\"is-a\" monster", 6, false, true, 0, 20, true); //Nyx Exclusive
 
-        Skill recursionSkill = new Skill("Null Recursion", 6, false, true, 0, 25, true); //Nyx Exclusive
+        Skill recursionSkill = new Skill("Null Recursion", 6, false, true, 0, 20, true); //Nyx Exclusive
 
         //HEALING SKILLS (7)
         Skill counselingSkill = new Skill("Counseling", 7, true, false, 16, 999, true);
@@ -226,11 +226,11 @@ public class Main{
         asylumSkill.newDescription("Offer asylum... and heal fear/poison/despair for all allies");
 
         //REVIVE HEAL SKILL (21)
-        Skill resusciateSkill = new Skill("Resuscitate", 21, true, false, 10, 50, true);
-        resusciateSkill.newDescription(("Revive one ally with 50% HP"));
+        Skill resusciateSkill = new Skill("Resuscitate", 21, true, false, 10, 100, true);
+        resusciateSkill.newDescription(("Revive one ally with full HP"));
 
-        Skill awakenSkill = new Skill("Awaken", 21, true, false, 18, 100, true);
-        awakenSkill.newDescription(("Slap your slips down on the desk... and revive one ally with a full heal"));
+        Skill awakenSkill = new Skill("Awaken", 21, true, false, 18, 50, true);
+        awakenSkill.newDescription(("Slap your slips down on the desk... and revive one ally with 50% HP"));
 
         //Create item objects
         Item skipItem = new Item("Skip Day", 21, true, false, 0, 100, true, 5, false);
@@ -338,7 +338,7 @@ public class Main{
         unit4.setAttack(attack);
 
         //Themed around arrays (wild magic)
-        Docsona unit5 = new Docsona("Unit 5", 40, 80, 50, 40, 50);
+        Docsona unit5 = new Docsona("Unit 5", 40, 70, 50, 40, 50);
         unit5.setAffinities(0, 3, 3, 3, 3, 3, 3);
         unit5.setSkills(overheatSkill, deadlockSkill, airSkill, wireSkill, lightSkill, terminateSkill, none, none);
         unit5.setAttack(attack);
@@ -350,7 +350,7 @@ public class Main{
         unit6.setAttack(attack);
 
         //Themed around sorting (Nyx's true arcana, all types go)
-        Docsona unit7 = new Docsona("Unit 7", 80, 80, 80, 80, 80);
+        Docsona unit7 = new Docsona("Unit 7", 70, 70, 80, 80, 80);
         unit7.setAffinities(2, 2, 2, 2, 2, 2, 2);
         unit7.setSkills(automationSkill, insertionSkill, recursionSkill, overclockSkill, decodeSkill, flushSkill, purgeSkill, conversionSkill);
         unit7.setAttack(attack);

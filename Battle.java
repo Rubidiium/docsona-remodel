@@ -153,7 +153,7 @@ public class Battle{
                         System.out.println(damage + " damage to " + t.name);
                         System.out.println(t.name + "'s HP is " + t.cHP + "\n");
                         if(!Battle.is1more){
-                            System.out.println("\n1 MORE\n"); }
+                            System.out.println("1 MORE\n"); }
                     //Normal attack if guarding
                     } else {
                         System.out.println(damage + " damage to " + t.name);
@@ -494,19 +494,19 @@ public class Battle{
                             a.hasTurn = false;
                             if(t.charge == 1){
                                 t.charge = 3;
-                                System.out.println(t.name + " is charged and concentrated");
+                                System.out.println(t.name + " is charged and concentrated!");
                             } else {
                                 t.charge = 2; }
-                            System.out.println(t.name + " is concentrated");
+                            System.out.println(t.name + " is concentrated!");
                             break;
                         case 15:
                             a.hasTurn = false;
                             if(t.charge == 2){
                                t.charge = 3;
-                                System.out.println(t.name + " is charged and concentrated");
+                                System.out.println(t.name + " is charged and concentrated!");
                             } else {
                                 t.charge = 1; }
-                            System.out.println(t.name + " is charged up");
+                            System.out.println(t.name + " is charged up!");
                             break; } } }
             //Handle ailment heal skills
             if(s.type >= 19 && s.type <= 21){
@@ -596,6 +596,7 @@ public class Battle{
                             a.cSP = a.mSP; } } else if(t.uc){
                             switch(s.basePower){
                                 case 50:
+                                    a.hasTurn = false;
                                     t.uc = false;
                                     System.out.println(t.name + " was revived!");
                                     t.cHP += (int)(t.mHP / 2);
@@ -605,6 +606,7 @@ public class Battle{
                                     System.out.println(t.name + "'s HP is " + t.cHP);
                                     break;
                                 case 100:
+                                    a.hasTurn = false;
                                     t.uc = false;
                                     System.out.println(t.name + " was revived!");
                                     t.cHP += t.mHP;    
@@ -911,7 +913,7 @@ public class Battle{
             Battle.is1healed = false;
             //Cycle through each friendly actor
             for(Actor t : targets){
-                if(t.player){
+                if(t.player && !(t.uc && s.type != 21)){
                     if(s.type == 7){
                         if(!t.unconscious()){
                             a.hasTurn = false;
