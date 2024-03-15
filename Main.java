@@ -13,14 +13,10 @@ public class Main{
 
         /* TO-DO (OR DIE)
 
-         MANDATORY
-         * NONE
-
-         TWEAKS
-         * NONE
-         
-         BUG FIXES
-         * WAIT AND SEE!
+         CHANGELOG
+         * REBALANCED SKILL SETS 
+         * FIXED WEAK NOT REWARDING ENEMY BONUS TURN
+         * MISC. FIXES
 
         */
 
@@ -296,19 +292,19 @@ public class Main{
         //HINNI DOCSONA
         Docsona kaplan = new Docsona("Kaplan", 46, 68, 74, 56, 43);
         kaplan.setAffinities(0, 1, 0, 0, 2, 2, 5);
-        kaplan.setSkills(counselingSkill, speechSkill, shockerSkill, defensiveSkill, darkSkill, none, none, none);
+        kaplan.setSkills(counselingSkill, speechSkill, resusciateSkill, shockerSkill, defensiveSkill, darkSkill, none, none);
         kaplan.setAttack(attack);
 
         //ED DOCSONA
         Docsona ryzsard = new Docsona("Ryzsard", 45, 78, 78, 44, 78);
         ryzsard.setAffinities(0, 2, 0, 0, 0, 4, 1);
-        ryzsard.setSkills(brightSkill, buttonSkill, hikingSkill, focusSkill, crusadeSkill, none, none, none);
+        ryzsard.setSkills(brightSkill, buttonSkill, hikingSkill, crusadeSkill, intimidateSkill, focusSkill, none, none);
         ryzsard.setAttack(attack);
 
         //ANTONIO DOCSONA
         Docsona cole = new Docsona("Cole", 88, 45, 84, 34, 54);
         cole.setAffinities(3, 0, 2, 1, 0, 0, 2);
-        cole.setSkills(headrushSkill, tackleSkill, madmenSkill, warmupSkill, weakenSkill, resusciateSkill, none, none);
+        cole.setSkills(headrushSkill, tackleSkill, madmenSkill, warmupSkill, weakenSkill, chargeSkill, none, none);
         cole.setAttack(attack);
 
         //NYX DOCSONAS
@@ -526,8 +522,6 @@ public class Main{
                 if(actors[4].uc || actors[4].cHP <= 0){
                     Battle.battleWon = true; }
                 break; }
-            //Idk what this does
-            Battle.is1more = false;
             //Reset buffs for dead players
             for(Actor acts : actors){
                 if(acts.uc){
@@ -550,6 +544,7 @@ public class Main{
             if(a.ailment != 0 && Battle.ailmentPrint == false && a.player){
                 Battle.ailmentPrint = true; 
                 Pass.p(s.nextLine()); }
+            Battle.is1more = false;
             while(a.hasTurn == true){
                 //Check if battle can be ended
                 if(Battle.battleChecker(actors)){break;}
@@ -1380,7 +1375,7 @@ public class Main{
                                 Pass.p(s.nextLine());
                                 System.out.println("How foolish, to let her demise be caused by a desire for data.");
                                 Pass.p(s.nextLine());
-                                System.out.println("Yes, code is the means by which all be automated.");
+                                System.out.println("Yes, code is the means by which all is automated.");
                                 Pass.p(s.nextLine());
                                 System.out.println("Losing sight of your goal means losing your motivation, an object that must not be lost.");
                                 Pass.p(s.nextLine());

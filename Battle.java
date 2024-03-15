@@ -6,6 +6,7 @@ public class Battle{
     public static boolean wasCritical;
     public static boolean totalCritical;
     public static boolean wasWeak;
+    public static boolean totalWeak;
     public static boolean wasResisted;
     public static boolean wasNulled;
     public static boolean wasDrained;
@@ -54,6 +55,7 @@ public class Battle{
         //Reset battle trackers
         Battle.wasWeak = false;
         Battle.wasCritical = false;
+        Battle.totalWeak = false;
         Battle.missed = false;
         Battle.moveCancel = false;
         //Cancel action if insufficient HP/SP
@@ -137,10 +139,11 @@ public class Battle{
                     a.hasTurn = false;
                     damage = s.castDamage(a, t);
                     if(!Battle.missed){
-                    if(!t.guard){
+                    if(t.guard == false){
                         if(!Battle.is1more){
                             a.hasTurn = true; }
                         System.out.println("WEAK");
+                        Battle.wasWeak = true;
                         t.cHP -= damage;
                         if(t.cHP < 0){
                             t.cHP = 0;}
@@ -154,6 +157,7 @@ public class Battle{
                     //Normal attack if guarding
                     } else {
                         System.out.println(damage + " damage to " + t.name);
+                        Battle.wasWeak = false;
                         t.cHP -= damage;
                         if(t.cHP < 0){
                             t.cHP = 0;}
@@ -347,7 +351,7 @@ public class Battle{
             }
         }
         //Handle friendly skills
-        if(s.friendly){
+        if(s.friendly && (!t.uc || s.type == 21)){
             //Handle healing skills
             if(s.type == 7){
                 if(!t.unconscious() || t.cHP == t.mHP){
@@ -624,6 +628,9 @@ public class Battle{
         Clear.clear();
         //Reset battle trackers
         Battle.wasCritical = false;
+        Battle.totalCritical = false;
+        Battle.wasWeak = false;
+        Battle.totalWeak = false;
         Battle.missed = false;
         Battle.moveCancel = false;
         Battle.is1healed = false;
@@ -701,25 +708,24 @@ public class Battle{
                                 a.hasTurn = false;
                                 damage = s.castDamage(a, t);
                                 if(!Battle.missed){
-                                if(!t.guard){
-                                    if(!Battle.is1more){
-                                        a.hasTurn = true;
-                                        Battle.totalCritical = true; }
+                                if(t.guard == false){
+                                    Battle.totalCritical = true;
+                                    Battle.totalWeak = true;
                                     System.out.println("WEAK");
                                     t.cHP -= damage;
+                                    Battle.wasWeak = true;
                                     if(t.cHP < 0){
                                         t.cHP = 0;}
                                     if(!t.down){
                                         System.out.println(t.name + " was knocked down!"); }
                                     t.down = true;
                                     System.out.println(damage + " damage to " + t.name);
-                                if(!Battle.is1more){
-                                    Battle.is1more = true; }
                                     System.out.println(t.name + "'s HP is " + t.cHP  + "\n");
                                 //Negate weakness if guarding
                                 } else {
                                     System.out.println(damage + " damage to " + t.name);
                                     t.cHP -= damage;
+                                    Battle.wasWeak = false;
                                     if(t.cHP < 0){
                                         t.cHP = 0;}
                                     System.out.println(t.name + "'s HP is " + t.cHP + "\n"); } }
@@ -891,8 +897,10 @@ public class Battle{
                     }
                 }
             }
+        System.out.println(Battle.totalWeak);
+        System.out.println(Battle.is1more);
         //Restore 1 more for one critical
-        if((Battle.totalCritical || Battle.wasWeak) && !Battle.is1more){
+        if((Battle.totalCritical || Battle.totalWeak) && !Battle.is1more){
             System.out.println("1 MORE\n");
             a.hasTurn = true;
             Battle.is1more = true;
@@ -1167,6 +1175,7 @@ public class Battle{
             if(Math.random() >= 0.10){
                 a.hasTurn = false;
                 System.out.println(a.name + " is too afraid to move!");
+                i.quantity++;
                 Battle.moveCancel = true; } }
         if(!Battle.moveCancel){
         //Use the item
